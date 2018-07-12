@@ -1,0 +1,57 @@
+@import "../../styles/grid.less";
+@import "../../styles/color.less";
+@import "../../styles/animations.less";
+@import "../../styles/type.less";
+
+.container {
+  padding: @base-size;
+  position: relative;
+  
+  input {
+  	height: @button-height;
+  	min-width: @min-input-width;
+  	background: @input-bg;
+  	border: none;
+  	border-radius: @button-height;
+  	padding-left: @base-size;
+  	transition: @standard-transition;
+  	position: relative;
+  	z-index: 0;
+    .regularFont();
+  	&:focus, &:active{
+      outline: none;
+  		// outline-style: dotted;
+    //   outline-color: @focus;
+    //   outline-offset: @base-size / 4;
+    //   outline-width: 5px;
+      border: 2px solid @primary;
+      background: @white;
+  	}
+  }
+}
+
+.float_label {
+  position: absolute;
+  z-index: 1;
+  top: ((@button-height/ 2) - (@regular-text / 2)) + @base-size;
+  left: @base-size * 2;
+  .lightFont();
+  transition: @standard-transition;
+}
+
+.float_focus {
+  position: absolute;
+  z-index: 1;
+  // top: @base-size + (@base-size/6);
+  top: @base-size / 4;
+  left: @base-size * 2;
+  .regularFontSmall();
+  transition: @standard-transition;
+}
+
+.error {
+  .regularFontSmall();
+  color: @bad;
+  margin-top: @base-size / 4;
+  margin-left: @base-size;
+}
