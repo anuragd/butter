@@ -1,6 +1,6 @@
 {
-  "name": "dcnm_component_lib-example",
-  "homepage": "https://.github.io/dcnm_component_lib",
+  "name": "dcn-ux-resources-example",
+  "homepage": "https://.github.io/dcn-ux-resources",
   "version": "0.0.0",
   "private": true,
   "license": "MIT",
@@ -8,7 +8,6 @@
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
-    "dcnm_component_lib": "*",
     "react-scripts": "^1.1.1"
   },
   "scripts": {

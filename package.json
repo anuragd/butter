@@ -4,7 +4,10 @@
   "description": "",
   "author": "",
   "license": "MIT",
-  "repository": "/dcnm_component_lib",
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket-eng-sjc1.cisco.com/bitbucket/scm/dca/dcn-network-insights-resources.git"
+  },
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",
