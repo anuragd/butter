@@ -10,6 +10,15 @@
 npm install --save dcn-ux-resources
 ```
 
+## NPM scripts
+
+```bash
+npm start
+npm run build
+npm run doc:serve
+npm run doc:build
+```
+
 ## Usage
 
 ```jsx
