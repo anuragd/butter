@@ -20,15 +20,20 @@
   	z-index: 0;
     .lightFont();
     line-height: @button-height;
-  	&:focus, &:active{
-      outline: none;
-  		// outline-style: dotted;
-    //   outline-color: @focus;
-    //   outline-offset: @base-size / 4;
-    //   outline-width: 5px;
+  	
+    &:focus, &:active{
+      .noOutlines();
       .highlightBorder();
       background: @white;
   	}
+
+    &:disabled {
+      background: @disable-bg;
+      color: @disable-text;
+      &:active {
+        .noOutlines();
+      }
+    }
 
     &.valid_input {
       background: @white;
@@ -46,6 +51,17 @@
   .lightFont();
   line-height: @regular-text;
   color: @primary-dark;
+  transition: @standard-transition;
+}
+
+.float_disable {
+  position: absolute;
+  z-index: 1;
+  top: ((@button-height/ 2) - (@regular-text / 2)) + @base-size;
+  left: @base-size * 2;
+  .lightFont();
+  line-height: @regular-text;
+  color: @disable-text;
   transition: @standard-transition;
 }
 
