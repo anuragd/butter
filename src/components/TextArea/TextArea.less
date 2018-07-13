@@ -7,19 +7,17 @@
   padding: @base-size;
   position: relative;
   
-  input {
-  	height: @button-height;
+  textarea {
+  	min-height: @min-input-width;
   	min-width: @min-input-width;
   	background: @input-bg;
   	border: none;
-  	border-radius: @button-height;
-    padding: 0;
-  	padding: 0 @base-size;
+  	border-radius: @half-size;
+  	padding: @half-size;
   	transition: @standard-transition;
   	position: relative;
   	z-index: 0;
     .lightFont();
-    line-height: @button-height;
   	
     &:focus, &:active{
       .noOutlines();
@@ -46,8 +44,8 @@
 .float_label {
   position: absolute;
   z-index: 1;
-  top: ((@button-height/ 2) - (@regular-text / 2)) + @base-size;
-  left: @base-size * 2;
+  top: ((@button-height/ 2) - (@regular-text / 2)) + @half-size;
+  left: @base-size + @half-size;
   .lightFont();
   line-height: @regular-text;
   color: @primary-dark;
@@ -58,8 +56,8 @@
 .float_disable {
   position: absolute;
   z-index: 1;
-  top: ((@button-height/ 2) - (@regular-text / 2)) + @base-size;
-  left: @base-size * 2;
+  top: ((@button-height/ 2) - (@regular-text / 2)) + @half-size;
+  left: @base-size + @half-size;
   .lightFont();
   line-height: @regular-text;
   color: @disable-text;
@@ -72,7 +70,7 @@
   z-index: 1;
   // top: @base-size + (@base-size/6);
   top: @base-size / 4;
-  left: @base-size * 2;
+  left: @base-size + @half-size;
   .regularFontSmall();
   transition: @standard-transition;
   pointer-events: none;
@@ -80,11 +78,11 @@
 
 
 .validated {
-  width: @button-height;
-  height: @button-height;
+  width: @regular-text;
+  height: @regular-text;
   position: absolute;
   z-index: 1;
-  top: @base-size;
+  top: @base-size + @half-size;
   left: @base-size * 2;
   display: flex;
   align-items: center;

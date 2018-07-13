@@ -8,6 +8,7 @@ export default class App extends Component {
       <div>
         <components.Input label="Label" disabled/>
         <components.Button label="Button" disabled/>
+        <components.TextArea label="Button" disabled/>
       </div>
     )
   }
