@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 
-import {DCNMInput} from 'dcn-ux-resources'
+import {Input} from 'dcn-ux-resources'
 
 export default class App extends Component {
   render () {
     return (
       <div>
-        <DCNMInput label="Label" validated value="This is a valid value"/>
+        <Input label="Label" validated value="This is a valid value"/>
       </div>
     )
   }
