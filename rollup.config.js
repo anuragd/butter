@@ -4,6 +4,7 @@ import external from 'rollup-plugin-peer-deps-external'
 import postcss from 'rollup-plugin-postcss'
 import resolve from 'rollup-plugin-node-resolve'
 import url from 'rollup-plugin-url'
+import copy from 'rollup-plugin-copy';
 
 import pkg from './package.json'
 
@@ -30,6 +31,11 @@ export default {
       exclude: 'node_modules/**'
     }),
     resolve(),
-    commonjs()
+    commonjs(),
+    copy({
+      'src/assets/fonts/CiscoSansTTHeavy.ttf':'dist/assets/fonts/CiscoSansTTHeavy.ttf',
+      'src/assets/fonts/CiscoSansTTLight.ttf':'dist/assets/fonts/CiscoSansTTLight.ttf',
+      'src/assets/fonts/CiscoSansTTRegular.ttf':'dist/assets/fonts/CiscoSansTTRegular.ttf'
+    })
   ]
 }

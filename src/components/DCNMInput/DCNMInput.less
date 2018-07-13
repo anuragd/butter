@@ -1,5 +1,5 @@
 @import "../../styles/grid.less";
-@import "../../styles/color.less";
+@import "../../styles/mixins.less";
 @import "../../styles/animations.less";
 @import "../../styles/type.less";
 
@@ -13,20 +13,28 @@
   	background: @input-bg;
   	border: none;
   	border-radius: @button-height;
-  	padding-left: @base-size;
+    padding: 0;
+  	padding: 0 @base-size;
   	transition: @standard-transition;
   	position: relative;
   	z-index: 0;
-    .regularFont();
+    .lightFont();
+    line-height: @button-height;
   	&:focus, &:active{
       outline: none;
   		// outline-style: dotted;
     //   outline-color: @focus;
     //   outline-offset: @base-size / 4;
     //   outline-width: 5px;
-      border: 2px solid @primary;
+      .highlightBorder();
       background: @white;
   	}
+
+    &.valid_input {
+      background: @white;
+      .validBorder();
+      padding-left: (@base-size * 2) + (@base-size / 4);
+    }
   }
 }
 
@@ -36,6 +44,8 @@
   top: ((@button-height/ 2) - (@regular-text / 2)) + @base-size;
   left: @base-size * 2;
   .lightFont();
+  line-height: @regular-text;
+  color: @primary-dark;
   transition: @standard-transition;
 }
 
@@ -47,6 +57,23 @@
   left: @base-size * 2;
   .regularFontSmall();
   transition: @standard-transition;
+}
+
+
+.validated {
+  width: @button-height;
+  height: @button-height;
+  position: absolute;
+  z-index: 1;
+  top: @base-size;
+  left: @base-size * 2;
+  display: flex;
+  align-items: center;
+
+  img {
+    width: @regular-text;
+    height: @regular-text;
+  }
 }
 
 .error {
