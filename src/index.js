@@ -1,3 +1,3 @@
-import {default as DCNMInput} from './components/DCNMInput/DCNMInput'
+import {default as Input} from './components/Input/Input'
 
-export { DCNMInput }
+export { Input }

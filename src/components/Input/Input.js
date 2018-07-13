@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import styles from './DCNMInput.less'
+import styles from './Input.less'
 import svg from '../../assets/icons/success.svg'
 
 /**
- * Description of DCNMInput
+ * Description of Input
  *
  * @version 0.0.1
  * @author [Anurag Dutta](mailto:anudutta@cisco.com)
  */
-export default class DCNMInput extends Component {
+export default class Input extends Component {
   static propTypes = {
     /**
      * Description of prop "label".
