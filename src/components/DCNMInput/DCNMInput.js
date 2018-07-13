@@ -46,6 +46,7 @@ export default class DCNMInput extends Component {
     super(props)
     this.state = {
       isTyping : false,
+      valid: props.validated,
       hasValue: (props.value?true:false),
       value: props.value
     };
@@ -67,7 +68,7 @@ export default class DCNMInput extends Component {
 
   changeHandler(e) {
     if(e.target.value==="")
-      this.setState({value:e.target.value, hasValue: false})
+      this.setState({value:e.target.value, hasValue: false, valid: false})
     else
       this.setState({value:e.target.value, hasValue:true})
     if(this.props.changeHandler) this.props.changeHandler()
@@ -84,13 +85,19 @@ export default class DCNMInput extends Component {
       errorMessage = <div className={styles.error}>{invalid}</div>
 
     let validated
-      if(this.props.validated)
-        validated = <img className={styles.validated} src={svg} />
+      if(this.state.valid && this.state.hasValue)
+        validated = <div className={styles.validated}><img src={svg} /></div>
 
     return (
       <div className={styles.container}>
-        <input type="text" onFocus={this.focusHandler} onBlur={this.blurHandler} value={this.state.value} onChange={this.changeHandler}/>
-        <div className={(this.state.isTyping || this.state.hasValue)?styles.float_focus:styles.float_label} ref={this.ref}>{validated}{label}</div>
+        <input type="text"
+          className={this.state.valid?styles.valid_input:''}
+          onFocus={this.focusHandler} 
+          onBlur={this.blurHandler} 
+          value={this.state.value} 
+          onChange={this.changeHandler}/>
+        <div className={(this.state.isTyping || this.state.hasValue)?styles.float_focus:styles.float_label} ref={this.ref}>{label}</div>
+        {validated}
         {errorMessage}
       </div>
     )
