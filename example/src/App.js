@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 
-import {Input} from 'dcn-ux-resources'
+import {components} from 'dcn-ux-resources'
 
 export default class App extends Component {
   render () {
     return (
       <div>
-        <Input label="Label" validated value="This is a valid value"/>
+        <components.Input label="Label" disabled/>
+        <components.Button label="Button" disabled/>
       </div>
     )
   }

@@ -39,7 +39,11 @@ export default class Input extends Component {
     /**
      * Description of prop "invalid".
      */
-    invalid: PropTypes.string
+    invalid: PropTypes.string,
+    /**
+     * Description of prop "disabled".
+     */
+    disabled: PropTypes.bool
   }
 
   constructor(props) {
@@ -50,7 +54,6 @@ export default class Input extends Component {
       hasValue: (props.value?true:false),
       value: props.value
     };
-    this.label = React.createRef()
     this.focusHandler = this.focusHandler.bind(this)
     this.blurHandler = this.blurHandler.bind(this)
     this.changeHandler = this.changeHandler.bind(this)
@@ -77,7 +80,8 @@ export default class Input extends Component {
   render() {
     const {
       label,
-      invalid
+      invalid,
+      disabled
     } = this.props
 
     let errorMessage
@@ -95,8 +99,9 @@ export default class Input extends Component {
           onFocus={this.focusHandler} 
           onBlur={this.blurHandler} 
           value={this.state.value} 
-          onChange={this.changeHandler}/>
-        <div className={(this.state.isTyping || this.state.hasValue)?styles.float_focus:styles.float_label} ref={this.ref}>{label}</div>
+          onChange={this.changeHandler}
+          disabled={disabled}/>
+        <div className={(this.state.isTyping || this.state.hasValue)?styles.float_focus:(disabled?styles.float_disable:styles.float_label)}>{label}</div>
         {validated}
         {errorMessage}
       </div>

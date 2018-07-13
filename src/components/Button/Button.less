@@ -1,0 +1,43 @@
+@import "../../styles/grid.less";
+@import "../../styles/mixins.less";
+@import "../../styles/animations.less";
+@import "../../styles/type.less";
+
+.button_container {
+	padding: @base-size;
+}
+
+.button {
+	height: @button-height;
+	border-radius: @button-height;
+	background: @white;
+	min-width: @min-button-width;
+	border: none;
+	cursor: pointer;
+	.regularFont();
+	.highlightBorder();
+	transition: @standard-transition;
+	&:hover {
+		background: @primary-bright;
+		color: @white;
+	}
+	&:focus {
+		.focusBox();
+		background: @primary-bright;
+		color: @white;
+	}
+}
+
+.button_disabled {
+	height: @button-height;
+	border-radius: @button-height;
+	background: @disable-text;
+	min-width: @min-button-width;
+	border: none;
+	.regularFont();
+	.noOutlines();
+	color: @white;
+	&:focus {
+		.noOutlines();
+	}
+}

@@ -2,9 +2,18 @@
 
 /* Useful mixins */
 
+.noOutlines() {
+	outline: none;
+	border: none;
+	box-shadow: none;
+}
 .highlightBorder() {
 	box-shadow:inset 0px 0px 0px 2px @primary-bright;
 }
 .validBorder() {
 	box-shadow:inset 0px 0px 0px 2px @success;
+}
+.focusBox{
+	outline: 2px dotted @focus;
+	outline-offset: @base-size / 4;
 }
