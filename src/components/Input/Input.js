@@ -95,7 +95,7 @@ export default class Input extends Component {
     return (
       <div className={styles.container}>
         <input type="text"
-          className={this.state.valid?styles.valid_input:''}
+          className={this.state.valid?styles.valid_input:(invalid?styles.invalid_input:'')}
           onFocus={this.focusHandler} 
           onBlur={this.blurHandler} 
           value={this.state.value} 
