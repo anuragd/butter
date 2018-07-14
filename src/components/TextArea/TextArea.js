@@ -52,6 +52,7 @@ export default class TextArea extends Component {
       isTyping : false,
       valid: props.validated,
       hasValue: (props.value?true:false),
+      invalid: props.invalid,
       value: props.value
     };
     this.focusHandler = this.focusHandler.bind(this)
@@ -73,20 +74,19 @@ export default class TextArea extends Component {
     if(e.target.value==="")
       this.setState({value:e.target.value, hasValue: false, valid: false})
     else
-      this.setState({value:e.target.value, hasValue:true})
+      this.setState({value:e.target.value, hasValue:true, invalid: ''})
     if(this.props.changeHandler) this.props.changeHandler()
   }
 
   render() {
     const {
       label,
-      invalid,
       disabled
     } = this.props
 
     let errorMessage
-    if(invalid && !this.state.isTyping)
-      errorMessage = <div className={styles.error}>{invalid}</div>
+    if(this.state.invalid && !this.state.isTyping)
+      errorMessage = <div className={styles.error}>{this.state.invalid}</div>
 
     let validated
       if(this.state.valid && this.state.hasValue)
@@ -95,7 +95,7 @@ export default class TextArea extends Component {
     return (
       <div className={styles.container}>
         <textarea type="text"
-          className={this.state.valid?styles.valid_input:''}
+          className={this.state.valid?styles.valid_input:(this.state.invalid?styles.invalid_input:'')}
           onFocus={this.focusHandler} 
           onBlur={this.blurHandler} 
           value={this.state.value} 

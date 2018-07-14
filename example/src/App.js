@@ -6,9 +6,9 @@ export default class App extends Component {
   render () {
     return (
       <div>
-        <components.Input label="Label" disabled/>
-        <components.Button label="Button" disabled/>
-        <components.TextArea label="Button" disabled/>
+        <components.Input label="Input" invalid="This is an error message"/>
+        <components.Button label="Button"/>
+        <components.TextArea label="TextArea" invalid="This is an error message"/>
       </div>
     )
   }
