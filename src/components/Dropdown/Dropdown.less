@@ -1,0 +1,172 @@
+@import "../../styles/grid.less";
+@import "../../styles/mixins.less";
+@import "../../styles/animations.less";
+@import "../../styles/type.less";
+
+.dropdown_container {
+	padding: @base-size;
+	.regularFont();
+	color: @primary-dark;
+	height: @button-height;
+	width: @min-input-width;
+	position: relative;
+	z-index: 100;
+}
+
+.list {
+	position: absolute;
+	width: 100%;
+	top: @base-size;
+	left: @base-size;
+	.highlightBorder();
+	overflow: hidden;
+	border-radius: @button-height;
+	background: @white;
+	transition: @standard-transition;
+	.options {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		li {
+			padding: 0 @base-size;
+			height: 0;
+			overflow: hidden;
+			transition: @standard-transition;
+		}
+	}
+}
+
+.open_list {
+	position: absolute;
+	width: @min-input-width + (@base-size * 2);
+	top: @base-size;
+	left: @base-size;
+	.highlightBorder();
+	border-radius: @base-size;
+	overflow: hidden;
+	background: @white;
+	transition: @standard-transition;
+	.options {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		li {
+			padding: @half-size @base-size;
+			.regularFont();
+			height: @regular-text;
+			overflow: hidden;
+			transition: @standard-transition;
+			cursor: pointer;
+			position: relative;
+			.list_bg {
+				position: absolute;
+				top:0;
+				left: 0;
+				z-index: 1;
+				background: @primary;
+				width: 0;
+				height: 100%;
+				transition: @standard-transition;
+			}
+			.option_label {
+				position: relative;
+				z-index: 2;
+				.regularFont();
+				transition: @standard-transition;
+				color:@primary-dark;
+			}
+
+			&:hover {
+				color: @white;
+				.list_bg {
+					width: 100%;
+					height: 100%;
+					transition: @standard-transition;
+					z-index: 1;
+				}
+				.option_label {
+					.regularFont();
+					position: relative;
+					z-index: 2;
+					color:@white;
+					transition: @standard-transition;
+				}
+			}
+		}
+	}
+}
+
+.header {
+	background: @input-bg;
+	display: flex;
+	width: @min-input-width;
+	height: @button-height;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 @base-size;
+	transition: @standard-transition;
+	position: relative;
+	.lightFont();
+	z-index: 1;
+	.arrow {
+		height: @small-text;
+		width: auto;
+		transition: @standard-transition;
+	}
+	&:hover {
+		background: @primary;
+		color: @white;
+		.arrow {
+			filter: brightness(300%) contrast(300%) grayscale(100%);
+		}
+		.selected_option {
+			color: @white;
+		}
+	}
+}
+
+.float_label {
+	.lightFont();
+	color: @primary-dark;
+	position: absolute;
+	z-index: 2;
+	line-height: @button-height;
+	left: @base-size * 2;
+	pointer-events: none;
+	height: 0;
+	overflow: hidden;
+	transition: @standard-transition;
+}
+
+.focus_label {
+	.regularFontSmall();
+	color: @primary-dark;
+	position: absolute;
+	z-index: 2;
+	top: @half-size / 2;
+	left: @button-height - (@half-size / 2);
+	height: @small-text;
+	transition: @standard-transition;
+}
+
+.open_header {
+	.lightFont();
+	display: flex;
+	width: @min-input-width;
+	height: @button-height;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 @base-size;
+	transition: @standard-transition;
+	.arrow {
+		height: @small-text;
+		width: auto;
+		transition: @standard-transition;
+		transform: rotate(180deg);
+	}
+}
+
+.selected_option {
+	.lightFont();
+	color: @primary-dark;
+}

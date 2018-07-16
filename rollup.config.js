@@ -4,7 +4,11 @@ import external from 'rollup-plugin-peer-deps-external'
 import postcss from 'rollup-plugin-postcss'
 import resolve from 'rollup-plugin-node-resolve'
 import url from 'rollup-plugin-url'
+<<<<<<< HEAD
 import copy from 'rollup-plugin-copy';
+=======
+import copy from 'rollup-plugin-copy'
+>>>>>>> 82b830b6ab8cc4380544fecd7196338a46c242b9
 
 import pkg from './package.json'
 
