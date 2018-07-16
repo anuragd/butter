@@ -1,0 +1,36 @@
+@import "../../styles/grid.less";
+@import "../../styles/mixins.less";
+@import "../../styles/animations.less";
+@import "../../styles/type.less";
+
+.dropdown_container {
+	padding: @base-size;
+	.regularFont();
+	color: @primary-dark;
+}
+
+.header {
+	width: @min-input-width;
+	height: @button-height;
+	background: @white;
+	border: 1px solid @primary-bright;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 @base-size;
+	border-radius: @button-height;
+
+	&:hover {
+		background: @primary;
+		color: @white;
+		.arrow {
+			color: white;
+		}
+	}
+
+	.arrow {
+		height: @small-text;
+		width: auto;
+		box-shadow: 0px @small-text rgba(255, 0, 92, 0.4) inset;
+	}
+}

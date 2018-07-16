@@ -9,6 +9,7 @@ export default class App extends Component {
         <components.Input label="Input" invalid="This is an error message" value="Error"/>
         <components.Button label="Button"/>
         <components.TextArea label="TextArea" invalid="This is an error message"/>
+        <components.Dropdown label="Select"/>
       </div>
     )
   }
