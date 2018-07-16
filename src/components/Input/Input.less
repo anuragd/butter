@@ -39,12 +39,12 @@
       background: @white;
       .validBorder();
       padding-left: (@base-size * 2) + (@base-size / 4);
+      min-width: @min-input-width - (@base-size / 4) - @base-size;
     }
 
     &.invalid_input {
       background: @white;
       .invalidBorder();
-      padding-left: (@base-size * 2) + (@base-size / 4);
     }
   }
 }
