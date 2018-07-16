@@ -52,7 +52,8 @@ export default class Input extends Component {
       isTyping : false,
       valid: props.validated,
       hasValue: (props.value?true:false),
-      value: props.value
+      value: props.value,
+      invalid: props.invalid
     };
     this.focusHandler = this.focusHandler.bind(this)
     this.blurHandler = this.blurHandler.bind(this)
@@ -61,32 +62,31 @@ export default class Input extends Component {
 
   focusHandler(e) {
     this.setState({isTyping:true})
-    if(this.props.focusHandler) this.props.focusHandler()
+    if(this.props.focusHandler instanceof Function) this.props.focusHandler()
   }
 
   blurHandler(e) {
     this.setState({isTyping: false})
-    if(this.props.blurHandler) this.props.blurHandler()
+    if(this.props.blurHandler instanceof Function) this.props.blurHandler()
   }
 
   changeHandler(e) {
     if(e.target.value==="")
       this.setState({value:e.target.value, hasValue: false, valid: false})
     else
-      this.setState({value:e.target.value, hasValue:true})
-    if(this.props.changeHandler) this.props.changeHandler()
+      this.setState({value:e.target.value, hasValue:true, valid: false, invalid: false})
+    if(this.props.changeHandler instanceof Function) this.props.changeHandler()
   }
 
   render() {
     const {
       label,
-      invalid,
       disabled
     } = this.props
 
     let errorMessage
-    if(invalid && !this.state.isTyping)
-      errorMessage = <div className={styles.error}>{invalid}</div>
+    if(this.state.invalid && !this.state.isTyping)
+      errorMessage = <div className={styles.error}>{this.state.invalid}</div>
 
     let validated
       if(this.state.valid && this.state.hasValue)
@@ -95,7 +95,7 @@ export default class Input extends Component {
     return (
       <div className={styles.container}>
         <input type="text"
-          className={this.state.valid?styles.valid_input:(invalid?styles.invalid_input:'')}
+          className={this.state.valid?styles.valid_input:(this.state.invalid?styles.invalid_input:'')}
           onFocus={this.focusHandler} 
           onBlur={this.blurHandler} 
           value={this.state.value} 

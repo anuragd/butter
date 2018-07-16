@@ -36,7 +36,8 @@
     &.valid_input {
       background: @white;
       .validBorder();
-      padding-left: (@base-size * 2) + (@base-size / 4);
+      padding-left: @half-size * 3;
+      min-width: @min-input-width - (@half-size * 2);
     }
     &.invalid_input {
       background: @white;
@@ -87,7 +88,7 @@
   position: absolute;
   z-index: 1;
   top: @base-size + @half-size;
-  left: @base-size * 2;
+  left: @half-size * 3;
   display: flex;
   align-items: center;
 

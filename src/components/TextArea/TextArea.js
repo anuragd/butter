@@ -74,7 +74,7 @@ export default class TextArea extends Component {
     if(e.target.value==="")
       this.setState({value:e.target.value, hasValue: false, valid: false})
     else
-      this.setState({value:e.target.value, hasValue:true, invalid: ''})
+      this.setState({value:e.target.value, hasValue:true, invalid: false, valid: false})
     if(this.props.changeHandler) this.props.changeHandler()
   }
 
