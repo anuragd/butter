@@ -25,12 +25,13 @@
 		color: @white;
 		.arrow {
 			color: white;
+			filter: contrast(300%) grayscale(100%) brightness(300%);
 		}
 	}
 
 	.arrow {
 		height: @small-text;
 		width: auto;
-		box-shadow: 0px @small-text rgba(255, 0, 92, 0.4) inset;
+		transition: @standard-transition;
 	}
 }

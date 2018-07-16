@@ -51,9 +51,7 @@ export default class Dropdown extends Component {
       <div className={styles.dropdown_container}>
         <div className={styles.header}>
           <div className={styles.float_label}>{label}</div>
-          <svg className={styles.arrow}>
-            {svg}
-          </svg>
+          <img className={styles.arrow} src={svg} />
         </div>
         <ul className={styles.list}>
           <li>Option 1</li>
