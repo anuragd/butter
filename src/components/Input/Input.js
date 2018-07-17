@@ -8,7 +8,6 @@ import svg from '../../assets/icons/success.svg'
  * Description of Input
  *
  * @version 0.0.1
- * @author [Anurag Dutta](mailto:anudutta@cisco.com)
  */
 export default class Input extends Component {
   static propTypes = {
@@ -52,7 +51,7 @@ export default class Input extends Component {
       isTyping : false,
       valid: props.validated,
       hasValue: (props.value?true:false),
-      value: props.value,
+      value: props.value?props.value:'',
       invalid: props.invalid
     };
     this.focusHandler = this.focusHandler.bind(this)

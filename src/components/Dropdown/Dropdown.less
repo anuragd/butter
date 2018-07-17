@@ -1,4 +1,5 @@
 @import "../../styles/grid.less";
+@import '../../styles/color.less';
 @import "../../styles/mixins.less";
 @import "../../styles/animations.less";
 @import "../../styles/type.less";
@@ -38,9 +39,14 @@
 }
 
 .open_list {
-	composes: list;
-	.subtleShadow();
+	position: absolute;
+	width: @min-input-width;
+	.highlightBorder();
 	border-radius: @base-size;
+	overflow: hidden;
+	background: @white;
+	.subtleShadow();
+	transition: @standard-transition;
 	.options {
 		list-style: none;
 		margin: 0;

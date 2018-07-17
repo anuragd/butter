@@ -7,7 +7,6 @@ import styles from './Radio.less'
  * Description of Dropdown
  *
  * @version 0.0.1
- * @author [Anurag Dutta](mailto:anudutta@cisco.com)
  */
 export default class Radio extends Component {
   static propTypes = {
