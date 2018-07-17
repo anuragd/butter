@@ -49,6 +49,7 @@ export default class Dropdown extends Component {
       value:props.value?props.value:null
     };
     this.clickHandler = this.clickHandler.bind(this)
+    this.blurHandler = this.blurHandler.bind(this)
     this.optionClickHandler = this.optionClickHandler.bind(this)
   }
 
@@ -59,6 +60,10 @@ export default class Dropdown extends Component {
   optionClickHandler(id,value) {
     this.setState({value:value, open:false})
     if(this.props.changeHandler instanceof Function) this.props.changeHandler({id:id, value: value})
+  }
+
+  blurHandler(e) {
+    this.setState({open: false})
   }
 
   render() {
@@ -76,7 +81,7 @@ export default class Dropdown extends Component {
     )
 
     return (
-      <div className={styles.dropdown_container}>
+      <div className={styles.dropdown_container} onBlur={this.blurHandler} tabIndex="0">
         <div className={this.state.value?styles.focus_label:styles.float_label}>{label}</div>
         <div className={this.state.open?styles.open_list:styles.list}>
           <div className={this.state.open?styles.open_header:(disabled?styles.disabled_header:styles.header)} onClick={this.clickHandler}>

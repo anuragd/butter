@@ -5,7 +5,7 @@ import {components} from 'dcn-ux-resources'
 export default class App extends Component {
   render () {
     return (
-      <div>
+      <div className="kitchen_sink">
       	<components.Radio 
       		label="Select an option"
       		options={[

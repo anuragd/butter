@@ -4,20 +4,21 @@
 @import "../../styles/type.less";
 
 .dropdown_container {
-	padding: @base-size;
+	margin: @base-size;
 	.regularFont();
 	color: @primary-dark;
 	height: @button-height;
 	width: @min-input-width;
 	position: relative;
 	z-index: 100;
+	&:active, &:focus {
+		outline: none;
+	}
 }
 
 .list {
 	position: absolute;
 	width: 100%;
-	top: @base-size;
-	left: @base-size;
 	.highlightBorder();
 	overflow: hidden;
 	border-radius: @button-height;
@@ -37,16 +38,9 @@
 }
 
 .open_list {
-	position: absolute;
-	width: @min-input-width + (@base-size * 2);
-	top: @base-size;
-	left: @base-size;
-	.highlightBorder();
-	border-radius: @base-size;
-	overflow: hidden;
-	background: @white;
+	composes: list;
 	.subtleShadow();
-	transition: @standard-transition;
+	border-radius: @base-size;
 	.options {
 		list-style: none;
 		margin: 0;
@@ -111,7 +105,7 @@
 .header {
 	background: @input-bg;
 	display: flex;
-	width: @min-input-width;
+	width: @min-input-width - (@base-size *2);
 	height: @button-height;
 	align-items: center;
 	justify-content: space-between;
@@ -142,7 +136,7 @@
 .disabled_header {
 	background: @disable-bg;
 	display: flex;
-	width: @min-input-width;
+	width: @min-input-width - (@base-size *2);
 	height: @button-height;
 	align-items: center;
 	justify-content: space-between;
@@ -189,7 +183,7 @@
 .open_header {
 	.lightFont();
 	display: flex;
-	width: @min-input-width;
+	width: @min-input-width - (@base-size *2);
 	height: @button-height;
 	align-items: center;
 	justify-content: space-between;

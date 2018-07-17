@@ -23,6 +23,14 @@
 	align-items: center;
 	margin: @half-size 0;
 	cursor: pointer;
+	&:hover {
+		.radio_holder {
+			border-color: @primary-bright;
+		}
+		.radio_value {
+			color: @primary-bright;
+		}
+	}
 	.radio_holder {
 		width: @radio-size;
 		height: @radio-size;
