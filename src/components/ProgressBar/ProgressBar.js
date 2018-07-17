@@ -8,7 +8,6 @@ import styles from './ProgressBar.less'
  * Description of ProgressBar
  *
  * @version 0.0.1
- * @author [Anurag Dutta](mailto:anudutta@cisco.com)
  */
 export default class ProgressBar extends Component {
   static propTypes = {
