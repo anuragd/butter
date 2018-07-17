@@ -22,7 +22,9 @@
     "doc:serve": "npx styleguidist server",
     "doc:build": "npx styleguidist build"
   },
-  "dependencies": {},
+  "dependencies": {
+    "react-svg": "^4.1.8"
+  },
   "peerDependencies": {
     "prop-types": "^15.5.4",
     "react": "^15.0.0 || ^16.0.0",

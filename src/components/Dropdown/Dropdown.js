@@ -29,11 +29,16 @@ export default class Dropdown extends Component {
      */
     disabled: PropTypes.bool,
     /**
+     * Description of prop "value".
+     */
+    value: PropTypes.string,
+    /**
      * Description of prop "options".
      */
     options: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.number,
-      value: PropTypes.string
+      id: PropTypes.number.isRequired,
+      value: PropTypes.string.isRequired,
+      disabled: PropTypes.bool
     })).isRequired
   }
 
@@ -41,9 +46,10 @@ export default class Dropdown extends Component {
     super(props)
     this.state = {
       open: false,
-      value:null
+      value:props.value?props.value:null
     };
     this.clickHandler = this.clickHandler.bind(this)
+    this.blurHandler = this.blurHandler.bind(this)
     this.optionClickHandler = this.optionClickHandler.bind(this)
   }
 
@@ -56,6 +62,10 @@ export default class Dropdown extends Component {
     if(this.props.changeHandler instanceof Function) this.props.changeHandler({id:id, value: value})
   }
 
+  blurHandler(e) {
+    this.setState({open: false})
+  }
+
   render() {
     const {
       label,
@@ -64,17 +74,17 @@ export default class Dropdown extends Component {
     } = this.props
 
     const optionsList = options.map((option) =>
-      <li key={option.id} onClick={() => this.optionClickHandler(option.id, option.value)}>
+      <li key={option.id} onClick={() => this.optionClickHandler(option.id, option.value)} className={option.disabled?styles.disabled:''}>
         <div className={styles.list_bg}></div>
         <div className={styles.option_label}>{option.value}</div>
       </li>
     )
 
     return (
-      <div className={styles.dropdown_container}>
+      <div className={styles.dropdown_container} onBlur={this.blurHandler} tabIndex="0">
         <div className={this.state.value?styles.focus_label:styles.float_label}>{label}</div>
         <div className={this.state.open?styles.open_list:styles.list}>
-          <div className={this.state.open?styles.open_header:styles.header} onClick={this.clickHandler}>
+          <div className={this.state.open?styles.open_header:(disabled?styles.disabled_header:styles.header)} onClick={this.clickHandler}>
             {this.state.value?'':label}
             <div className={styles.selected_option}>{this.state.value}</div>
             <img className={styles.arrow} src={svg} />
