@@ -1,0 +1,62 @@
+@import "../../styles/grid.less";
+@import "../../styles/mixins.less";
+@import "../../styles/animations.less";
+@import "../../styles/type.less";
+
+.radio_container {
+	padding: @base-size;
+
+}
+
+.radio_option {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin: @half-size 0;
+	.radio_holder {
+		width: @radio-size;
+		height: @radio-size;
+		border-radius: 100%;
+		border: 1px solid @primary-dark;
+		margin-right: @base-size;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		overflow: hidden;
+		.radio_blob_up {
+			width: @blob-size;
+			height: @blob-size;
+			background: @primary;
+			border-radius: 100%;
+			transform: translateY(-1 * @radio-size);
+			transition: @standard-transition;
+		}
+		.radio_blob_down {
+			width: @blob-size;
+			height: @blob-size;
+			background: @primary;
+			border-radius: 100%;
+			transform: translateY(@radio-size);
+			transition: @standard-transition;
+		}
+	}
+	.active_holder {
+		width: @radio-size;
+		height: @radio-size;
+		border-radius: 100%;
+		border: 1px solid @primary-dark;
+		margin-right: @base-size;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		overflow: hidden;
+		.radio_blob_up, .radio_blob_down {
+			width: @blob-size;
+			height: @blob-size;
+			background: @primary;
+			border-radius: 100%;
+			transform: translateY(0);
+			transition: @standard-transition;
+		}
+	}
+}
