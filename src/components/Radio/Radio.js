@@ -33,32 +33,35 @@ export default class Radio extends Component {
     super(props)
     this.state = {
       selected: null,
-      goingDown: false 
+      goingDown: true 
     }
     this.clickHandler = this.clickHandler.bind(this)
   }
 
   clickHandler(option) {
     this.setState({selected:option.id})
-    if(this.props.changeHandler instanceof Function) this.props.changeHandler()
+    if(this.props.changeHandler instanceof Function) this.props.changeHandler(option)
   }
 
   render() {
     const {
+      label,
+      disabled,
       options
     } = this.props
 
     const optionsList = options.map((option) => 
-      <div className={styles.radio_option} onClick={() => this.clickHandler(option)} key={option.id}>
+      <div className={(option.disabled || disabled)?`${styles.radio_option} ${styles.disabled_option}`:styles.radio_option} onClick={() => this.clickHandler(option)} key={option.id}>
         <div className={(this.state.selected===option.id)?styles.active_holder:styles.radio_holder}>
-          <div className={this.state.goingDown?styles.radio_blob_up:styles.radio_blob_down}></div>
+          <div className={(this.state.selected < option.id)?styles.radio_blob_up:styles.radio_blob_down}></div>
         </div>
-        <div className={styles.radio_value}>{option.value}</div>
+        <div className={(this.state.selected===option.id)?styles.selected_radio_value:styles.radio_value}>{option.value}</div>
       </div>
     )
 
     return (
       <div className={styles.radio_container}>
+        <div className={disabled?styles.disabled_label:styles.label}>{label}</div>
         {optionsList}
       </div>
     )

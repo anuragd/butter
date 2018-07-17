@@ -7,11 +7,13 @@ export default class App extends Component {
     return (
       <div>
       	<components.Radio 
+      		label="Select an option"
       		options={[
       			{id:0,value:"Option 1"},
       			{id:1,value:"Option 2", disabled: true},
       			{id:2,value:"Option 3"},
-      			{id:3,value:"Option 4"}]}/>
+      			{id:3,value:"Option 4"}]}
+      		/>
       	<components.Dropdown 
       		label="Select" 
       		options={[
@@ -19,8 +21,8 @@ export default class App extends Component {
       			{id:1,value:"Option 2", disabled: true},
       			{id:2,value:"Option 3"},
       			{id:3,value:"Option 4"}]}
-      		disabled/>
-        <components.Input label="Input"/>
+      		/>
+        <components.Input label="Input" />
         <components.Button label="Button"/>
         <components.TextArea label="TextArea"/>
       </div>
