@@ -38,9 +38,14 @@
 }
 
 .open_list {
-	composes: list;
-	.subtleShadow();
+	position: absolute;
+	width: @min-input-width;
+	.highlightBorder();
 	border-radius: @base-size;
+	overflow: hidden;
+	background: @white;
+	.subtleShadow();
+	transition: @standard-transition;
 	.options {
 		list-style: none;
 		margin: 0;

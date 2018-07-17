@@ -10,7 +10,20 @@ module.exports = {
           loader: 'babel-loader'
         },
         // Other loaders that are needed for your components
-        { test: /\.less$/, loader: 'style-loader!css-loader!less-loader' },
+        {
+          test: /\.less$/,
+          use: [
+            {
+              loader: 'style-loader' // creates style nodes from JS strings
+            }, 
+            {
+              loader: 'css-loader?modules' // translates CSS into CommonJS
+            }, 
+            {
+              loader: 'less-loader' // compiles Less to CSS
+            }
+          ]
+        },
         { test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000' }
       ]
     }

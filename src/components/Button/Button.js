@@ -4,27 +4,26 @@ import PropTypes from 'prop-types'
 import styles from './Button.less'
 
 /**
- * Description of Button
- *
+ * Generic button component with animations
  * @version 0.0.1
  * @author [Anurag Dutta](mailto:anudutta@cisco.com)
  */
 export default class Button extends Component {
   static propTypes = {
     /**
-     * Description of prop "label".
+     * String that will appear inside the button as its label
      */
-    label: PropTypes.string,
+    label: PropTypes.string.isRequired,
     /**
-     * Description of prop "hoverHandler".
+     * Callback executed when mouse hovers over the component. Useful when tooltips or other related actions are needed
      */
     hoverHandler: PropTypes.func,
     /**
-     * Description of prop "clickHandler".
+     * Callback for user click
      */
     clickHandler: PropTypes.func,
     /**
-     * Description of prop "disabled".
+     * Setting this attribute will cause the button to be disabled. Disabled buttons will not fire any user interaction events
      */
     disabled: PropTypes.bool
   }
