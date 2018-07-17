@@ -9,7 +9,10 @@ Library containing React components and LESS mixins based on the following Style
 ## Install
 
 ```bash
-npm install --save <absolute or relative path to dcn-ux-resources folder>
+cd <path-to-ux-folder>
+npm link
+cd <path-to-your-project>
+npm link dcn-ux-resources
 ```
 
 ## Usage
