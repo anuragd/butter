@@ -1,5 +1,6 @@
 module.exports = {
   components: 'src/components/*/*.js',
+  title: 'DCN UX Component Documentation',
   webpackConfig: {
     module: {
       rules: [

@@ -8,7 +8,6 @@ import svg from '../../assets/icons/success.svg'
  * Description of TextArea
  *
  * @version 0.0.1
- * @author [Anurag Dutta](mailto:anudutta@cisco.com)
  */
 export default class TextArea extends Component {
   static propTypes = {

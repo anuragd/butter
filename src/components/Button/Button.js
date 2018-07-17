@@ -6,7 +6,6 @@ import styles from './Button.less'
 /**
  * Generic button component with animations
  * @version 0.0.1
- * @author [Anurag Dutta](mailto:anudutta@cisco.com)
  */
 export default class Button extends Component {
   static propTypes = {

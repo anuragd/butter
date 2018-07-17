@@ -8,7 +8,6 @@ import svg from '../../assets/icons/dropdown.svg'
  * Description of Dropdown
  *
  * @version 0.0.1
- * @author [Anurag Dutta](mailto:anudutta@cisco.com)
  */
 export default class Dropdown extends Component {
   static propTypes = {
