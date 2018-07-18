@@ -3,6 +3,14 @@ import React, { Component } from 'react'
 import {components} from 'dcn-ux-resources'
 
 export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      inputValue: '',
+      textAreaValue:''
+    }
+  }
+
   render () {
     return (
       <div className="kitchen_sink">
@@ -22,9 +30,9 @@ export default class App extends Component {
             {id:2,value:"Option 3"},
             {id:3,value:"Option 4"}]}
           />
-        <components.Input label="Input" />
+        <components.Input label="Input" changeHandler={(value) => this.setState({inputValue:value})} value={this.state.inputValue}/>
         <components.Button label="Button"/>
-        <components.TextArea label="TextArea"/>
+        <components.TextArea label="TextArea" changeHandler={(value) => this.setState({textAreaValue:value})} value={this.state.textAreaValue}/>
       </div>
     )
   }

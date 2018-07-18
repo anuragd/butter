@@ -12,35 +12,35 @@ import svg from '../../assets/icons/success.svg'
 export default class TextArea extends Component {
   static propTypes = {
     /**
-     * Description of prop "label".
+     * Label for the TextArea component. This will provide content for the float label that positions itself depending on the state on the component
      */
-    label: PropTypes.string,
+    label: PropTypes.string.isRequired,
     /**
-     * Description of prop "value".
+     * Value of the TextArea. This is a controlled React component (https://reactjs.org/docs/forms.html). This means that the single source of truth for the value is this prop. Typically, this prop will be linked to the state of the parent container and must be updated when the changeHandler is invoked
      */
-    value: PropTypes.string,
+    value: PropTypes.string.isRequired,
     /**
-     * Description of prop "changeHandler".
+     * Returns the current value of the input on 'every' change. Use this callback to update the value prop. (See example below). You should also use this to perform any validation checks you might require and pass the result of the validation to the validated prop.
      */
-    changeHandler: PropTypes.func,
+    changeHandler: PropTypes.func.isRequired,
     /**
-     * Description of prop "focusHandler".
+     * Fired when the user starts interacting with the component. Passes no arguments
      */
     focusHandler: PropTypes.func,
     /**
-     * Description of prop "blurHandler".
+     * Fired when the user changes focus(interacts) with some other element on the page. Passes no arguments
      */
     blurHandler: PropTypes.func,
     /**
-     * Description of prop "validated".
+     * Include this prop if the input has an attached validation function and passes the validation check. Note that validated and invalid props cannot be passed at the same time.
      */
     validated: PropTypes.bool,
     /**
-     * Description of prop "invalid".
+     * If the input has a validation check, and fails to pass the check, pass a string describing the error to the user here. Note that validated and invalid props cannot be passed at the same time.
      */
     invalid: PropTypes.string,
     /**
-     * Description of prop "disabled".
+     * Include this prop if you want to disable the component completely
      */
     disabled: PropTypes.bool
   }
@@ -50,9 +50,7 @@ export default class TextArea extends Component {
     this.state = {
       isTyping : false,
       valid: props.validated,
-      hasValue: (props.value?true:false),
-      invalid: props.invalid,
-      value: props.value
+      invalid: props.invalid
     };
     this.focusHandler = this.focusHandler.bind(this)
     this.blurHandler = this.blurHandler.bind(this)
@@ -70,16 +68,14 @@ export default class TextArea extends Component {
   }
 
   changeHandler(e) {
-    if(e.target.value==="")
-      this.setState({value:e.target.value, hasValue: false, valid: false})
-    else
-      this.setState({value:e.target.value, hasValue:true, invalid: false, valid: false})
-    if(this.props.changeHandler) this.props.changeHandler()
+    this.setState({invalid: false, valid: false})
+    if(this.props.changeHandler instanceof Function) this.props.changeHandler(e.target.value)
   }
 
   render() {
     const {
       label,
+      value,
       disabled
     } = this.props
 
@@ -88,7 +84,7 @@ export default class TextArea extends Component {
       errorMessage = <div className={styles.error}>{this.state.invalid}</div>
 
     let validated
-      if(this.state.valid && this.state.hasValue)
+      if(this.state.valid && value)
         validated = <div className={styles.validated}><img src={svg} /></div>
 
     return (
@@ -97,10 +93,10 @@ export default class TextArea extends Component {
           className={this.state.valid?styles.valid_input:(this.state.invalid?styles.invalid_input:'')}
           onFocus={this.focusHandler} 
           onBlur={this.blurHandler} 
-          value={this.state.value} 
+          value={value} 
           onChange={this.changeHandler}
           disabled={disabled}></textarea>
-        <div className={(this.state.isTyping || this.state.hasValue)?styles.float_focus:(disabled?styles.float_disable:styles.float_label)}>{label}</div>
+        <div className={(this.state.isTyping || value)?styles.float_focus:(disabled?styles.float_disable:styles.float_label)}>{label}</div>
         {validated}
         {errorMessage}
       </div>
