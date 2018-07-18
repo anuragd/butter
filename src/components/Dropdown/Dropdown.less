@@ -128,10 +128,9 @@
 		user-select: none;
 	}
 	&:hover {
-		background: @primary;
-		color: @white;
+		background: transparent;
+		.highlightBorder();
 		.arrow {
-			filter: brightness(300%) contrast(300%) grayscale(100%);
 			user-select: none;
 		}
 		.selected_option {
