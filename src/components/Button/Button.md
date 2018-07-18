@@ -1,5 +1,5 @@
 Button example:
 
 ```jsx
-<components.Button label="Button" />
+<Button label="Button" />
 ```
