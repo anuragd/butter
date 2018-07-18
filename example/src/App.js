@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Radio, Dropdown, Input, Button, TextArea } from 'dcn-ux-resources'
+import { Radio, Dropdown, Input, Button, TextArea, NoDataPanel } from 'dcn-ux-resources'
 
 export default class App extends Component {
   constructor(props) {
@@ -33,6 +33,7 @@ export default class App extends Component {
         <Input label="Input" changeHandler={(value) => this.setState({inputValue:value})} value={this.state.inputValue}/>
         <Button label="Button"/>
         <TextArea label="TextArea" changeHandler={(value) => this.setState({textAreaValue:value})} value={this.state.textAreaValue}/>
+        <div className="sample_tile"><NoDataPanel /></div>
       </div>
     )
   }

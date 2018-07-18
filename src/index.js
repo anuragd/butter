@@ -4,6 +4,7 @@ import TextArea from './components/TextArea/TextArea'
 import Dropdown from './components/Dropdown/Dropdown'
 import Radio from './components/Radio/Radio'
 import ProgressBar from './components/ProgressBar/ProgressBar'
+import NoDataPanel from './components/NoDataPanel/NoDataPanel'
 
 // let components = {
 // 	Input,
@@ -14,5 +15,5 @@ import ProgressBar from './components/ProgressBar/ProgressBar'
 // 	ProgressBar
 // }
 
-export { Input, Button, TextArea, Dropdown, Radio, ProgressBar }
+export { Input, Button, TextArea, Dropdown, Radio, ProgressBar, NoDataPanel }
 

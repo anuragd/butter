@@ -35,6 +35,10 @@
   flex-wrap: wrap;
   align-items: center;
 }
+.sample_tile {
+  width: 600px;
+  height: 400px;
+}
 body {
   margin: 0;
   padding: 0;
