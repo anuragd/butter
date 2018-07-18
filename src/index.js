@@ -16,4 +16,3 @@ import ProgressBar from './components/ProgressBar/ProgressBar'
 
 export { Input, Button, TextArea, Dropdown, Radio, ProgressBar }
 
-export default { Input, Button }
