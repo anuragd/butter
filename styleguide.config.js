@@ -2,6 +2,9 @@ module.exports = {
   components: 'src/components/*/*.js',
   title: 'DCN UX Component Documentation',
   webpackConfig: {
+    output: {
+      publicPath: '../'
+    },
     module: {
       rules: [
         // Babel loader, will use your project’s .babelrc
