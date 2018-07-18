@@ -15,6 +15,7 @@
 	&:active, &:focus {
 		outline: none;
 	}
+	line-height: 1;
 }
 
 .list {
@@ -52,6 +53,7 @@
 		margin: 0;
 		padding: 0;
 		li {
+			box-sizing: content-box;
 			padding: @half-size @base-size;
 			.regularFont();
 			height: @regular-text;
@@ -111,7 +113,6 @@
 .header {
 	background: @input-bg;
 	display: flex;
-	width: @min-input-width - (@base-size *2);
 	height: @button-height;
 	align-items: center;
 	justify-content: space-between;
@@ -189,7 +190,6 @@
 .open_header {
 	.lightFont();
 	display: flex;
-	width: @min-input-width - (@base-size *2);
 	height: @button-height;
 	align-items: center;
 	justify-content: space-between;
