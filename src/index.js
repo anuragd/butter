@@ -1,17 +1,19 @@
-import {default as Input} from './components/Input/Input'
-import {default as Button} from './components/Button/Button'
-import {default as TextArea} from './components/TextArea/TextArea'
-import {default as Dropdown} from './components/Dropdown/Dropdown'
-import {default as Radio} from './components/Radio/Radio'
-import {default as ProgressBar} from './components/ProgressBar/ProgressBar'
+import Input from './components/Input/Input'
+import Button from './components/Button/Button'
+import TextArea from './components/TextArea/TextArea'
+import Dropdown from './components/Dropdown/Dropdown'
+import Radio from './components/Radio/Radio'
+import ProgressBar from './components/ProgressBar/ProgressBar'
 
-let components = {
-	Input,
-	Button,
-	TextArea,
-	Dropdown,
-	Radio,
-	ProgressBar
-}
+// let components = {
+// 	Input,
+// 	Button,
+// 	TextArea,
+// 	Dropdown,
+// 	Radio,
+// 	ProgressBar
+// }
 
-export { components }
+export { Input, Button, TextArea, Dropdown, Radio, ProgressBar }
+
+export default { Input, Button }

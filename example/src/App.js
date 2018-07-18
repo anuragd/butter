@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import {components} from 'dcn-ux-resources'
+import { Radio, Dropdown, Input, Button, TextArea } from 'dcn-ux-resources'
 
 export default class App extends Component {
   constructor(props) {
@@ -14,7 +14,7 @@ export default class App extends Component {
   render () {
     return (
       <div className="kitchen_sink">
-        <components.Radio 
+        <Radio 
           label="Select an option"
           options={[
             {id:0,value:"Option 1"},
@@ -22,7 +22,7 @@ export default class App extends Component {
             {id:2,value:"Option 3"},
             {id:3,value:"Option 4"}]}
           />
-        <components.Dropdown 
+        <Dropdown 
           label="Select" 
           options={[
             {id:0,value:"Option 1"},
@@ -30,9 +30,9 @@ export default class App extends Component {
             {id:2,value:"Option 3"},
             {id:3,value:"Option 4"}]}
           />
-        <components.Input label="Input" changeHandler={(value) => this.setState({inputValue:value})} value={this.state.inputValue}/>
-        <components.Button label="Button"/>
-        <components.TextArea label="TextArea" changeHandler={(value) => this.setState({textAreaValue:value})} value={this.state.textAreaValue}/>
+        <Input label="Input" changeHandler={(value) => this.setState({inputValue:value})} value={this.state.inputValue}/>
+        <Button label="Button"/>
+        <TextArea label="TextArea" changeHandler={(value) => this.setState({textAreaValue:value})} value={this.state.textAreaValue}/>
       </div>
     )
   }
