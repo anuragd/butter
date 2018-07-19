@@ -1,6 +1,11 @@
 module.exports = {
-  components: 'src/components/*/*.js',
   title: 'DCN UX Component Documentation',
+  sections: [
+    {
+      name: 'Components',
+      components:'src/components/*/*.js'
+    }
+  ],
   webpackConfig: {
     output: {
       publicPath: '../'

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import styles from './TextArea.less'
-import svg from '../../assets/icons/success.svg'
+import { SuccessSVG } from '../../utilities/Icons/Icons'
 
 /**
  * Description of TextArea
@@ -85,7 +85,7 @@ export default class TextArea extends Component {
 
     let validated
       if(this.state.valid && value)
-        validated = <div className={styles.validated}><img src={svg} /></div>
+        validated = <div className={styles.validated}><img src={SuccessSVG} /></div>
 
     return (
       <div className={styles.container}>

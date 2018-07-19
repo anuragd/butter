@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import styles from './Dropdown.less'
-import svg from '../../assets/icons/dropdown.svg'
+import { DropdownSVG } from '../../utilities/Icons/Icons'
 
 /**
  * Description of Dropdown
@@ -86,7 +86,7 @@ export default class Dropdown extends Component {
           <div className={this.state.open?styles.open_header:(disabled?styles.disabled_header:styles.header)} onClick={this.clickHandler}>
             {this.state.value?'':label}
             <div className={styles.selected_option}>{this.state.value}</div>
-            <img className={styles.arrow} src={svg} />
+            <img className={styles.arrow} src={DropdownSVG} />
           </div>
           <ul className={styles.options}>
             {optionsList}

@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 
-import { Radio, Dropdown, Input, Button, TextArea, NoDataPanel } from 'dcn-ux-resources'
+import { Radio, Dropdown, Input, Button, TextArea, NoDataPanel, ProgressBar } from 'dcn-ux-resources'
 
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputValue: '',
+      inputValue: 'Test',
       textAreaValue:''
     }
   }
@@ -14,6 +14,7 @@ export default class App extends Component {
   render () {
     return (
       <div className="kitchen_sink">
+        <ProgressBar />
         <Radio 
           label="Select an option"
           options={[
@@ -30,7 +31,7 @@ export default class App extends Component {
             {id:2,value:"Option 3"},
             {id:3,value:"Option 4"}]}
           />
-        <Input label="Input" changeHandler={(value) => this.setState({inputValue:value})} value={this.state.inputValue}/>
+        <Input label="Input" changeHandler={(value) => this.setState({inputValue:value})} value={this.state.inputValue} validated/>
         <Button label="Button"/>
         <TextArea label="TextArea" changeHandler={(value) => this.setState({textAreaValue:value})} value={this.state.textAreaValue}/>
         <div className="sample_tile"><NoDataPanel /></div>
