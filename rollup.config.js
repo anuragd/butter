@@ -20,6 +20,11 @@ export default {
       format: 'es'
     }
   ],
+  watch: {
+    chokidar: {
+        paths: 'src/**'
+    }
+  },
   plugins: [
     external(),
     postcss({

@@ -1,4 +1,5 @@
 /* Typography */
+@giant-text: 30px;
 @large-text: 20px;
 @regular-text: 16px;
 @small-text: 12px;
@@ -21,6 +22,12 @@
 .regularFontSmall() {
 	font-family: 'Cisco';
 	font-size: @small-text;
+	font-style: normal;
+	font-weight: normal;
+}
+.regularFontGiant() {
+	font-family: 'Cisco';
+	font-size: @giant-text;
 	font-style: normal;
 	font-weight: normal;
 }
@@ -51,6 +58,12 @@
 	font-weight: lighter;
 	font-size: @large-text;
 }
+.lightFontGiant() {
+	font-family: 'CiscoLight';
+	font-style: normal;
+	font-weight: lighter;
+	font-size: @giant-text;
+}
 
 .lightFontMini() {
 	font-family: 'CiscoLight';
@@ -70,4 +83,19 @@
 	font-family: 'CiscoHeavy';
 	font-style: normal;
 	font-weight: bold;
+	font-size: @regular-text;
+}
+
+.heavyFontSmall() {
+	font-family: 'CiscoHeavy';
+	font-style: normal;
+	font-weight: bold;
+	font-size: @small-text;
+}
+
+.heavyFontLarge() {
+	font-family: 'CiscoHeavy';
+	font-style: normal;
+	font-weight: bold;
+	font-size: @large-text;
 }

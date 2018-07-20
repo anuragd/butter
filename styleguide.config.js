@@ -1,9 +1,10 @@
 module.exports = {
   title: 'DCN UX Component Documentation',
+  ignore: ['**/**/**/ProgressGraphics.js'],
   sections: [
     {
       name: 'Components',
-      components:'src/components/*/*.js'
+      components:'src/components/*/*.js',
     }
   ],
   webpackConfig: {

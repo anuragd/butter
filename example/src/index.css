@@ -36,8 +36,8 @@
   align-items: center;
 }
 .sample_tile {
-  width: 600px;
-  height: 400px;
+  width: 40%;
+  margin: 24px;
 }
 body {
   margin: 0;

@@ -4,8 +4,121 @@
 @import "../../styles/animations.less";
 @import "../../styles/type.less";
 
-.progress_container {
-	margin: @base-size;
+.progress_bar {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: @base-size;
 }
 
-.cls-1{fill:none;}.cls-2{fill:#ddd;}.cls-3{fill:#049fd9;}.cls-4{clip-path:url(#clip-path);}.cls-5{fill:url(#Unnamed_Pattern);}.cls-6{font-size:14px;fill:#fff;font-family:CiscoSansTT-Heavy, CiscoSansTT;}
+.progress_message {
+	.lightFontGiant();
+}
+
+.progress_container {
+	margin: @base-size;
+	width: 1000px;
+	height: 168px;
+	position: relative;
+}
+
+.progress_default_bg {
+	background: @disable-bg;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+}
+
+.progress_finish_bg {
+	background: @primary-bright;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 2;
+	transition: @standard-transition;
+}
+
+.progress_fail_bg {
+	composes: progress_finish_bg;
+	background: @bad;
+}
+
+.progress_graphic {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 3;
+}
+
+.progress_marker {
+	position: absolute;
+	top: 0;
+	left: 0;
+	border-radius: @half-size / 2;
+	padding: 0 @half-size;
+	height: @giant-text;
+	color: @white;
+	text-align: center;
+	line-height: @giant-text;
+	z-index: 4;
+	background: @primary-bright;
+	transition: all linear 200ms;
+	.heavyFontLarge();
+	color: @white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	&:after, &:before {
+		top: 100%;
+		left: 50%;
+		border: solid transparent;
+		content: " ";
+		height: 0;
+		width: 0;
+		position: absolute;
+		pointer-events: none;
+	}
+
+	&:after {
+		border-color: rgba(0, 0, 0, 0);
+		border-top-color: @primary-bright;
+		border-width: 10px;
+		margin-left: -10px;
+	}
+
+	&:before {
+		border-color: rgba(0, 0, 0, 0);
+		border-top-color: @primary-bright;
+		border-width: 10px;
+		margin-left: -10px;
+	}
+}
+
+.progress_fail_marker {
+	composes: progress_marker;
+	background: @bad;
+	&:after, &:before {
+		border-top-color: @bad;
+	}
+}
+
+.progress_fin {
+	composes: progress_marker;
+	background: @success;
+	&:after, &:before {
+		border-top-color: @success;
+	}
+}
+
+.tick {
+	width: auto;
+	height: @large-text;
+}

@@ -21,7 +21,7 @@
   	z-index: 0;
     .lightFont();
   	
-    &:focus, &:active{
+    &:focus, &:active, &:hover{
       .noOutlines();
       .highlightBorder();
       background: @white;
@@ -30,6 +30,7 @@
     &:disabled {
       background: @disable-bg;
       color: @disable-text;
+      pointer-events: none;
       &:active {
         .noOutlines();
       }

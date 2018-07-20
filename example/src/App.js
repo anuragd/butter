@@ -1,20 +1,21 @@
 import React, { Component } from 'react'
 
-import { Radio, Dropdown, Input, Button, TextArea, NoDataPanel, ProgressBar } from 'dcn-ux-resources'
+import { Radio, Dropdown, Input, Button, TextArea, NoDataPanel, ProgressBar, ProgressBarMini } from 'dcn-ux-resources'
 
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       inputValue: 'Test',
-      textAreaValue:''
+      textAreaValue:'',
+      progress: 50
     }
   }
 
   render () {
     return (
       <div className="kitchen_sink">
-        <ProgressBar />
+        <ProgressBarMini progress={this.state.progress}/>
         <Radio 
           label="Select an option"
           options={[
@@ -34,7 +35,8 @@ export default class App extends Component {
         <Input label="Input" changeHandler={(value) => this.setState({inputValue:value})} value={this.state.inputValue} validated/>
         <Button label="Button"/>
         <TextArea label="TextArea" changeHandler={(value) => this.setState({textAreaValue:value})} value={this.state.textAreaValue}/>
-        <div className="sample_tile"><NoDataPanel /></div>
+        <div className=""><NoDataPanel /></div>
+        <ProgressBar progress={this.state.progress} message="Progress bar message"/>
       </div>
     )
   }

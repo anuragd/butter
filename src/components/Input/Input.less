@@ -23,7 +23,7 @@
     .lightFont();
     line-height: @button-height;
   	
-    &:focus, &:active{
+    &:focus, &:active, &:hover{
       .noOutlines();
       .highlightBorder();
       background: @white;
@@ -32,6 +32,7 @@
     &:disabled {
       background: @disable-bg;
       color: @disable-text;
+      pointer-events: none;
       &:active {
         .noOutlines();
       }
