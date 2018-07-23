@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import ReactSVG from 'react-svg'
 
 import styles from './ProgressBarMini.less'
 import image from '../../assets/images/progressmini.svg'

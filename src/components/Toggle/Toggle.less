@@ -1,0 +1,82 @@
+@import "../../styles/grid.less";
+@import '../../styles/color.less';
+@import "../../styles/mixins.less";
+@import "../../styles/animations.less";
+@import "../../styles/type.less";
+
+.toggle_container {
+	padding: @base-size;
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+}
+
+.track {
+	height: @base-size;
+	width: @base-size * 2;
+	background: @white;
+	.highlightBorder();
+	border-radius: @base-size;
+	transition: @standard-transition;
+}
+
+.track_on {
+	composes: track;
+	background: @primary-bright;
+}
+
+.track_good {
+	composes: track;
+	.noOutlines();
+	background: @success;
+}
+
+.track_bad {
+	composes: track;
+	.noOutlines();
+	background: @bad;
+}
+
+.track_disabled {
+	composes: track;
+	background: @disable-bg;
+	.noOutlines();
+}
+
+.thumb {
+	.highlightBorder();
+	width: @base-size;
+	height: @base-size;
+	border-radius: @base-size;
+	background: @white;
+	transition: @standard-transition;
+}
+
+.thumb_on {
+	composes: thumb;
+	transform: translateX(@base-size);
+}
+
+.thumb_good {
+	composes: thumb;
+	transform: translateX(@base-size);
+	.validBorder();
+}
+
+.thumb_bad {
+	composes: thumb;
+	.invalidBorder();
+}
+
+.thumb_disabled {
+	composes: thumb;
+	background: @white;
+	.noOutlines();
+	transform: translateX(@half-size);
+}
+
+.label {
+	margin-left: @half-size;
+	.lightFontSmall();
+	transition: @standard-transition;
+}
