@@ -7,9 +7,10 @@
 Library containing React components and LESS mixins based on the following Style Guide: https://xd.adobe.com/view/0b45c23e-341f-471f-6e07-a666f064272d-7d74/
 
 ## Install
-
+1. Clone this repo
+2. Open up the command line and do the following
 ```bash
-cd <path-to-ux-folder>
+cd <path-to-dcn-ux-resources-folder>
 npm link
 cd <path-to-your-project>
 npm link dcn-ux-resources
