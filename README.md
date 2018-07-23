@@ -51,6 +51,15 @@ export default class App extends Component {
 }
 ```
 
+## Update to latest version
+1. Open up your command line and do the following:
+```bash
+cd <path-to-dcn-ux-resources-folder>
+git pull
+npm run build
+```
+This will auto update the library on your project
+
 ## Fonts and Styles
 To include CiscoSansTT fonts, setup your webpack to import the contents of the `assets` folder, available in your `node_modules\dcn-ux-resources\dist` folder, into your project's build
 To use the Grid System and LESS mixins available in the UX library, setup your webpack to import the `dcn-ux.less` file in your project. This file is available under the `node_modules\dcn-ux-resources\dist` as well
