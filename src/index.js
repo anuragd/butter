@@ -7,6 +7,7 @@ import ProgressBar from './components/ProgressBar/ProgressBar'
 import ProgressBarMini from './components/ProgressBarMini/ProgressBarMini'
 import NoDataPanel from './components/NoDataPanel/NoDataPanel'
 import Toggle from './components/Toggle/Toggle'
+import Slider from './components/Slider/Slider'
 
 // let components = {
 // 	Input,
@@ -17,5 +18,5 @@ import Toggle from './components/Toggle/Toggle'
 // 	ProgressBar
 // }
 
-export { Input, Button, TextArea, Dropdown, Radio, ProgressBar, NoDataPanel, ProgressBarMini, Toggle }
+export { Input, Button, TextArea, Dropdown, Radio, ProgressBar, NoDataPanel, ProgressBarMini, Toggle, Slider }
 

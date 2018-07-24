@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Radio, Dropdown, Input, Button, TextArea, NoDataPanel, ProgressBar, ProgressBarMini, Toggle } from 'dcn-ux-resources'
+import { Radio, Dropdown, Input, Button, TextArea, NoDataPanel, ProgressBar, ProgressBarMini, Toggle, Slider } from 'dcn-ux-resources'
 
 export default class App extends Component {
   constructor(props) {
@@ -9,13 +9,15 @@ export default class App extends Component {
       inputValue: 'Test',
       textAreaValue:'',
       progress: 50,
-      toggleState: true
+      toggleState: true,
+      sliderValue:26
     }
   }
 
   render () {
     return (
       <div className="kitchen_sink">
+        <Slider label="Slider" min={0} max={100} value={this.state.sliderValue} changeHandler={(value) => this.setState({sliderValue:value})}/>
         <Toggle value={this.state.toggleState} changeHandler={() => this.setState({toggleState: !this.state.toggleState})} label="Toggle" valueLabels={{on:"yes",off:"no"}}/>
         <ProgressBarMini progress={this.state.progress}/>
         <Radio 
