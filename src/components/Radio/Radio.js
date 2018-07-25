@@ -11,21 +11,25 @@ import styles from './Radio.less'
 export default class Radio extends Component {
   static propTypes = {
     /**
-     * Description of prop "label".
+     * Top level label for the Radio Buttons
      */
     label: PropTypes.string,
     /**
-     * Description of prop "label".
+     * Callback fired when user makes a new selection. Callback will receive the selected option (eg: {id:0, value: "Option 1"} as an argument)
      */
     changeHandler: PropTypes.func,
     /**
-     * Description of prop "options".
+     * List of options as an array of objects, each containing id, value keys and optionally a disabled key.
      */
     options: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number.isRequired,
       value: PropTypes.string.isRequired,
       disabled: PropTypes.bool
-    })).isRequired
+    })).isRequired,
+    /**
+     * Boolean for disabling the control.
+     */
+    disabled: PropTypes.bool,
   }
 
   constructor(props) {

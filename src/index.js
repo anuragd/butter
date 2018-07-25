@@ -8,6 +8,7 @@ import ProgressBarMini from './components/ProgressBarMini/ProgressBarMini'
 import NoDataPanel from './components/NoDataPanel/NoDataPanel'
 import Toggle from './components/Toggle/Toggle'
 import Slider from './components/Slider/Slider'
+import Checkbox from './components/Checkbox/Checkbox'
 
 // let components = {
 // 	Input,
@@ -18,5 +19,5 @@ import Slider from './components/Slider/Slider'
 // 	ProgressBar
 // }
 
-export { Input, Button, TextArea, Dropdown, Radio, ProgressBar, NoDataPanel, ProgressBarMini, Toggle, Slider }
+export { Input, Button, TextArea, Dropdown, Radio, ProgressBar, NoDataPanel, ProgressBarMini, Toggle, Slider, Checkbox }
 

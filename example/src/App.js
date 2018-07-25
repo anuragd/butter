@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Radio, Dropdown, Input, Button, TextArea, NoDataPanel, ProgressBar, ProgressBarMini, Toggle, Slider } from 'dcn-ux-resources'
+import { Radio, Dropdown, Input, Button, TextArea, NoDataPanel, ProgressBar, ProgressBarMini, Toggle, Slider, Checkbox } from 'dcn-ux-resources'
 
 export default class App extends Component {
   constructor(props) {
@@ -10,7 +10,17 @@ export default class App extends Component {
       textAreaValue:'',
       progress: 50,
       toggleState: true,
-      sliderValue:26
+      sliderValue:26,
+      checkboxOptions: [
+        {id:0,value:"Option 1"},
+        {id:1,value:"Option 2", disabled: true},
+        {id:2,value:"Option 3"},
+        {id:3,value:"Option 4"},
+        {id:4,value:"Option 5"},
+        {id:5,value:"Option 6"},
+        {id:6,value:"Option 7"},
+      ],
+      checkboxValue:{id:4,value:"Option 5"}
     }
   }
 
@@ -28,6 +38,7 @@ export default class App extends Component {
             {id:2,value:"Option 3"},
             {id:3,value:"Option 4"}]}
           />
+        <Checkbox label="Choose an option" options={this.state.checkboxOptions} value={this.state.checkboxValue} changeHandler={(val) => this.setState({checkboxValue:val})}/>
         <Dropdown 
           label="Select" 
           options={[

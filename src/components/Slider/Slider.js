@@ -79,7 +79,8 @@ export default class Slider extends Component {
       valueX: xPosition,
       xFactor: xFactor,
       offsetX: trackBounds.left,
-      maxX: maxX
+      maxX: maxX,
+      thumbOffset: thumbWidth / 2
     })
   }
 
@@ -165,7 +166,7 @@ export default class Slider extends Component {
         <div className={styles.slider}>
           <div className={styles.track} ref={this.track}></div>
           <div  className={disabled?styles.active_range_disabled:styles.active_range}
-                style={{width:this.state.valueX+'px'}}>
+                style={{width:(this.state.valueX + this.state.thumbOffset)+'px'}}>
           </div>
           <div  ref={this.thumb}
                 className={disabled?styles.thumb_disabled:styles.thumb} 
