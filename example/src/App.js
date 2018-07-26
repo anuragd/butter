@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Radio, Dropdown, Input, Button, TextArea, NoDataPanel, ProgressBar, ProgressBarMini, Toggle, Slider, Checkbox } from 'dcn-ux-resources'
+import { Radio, Dropdown, Input, Button, TextArea, NoDataPanel, ProgressBar, ProgressBarMini, Toggle, Slider, Checkbox, DatePicker } from 'dcn-ux-resources'
 
 export default class App extends Component {
   constructor(props) {
@@ -20,7 +20,8 @@ export default class App extends Component {
         {id:5,value:"Option 6"},
         {id:6,value:"Option 7"},
       ],
-      checkboxValue:{id:4,value:"Option 5"}
+      checkboxValue:{id:4,value:"Option 5"},
+      datepickerValue: new Date()
     }
   }
 
@@ -28,8 +29,8 @@ export default class App extends Component {
     return (
       <div className="kitchen_sink">
         <Slider label="Slider" min={0} max={100} value={this.state.sliderValue} changeHandler={(value) => this.setState({sliderValue:value})}/>
+        <DatePicker label="Choose date" value={this.state.datepickerValue} changeHandler={(val) => this.setState({datepickerValue:val})}/>
         <Toggle value={this.state.toggleState} changeHandler={() => this.setState({toggleState: !this.state.toggleState})} label="Toggle" valueLabels={{on:"yes",off:"no"}}/>
-        <ProgressBarMini progress={this.state.progress}/>
         <Radio 
           label="Select an option"
           options={[

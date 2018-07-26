@@ -38,7 +38,11 @@ export default class Dropdown extends Component {
       id: PropTypes.number.isRequired,
       value: PropTypes.string.isRequired,
       disabled: PropTypes.bool
-    })).isRequired
+    })).isRequired,
+    /**
+     * Description of prop "disabled".
+     */
+    mini: PropTypes.bool,
   }
 
   constructor(props) {
@@ -69,7 +73,8 @@ export default class Dropdown extends Component {
     const {
       label,
       options,
-      disabled
+      disabled,
+      mini
     } = this.props
 
     const optionsList = options.map((option) =>
@@ -80,7 +85,7 @@ export default class Dropdown extends Component {
     )
 
     return (
-      <div className={styles.dropdown_container} onBlur={this.blurHandler} tabIndex="0">
+      <div className={mini?styles.mini_dropdown_container:styles.dropdown_container} onBlur={this.blurHandler} tabIndex="0">
         <div className={this.state.value?styles.focus_label:styles.float_label}>{label}</div>
         <div className={this.state.open?styles.open_list:styles.list}>
           <div className={this.state.open?styles.open_header:(disabled?styles.disabled_header:styles.header)} onClick={this.clickHandler}>
