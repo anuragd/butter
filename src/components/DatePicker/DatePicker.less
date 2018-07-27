@@ -178,6 +178,7 @@
 	margin-right: 0;
 }
 
+
 /** Calendar body styling **/
 @month-size: (@min-input-width - ( @half-size * 2 ));
 @cell-size: @month-size / 7;
@@ -205,15 +206,56 @@
 }
 
 .day_cells {
-	display: flex;
-	flex-wrap: wrap;
 	transition: @standard-transition;
+	height: @cell-size * 5;
+	position: relative;
+	z-index: 3;
 }
 
 .changing_body {
 	composes: day_cells;
 	transform: translateX(@month-size);
 	opacity: 0;
+}
+
+.month_body {
+	display: flex;
+	flex-wrap: wrap;
+	transition: @standard-transition;
+}
+
+.active_month {
+	composes: month_body;
+	z-index: 2;
+	transform: translateX(0);
+	opacity: 1;
+}
+
+.active_month_changing_left {
+	composes:active_month;
+	.slideOutRight();
+}
+.active_month_changing_right {
+	composes:active_month;
+	.slideOutLeft();
+}
+
+.change_month {
+	composes: month_body;
+	z-index: 1;
+	opacity: 0;
+}
+
+.change_month_changing_left {
+	composes: change_month;
+	z-index: 3;
+	opacity: 1;
+}
+
+.change_month_changing_right {
+	composes: change_month;
+	z-index: 3;
+	opacity: 1;
 }
 
 .calendar_cell {
@@ -252,4 +294,56 @@
 .diff_day_cell {
 	composes: day_cell;
 	color: @disable-text;
+}
+
+.slideOutRight() {
+	animation-name: slideOutRight;
+	animation-duration: 200ms;
+	animation-fill-mode: forwards;
+	animation-timing-function: cubic-bezier(0.280, 0.840, 0.420, 1);
+}
+
+@keyframes slideOutRight {
+	0% {
+		transform: translateX(0);
+		opacity: 1;
+	}
+	45% {
+		transform: translateX(unit(@month-size,px));
+		opacity: 0;
+	}
+	50% {
+		transform: translateX(unit(-1 * @month-size,px));
+		opacity: 0;
+	}
+	100% {
+		transform: translateX(0);
+		opacity: 1;
+	}
+}
+
+.slideOutLeft() {
+	animation-name: slideOutLeft;
+	animation-duration: 200ms;
+	animation-fill-mode: forwards;
+	animation-timing-function: cubic-bezier(0.280, 0.840, 0.420, 1);
+}
+
+@keyframes slideOutLeft {
+	0% {
+		transform: translateX(0);
+		opacity: 1;
+	}
+	45% {
+		transform: translateX(unit(-1 * @month-size,px));
+		opacity: 0;
+	}
+	50% {
+		transform: translateX(unit(@month-size,px));
+		opacity: 0;
+	}
+	100% {
+		transform: translateX(0);
+		opacity: 1;
+	}
 }

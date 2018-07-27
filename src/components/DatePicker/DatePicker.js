@@ -36,7 +36,8 @@ export default class DatePicker extends Component {
       monthSelect: null,
       yearSelect: null,
       open: false,
-      calendarChange:false,
+      calendarChangeLeft:false,
+      calendarChangeRight:false,
       currentMonth: props.value?this.getMonthCalendar(props.value):this.getMonthCalendar(new Date()),
       hoverLocation: {x:0,y:0},
       showSelectBubble:false,
@@ -54,6 +55,7 @@ export default class DatePicker extends Component {
     this.convertDate = this.convertDate.bind(this)
     this.manualDateEntryHandler = this.manualDateEntryHandler.bind(this)
     this.goToMonth = this.goToMonth.bind(this)
+    this.getDeltaMonthCalendar = this.getDeltaMonthCalendar.bind(this)
   }
 
 
@@ -87,6 +89,11 @@ export default class DatePicker extends Component {
       currentMonthCalendar.push({id:i,day:index.toDate(),diffMonth:(index.month()===currentMonth?false:true)})
     }
     return {month:currentMonth,calendar:currentMonthCalendar}
+  }
+
+  getDeltaMonthCalendar(day, delta) {
+    let inputDate = moment(day).add(delta,'month').toDate()
+    return this.getMonthCalendar(inputDate)
   }
 
   iconClickHandler(e) {
@@ -140,11 +147,21 @@ export default class DatePicker extends Component {
   }
 
   goToMonth(delta) {
-    this.setState({calendarChange:true})
+    let calendarChangeLeft = (delta === -1)?true:false
+    let calendarChangeRight = (delta === 1)?true:false
+    let newDate = moment().month(this.state.currentMonth.month)
+    let newCalendar = this.getDeltaMonthCalendar(newDate.toDate(),delta)
+    this.setState({
+      calendarChangeLeft:calendarChangeLeft,
+      calendarChangeRight: calendarChangeRight
+    })
     setTimeout(() => {
-      let newDate = moment().month(this.state.currentMonth.month + delta)
-      this.setState({calendarChange:false,currentMonth:this.getMonthCalendar(newDate.toDate())})
-    }, 400)
+      this.setState({
+        calendarChangeLeft:false,
+        calendarChangeRight: false,
+        currentMonth: newCalendar
+      })
+    }, 200)
   }
 
   render() {
@@ -211,8 +228,11 @@ export default class DatePicker extends Component {
               <div className={styles.day_name}>F</div>
               <div className={styles.day_name}>S</div>
             </div>
-            <div className={this.state.calendarChange?styles.changing_body:styles.day_cells} onMouseLeave={this.endHover}>
-              {calendarBody}
+            <div className={styles.day_cells} onMouseLeave={this.endHover}>
+              <div className={
+                (this.state.calendarChangeLeft || this.state.calendarChangeRight)?
+                (this.state.calendarChangeLeft?styles.active_month_changing_left:styles.active_month_changing_right):
+                styles.active_month}>{calendarBody}</div>
             </div>
           </div>
         </div>
