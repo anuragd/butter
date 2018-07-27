@@ -10,6 +10,7 @@ import Toggle from './components/Toggle/Toggle'
 import Slider from './components/Slider/Slider'
 import Checkbox from './components/Checkbox/Checkbox'
 import DatePicker from './components/DatePicker/DatePicker'
+import Tooltip from './components/Tooltip/Tooltip'
 
 // let components = {
 // 	Input,
@@ -20,5 +21,5 @@ import DatePicker from './components/DatePicker/DatePicker'
 // 	ProgressBar
 // }
 
-export { Input, Button, TextArea, Dropdown, Radio, ProgressBar, NoDataPanel, ProgressBarMini, Toggle, Slider, Checkbox, DatePicker }
+export { Input, Button, TextArea, Dropdown, Radio, ProgressBar, NoDataPanel, ProgressBarMini, Toggle, Slider, Checkbox, DatePicker, Tooltip }
 

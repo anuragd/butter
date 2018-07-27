@@ -65,6 +65,7 @@ export default class DatePicker extends Component {
     this.getDeltaMonthCalendar = this.getDeltaMonthCalendar.bind(this)
     this.monthSelectHandler = this.monthSelectHandler.bind(this)
     this.yearSelectHandler = this.yearSelectHandler.bind(this)
+    this.blurHandler = this.blurHandler.bind(this)
   }
 
 
@@ -115,6 +116,10 @@ export default class DatePicker extends Component {
 
   headerClickHandler(e) {
     if(!this.state.open) this.setState({open:true})
+  }
+  
+  blurHandler(e) {
+    this.setState({open: false})
   }
 
   hoverHandler(e) {
@@ -309,7 +314,7 @@ export default class DatePicker extends Component {
       internalValue = moment(value).format('D MMM YYYY')
 
     return (
-      <div className={styles.datepicker_container}>
+      <div className={styles.datepicker_container} onBlur={this.blurHandler} tabIndex="0">
         <div className={this.state.open?styles.open_datepicker:styles.datepicker}>
           <div className={this.state.open?styles.open_header:styles.header} onClick={this.headerClickHandler}>
             <input 

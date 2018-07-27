@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Radio, Dropdown, Input, Button, TextArea, NoDataPanel, ProgressBar, ProgressBarMini, Toggle, Slider, Checkbox, DatePicker } from 'dcn-ux-resources'
+import { Radio, Dropdown, Input, Button, TextArea, NoDataPanel, ProgressBar, ProgressBarMini, Toggle, Slider, Checkbox, DatePicker, Tooltip } from 'dcn-ux-resources'
 
 export default class App extends Component {
   constructor(props) {
@@ -30,13 +30,15 @@ export default class App extends Component {
   render () {
     return (
       <div className="kitchen_sink">
+        <Tooltip content="<p>This is a tooltip</p>">
+          <DatePicker 
+            label="Choose date" 
+            value={this.state.datepickerValue} 
+            changeHandler={(val) => this.setState({datepickerValue:val})}
+            min={this.state.minDate}
+            max={this.state.maxDate}/>
+        </Tooltip>
         <Slider label="Slider" min={0} max={100} value={this.state.sliderValue} changeHandler={(value) => this.setState({sliderValue:value})}/>
-        <DatePicker 
-          label="Choose date" 
-          value={this.state.datepickerValue} 
-          changeHandler={(val) => this.setState({datepickerValue:val})}
-          min={this.state.minDate}
-          max={this.state.maxDate}/>
         <Toggle value={this.state.toggleState} changeHandler={() => this.setState({toggleState: !this.state.toggleState})} label="Toggle" valueLabels={{on:"yes",off:"no"}}/>
         <Radio 
           label="Select an option"
