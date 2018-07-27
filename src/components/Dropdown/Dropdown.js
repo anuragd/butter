@@ -30,13 +30,13 @@ export default class Dropdown extends Component {
     /**
      * Description of prop "value".
      */
-    value: PropTypes.string,
+    value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     /**
      * Description of prop "options".
      */
     options: PropTypes.arrayOf(PropTypes.shape({
       id: PropTypes.number.isRequired,
-      value: PropTypes.string.isRequired,
+      value: PropTypes.oneOfType([PropTypes.number,PropTypes.string]),
       disabled: PropTypes.bool
     })).isRequired,
     /**
@@ -54,6 +54,11 @@ export default class Dropdown extends Component {
     this.clickHandler = this.clickHandler.bind(this)
     this.blurHandler = this.blurHandler.bind(this)
     this.optionClickHandler = this.optionClickHandler.bind(this)
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if(prevProps.value !== this.props.value)
+      this.setState({value:this.props.value?this.props.value:null})
   }
 
   clickHandler(e) {

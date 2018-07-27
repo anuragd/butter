@@ -136,9 +136,6 @@
 		.arrow {
 			user-select: none;
 		}
-		.selected_option {
-			color: @white;
-		}
 	}
 }
 
@@ -253,7 +250,6 @@
 				user-select: none;
 			}
 			.selected_option {
-				color: @white;
 			}
 		}
 	}
@@ -335,6 +331,9 @@
 				display: flex;
 				flex-direction: row;
 				align-items: center;
+				&:last-child {
+					padding-bottom: @half-size;
+				}
 				.list_bg {
 					position: absolute;
 					top:0;

@@ -5,7 +5,7 @@ import moment from 'moment'
 import styles from './DatePicker.less'
 import { CalendarSVG, DropdownSVG, CloseSVG } from '../../utilities/Icons/Icons'
 import Dropdown from '../Dropdown/Dropdown'
-import { months, years } from './calendarData'
+import { months, getMonth, getYears, getYear, monthToString } from './calendarData'
 
 /**
  * Panel for displaying a note to users that a component has no data to display. It is important that this component is placed inside a container with a definite max-height set, or it will take all of the screen space vertically.
@@ -28,13 +28,19 @@ export default class DatePicker extends Component {
      * Function fired whenever user moves slider or manually enters a value in the input. Must be used to pass the modified value back to the component
      */
     changeHandler: PropTypes.func.isRequired,
+    /**
+     * Description of prop "value".
+     */
+    min: PropTypes.instanceOf(Date),
+    /**
+     * Description of prop "value".
+     */
+    max: PropTypes.instanceOf(Date),
   }
 
   constructor(props) {
     super(props)
     this.state = {
-      monthSelect: null,
-      yearSelect: null,
       open: false,
       calendarChangeLeft:false,
       calendarChangeRight:false,
@@ -88,11 +94,15 @@ export default class DatePicker extends Component {
     for(var index = calendarStartDate, i = 0;  index.isSameOrBefore(calendarEndDate); index.add(1, 'days'), i++) {
       currentMonthCalendar.push({id:i,day:index.toDate(),diffMonth:(index.month()===currentMonth?false:true)})
     }
-    return {month:currentMonth,calendar:currentMonthCalendar}
+    return {month:currentMonth,calendar:currentMonthCalendar,year:currentYear}
   }
 
   getDeltaMonthCalendar(day, delta) {
-    let inputDate = moment(day).add(delta,'month').toDate()
+    let inputDate
+    if(delta===1)
+      inputDate = moment(day).add(1,'month').toDate()
+    else
+      inputDate = moment(day).subtract(1,'month').toDate()
     return this.getMonthCalendar(inputDate)
   }
 
@@ -130,7 +140,7 @@ export default class DatePicker extends Component {
   }
 
   manualChange(e) {
-    this.setState({internalValue:e.target.value})
+    this.setState({internalValue:e.target.value, showSelectBubble: false})
   }
 
   selectDate(selectedDay) {
@@ -149,11 +159,12 @@ export default class DatePicker extends Component {
   goToMonth(delta) {
     let calendarChangeLeft = (delta === -1)?true:false
     let calendarChangeRight = (delta === 1)?true:false
-    let newDate = moment().month(this.state.currentMonth.month)
+    let newDate = moment().month(this.state.currentMonth.month).year(this.state.currentMonth.year)
     let newCalendar = this.getDeltaMonthCalendar(newDate.toDate(),delta)
     this.setState({
       calendarChangeLeft:calendarChangeLeft,
-      calendarChangeRight: calendarChangeRight
+      calendarChangeRight: calendarChangeRight,
+      showSelectBubble: false
     })
     setTimeout(() => {
       this.setState({
@@ -167,7 +178,9 @@ export default class DatePicker extends Component {
   render() {
 
     const {
-      label
+      label,
+      min,
+      max
     } = this.props
 
     let value
@@ -186,11 +199,15 @@ export default class DatePicker extends Component {
             <Dropdown 
               label="Month" 
               options={months} 
-              value={this.state.monthSelect} 
+              value={monthToString(this.state.currentMonth.month)} 
               changeHandler={(val) => this.setState({monthSelect:val})} 
-              mini
-              className={styles.month_select}/>
-            <Dropdown label="Year" options={years} value={this.state.yearSelect} changeHandler={(val) => this.setState({yearSelect:val})} mini/>
+              mini/>
+            <Dropdown 
+              label="Year" 
+              options={getYears(min,max)} 
+              value={this.state.currentMonth.year} 
+              changeHandler={(val) => this.setState({yearSelect:val})} 
+              mini/>
           </div>
           <div className={styles.next_month_control} onClick={() => this.goToMonth(1)}><img src={DropdownSVG} /></div>
         </div>
@@ -210,15 +227,6 @@ export default class DatePicker extends Component {
         <div className={styles.calendar_container}>
           {calendarControls}
           <div className={styles.calendar_body}>
-            { this.state.showSelectBubble &&
-                <div 
-                  className={styles.selection_bubble}
-                  style={{
-                    left:this.state.hoverLocation.x,
-                    top:this.state.hoverLocation.y
-                  }}>
-                </div>
-            }
             <div className={styles.day_names}>
               <div className={styles.day_name}>S</div>
               <div className={styles.day_name}>M</div>
@@ -229,6 +237,15 @@ export default class DatePicker extends Component {
               <div className={styles.day_name}>S</div>
             </div>
             <div className={styles.day_cells} onMouseLeave={this.endHover}>
+              { this.state.showSelectBubble &&
+                  <div 
+                    className={styles.selection_bubble}
+                    style={{
+                      left:this.state.hoverLocation.x,
+                      top:this.state.hoverLocation.y
+                    }}>
+                  </div>
+              }
               <div className={
                 (this.state.calendarChangeLeft || this.state.calendarChangeRight)?
                 (this.state.calendarChangeLeft?styles.active_month_changing_left:styles.active_month_changing_right):
