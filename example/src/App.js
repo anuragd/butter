@@ -21,7 +21,9 @@ export default class App extends Component {
         {id:6,value:"Option 7"},
       ],
       checkboxValue:{id:4,value:"Option 5"},
-      datepickerValue: new Date()
+      datepickerValue: new Date(),
+      minDate: new Date(2017,6,1),
+      maxDate: new Date(2020,6,1)
     }
   }
 
@@ -29,7 +31,12 @@ export default class App extends Component {
     return (
       <div className="kitchen_sink">
         <Slider label="Slider" min={0} max={100} value={this.state.sliderValue} changeHandler={(value) => this.setState({sliderValue:value})}/>
-        <DatePicker label="Choose date" value={this.state.datepickerValue} changeHandler={(val) => this.setState({datepickerValue:val})}/>
+        <DatePicker 
+          label="Choose date" 
+          value={this.state.datepickerValue} 
+          changeHandler={(val) => this.setState({datepickerValue:val})}
+          min={this.state.minDate}
+          max={this.state.maxDate}/>
         <Toggle value={this.state.toggleState} changeHandler={() => this.setState({toggleState: !this.state.toggleState})} label="Toggle" valueLabels={{on:"yes",off:"no"}}/>
         <Radio 
           label="Select an option"

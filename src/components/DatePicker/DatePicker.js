@@ -5,7 +5,7 @@ import moment from 'moment'
 import styles from './DatePicker.less'
 import { CalendarSVG, DropdownSVG, CloseSVG } from '../../utilities/Icons/Icons'
 import Dropdown from '../Dropdown/Dropdown'
-import { months, getMonth, getYears, getYear, monthToString } from './calendarData'
+import { months, getMonth, getYears, getYear, monthToString, checkEdge, processMonthsForEdge, processYearsForEdge } from './calendarData'
 
 /**
  * Panel for displaying a note to users that a component has no data to display. It is important that this component is placed inside a container with a definite max-height set, or it will take all of the screen space vertically.
@@ -40,14 +40,15 @@ export default class DatePicker extends Component {
 
   constructor(props) {
     super(props)
+    let calendar = props.value?this.getMonthCalendar(props.value):this.getMonthCalendar(new Date())
     this.state = {
       open: false,
       calendarChangeLeft:false,
       calendarChangeRight:false,
-      currentMonth: props.value?this.getMonthCalendar(props.value):this.getMonthCalendar(new Date()),
+      currentMonth: calendar,
       hoverLocation: {x:0,y:0},
       showSelectBubble:false,
-      internalValue:props.value?moment(props.value).format('D MMM YYYY'):''
+      internalValue:props.value?moment(props.value).format('D MMM YYYY'):'',
     }
 
     this.selectedDayCell = React.createRef()
@@ -62,6 +63,8 @@ export default class DatePicker extends Component {
     this.manualDateEntryHandler = this.manualDateEntryHandler.bind(this)
     this.goToMonth = this.goToMonth.bind(this)
     this.getDeltaMonthCalendar = this.getDeltaMonthCalendar.bind(this)
+    this.monthSelectHandler = this.monthSelectHandler.bind(this)
+    this.yearSelectHandler = this.yearSelectHandler.bind(this)
   }
 
 
@@ -175,6 +178,40 @@ export default class DatePicker extends Component {
     }, 200)
   }
 
+  monthSelectHandler(month) {
+    let newDate = moment().month(month.id).year(this.state.currentMonth.year)
+    let calendarChangeLeft = month.id < this.state.currentMonth.month
+    let calendarChangeRight = month.id > this.state.currentMonth.month
+    this.setState({
+      calendarChangeLeft: calendarChangeLeft,
+      calendarChangeRight: calendarChangeRight
+    })
+    setTimeout(() => {
+      this.setState({
+        calendarChangeLeft:false,
+        calendarChangeRight: false,
+        currentMonth: this.getMonthCalendar(newDate.toDate())
+      })
+    }, 200)
+  }
+
+  yearSelectHandler(year) {
+    let newDate = moment().month(this.state.currentMonth.month).year(year.value)
+    let calendarChangeLeft = year.value < this.state.currentMonth.year
+    let calendarChangeRight = year.value > this.state.currentMonth.year
+    this.setState({
+      calendarChangeLeft: calendarChangeLeft,
+      calendarChangeRight: calendarChangeRight
+    })
+    setTimeout(() => {
+      this.setState({
+        calendarChangeLeft:false,
+        calendarChangeRight: false,
+        currentMonth: this.getMonthCalendar(newDate.toDate())
+      })
+    }, 200)
+  }
+
   render() {
 
     const {
@@ -194,22 +231,32 @@ export default class DatePicker extends Component {
     if(this.state.open) {
       let calendarControls =
         <div className={styles.control_bar}>
-          <div className={styles.last_month_control} onClick={() => this.goToMonth(-1)}><img src={DropdownSVG} /></div>
+          <div 
+            className={checkEdge(this.state.currentMonth.month, this.state.currentMonth.year, min, max)===-1?
+              styles.month_control_disabled:styles.last_month_control} 
+            onClick={() => this.goToMonth(-1)}>
+            <img src={DropdownSVG} />
+          </div>
           <div className={styles.month_year_select}>
             <Dropdown 
               label="Month" 
-              options={months} 
+              options={processMonthsForEdge(months,this.state.currentMonth.year,min,max)} 
               value={monthToString(this.state.currentMonth.month)} 
-              changeHandler={(val) => this.setState({monthSelect:val})} 
+              changeHandler={this.monthSelectHandler} 
               mini/>
             <Dropdown 
               label="Year" 
-              options={getYears(min,max)} 
+              options={processYearsForEdge(getYears(min,max), this.state.currentMonth.month, min, max)} 
               value={this.state.currentMonth.year} 
-              changeHandler={(val) => this.setState({yearSelect:val})} 
+              changeHandler={this.yearSelectHandler} 
               mini/>
           </div>
-          <div className={styles.next_month_control} onClick={() => this.goToMonth(1)}><img src={DropdownSVG} /></div>
+          <div 
+            className={checkEdge(this.state.currentMonth.month, this.state.currentMonth.year, min, max)===1?
+              styles.month_control_disabled:styles.next_month_control} 
+            onClick={() => this.goToMonth(1)}>
+            <img src={DropdownSVG} />
+          </div>
         </div>
 
       let calendarBody = this.state.currentMonth.calendar.map((day) => 

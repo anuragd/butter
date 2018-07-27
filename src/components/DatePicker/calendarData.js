@@ -54,4 +54,40 @@ let getYear = (date) => {
 let monthToString = (month) => {
 	return moment().month(month).format('MMMM')
 }
-export { months, getYears, getMonth, getYear, monthToString }
+
+let checkEdge = (month, year, min, max) => {
+	if(!(min instanceof Date) || !(max instanceof Date) || moment(max).isBefore(moment(min)))
+		return false
+	let edgeDate = moment().startOf('month').month(month).year(year)
+	if(edgeDate.isSameOrBefore(min))
+		return -1
+	if(edgeDate.isSameOrAfter(max))
+		return 1
+	return false
+}
+
+let processMonthsForEdge = (months, currentYear, min, max) => {
+	let mutableDate = moment().startOf('month').year(currentYear)
+	return months.map((month) => {
+		if((mutableDate.endOf('month').month(month.id)).isBefore(moment(min)) || 
+			(mutableDate.startOf('month').month(month.id)).isAfter(moment(max)))
+			month.disabled = true
+		else
+			month.disabled = false
+		return month
+	})
+}
+
+let processYearsForEdge = (years, currentMonth, min, max) => {
+	let mutableDate = moment().startOf('month').month(currentMonth)
+	return years.map((year) => {
+		if((mutableDate.endOf('month').year(year.value)).isBefore(moment(min)) || 
+			(mutableDate.startOf('month').year(year.value)).isAfter(moment(max)))
+			year.disabled = true
+		else
+			year.disabled = false
+		return year
+	})
+}
+
+export { months, getYears, getMonth, getYear, monthToString, checkEdge, processMonthsForEdge, processYearsForEdge }
