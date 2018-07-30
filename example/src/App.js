@@ -30,7 +30,8 @@ export default class App extends Component {
   render () {
     return (
       <div className="kitchen_sink">
-        <Tooltip content="<p>This is a tooltip</p>">
+        <Slider label="Slider" min={0} max={100} value={this.state.sliderValue} changeHandler={(value) => this.setState({sliderValue:value})}/>
+        <Tooltip content="<p>Tousled keffiyeh marfa, celiac duis snackwave distillery.</p>" mode="LEFT_TOP">
           <DatePicker 
             label="Choose date" 
             value={this.state.datepickerValue} 
@@ -38,28 +39,47 @@ export default class App extends Component {
             min={this.state.minDate}
             max={this.state.maxDate}/>
         </Tooltip>
-        <Slider label="Slider" min={0} max={100} value={this.state.sliderValue} changeHandler={(value) => this.setState({sliderValue:value})}/>
-        <Toggle value={this.state.toggleState} changeHandler={() => this.setState({toggleState: !this.state.toggleState})} label="Toggle" valueLabels={{on:"yes",off:"no"}}/>
-        <Radio 
-          label="Select an option"
-          options={[
-            {id:0,value:"Option 1"},
-            {id:1,value:"Option 2", disabled: true},
-            {id:2,value:"Option 3"},
-            {id:3,value:"Option 4"}]}
-          />
-        <Checkbox label="Choose an option" options={this.state.checkboxOptions} value={this.state.checkboxValue} changeHandler={(val) => this.setState({checkboxValue:val})}/>
-        <Dropdown 
-          label="Select" 
-          options={[
-            {id:0,value:"Option 1"},
-            {id:1,value:"Option 2", disabled: true},
-            {id:2,value:"Option 3"},
-            {id:3,value:"Option 4"}]}
-          />
-        <Input label="Input" changeHandler={(value) => this.setState({inputValue:value})} value={this.state.inputValue}/>
-        <Button label="Button"/>
-        <TextArea label="TextArea" changeHandler={(value) => this.setState({textAreaValue:value})} value={this.state.textAreaValue}/>
+        <Tooltip content="<p>Tousled keffiyeh marfa, celiac duis snackwave distillery.</p>" mode="LEFT_TOP">
+          <Toggle value={this.state.toggleState} changeHandler={() => this.setState({toggleState: !this.state.toggleState})} label="Toggle" valueLabels={{on:"yes",off:"no"}}/>
+        </Tooltip>
+        <Tooltip content="<p>Tousled keffiyeh marfa, celiac duis snackwave distillery.</p>" mode="BOTTOM_LEFT">
+          <Radio 
+            label="Select an option"
+            options={[
+              {id:0,value:"Option 1"},
+              {id:1,value:"Option 2", disabled: true},
+              {id:2,value:"Option 3"},
+              {id:3,value:"Option 4"}]}
+            />
+        </Tooltip>
+        <Tooltip content="<p>Tousled keffiyeh marfa, celiac duis snackwave distillery.</p>" mode="BOTTOM_RIGHT">
+          <Checkbox label="Choose an option" options={this.state.checkboxOptions} value={this.state.checkboxValue} changeHandler={(val) => this.setState({checkboxValue:val})}/>
+        </Tooltip>
+        <Tooltip content="<p>Tousled keffiyeh marfa, celiac duis snackwave distillery.</p>" mode="RIGHT_BOTTOM">
+          <Dropdown 
+            label="Select" 
+            options={[
+              {id:0,value:"Option 1"},
+              {id:1,value:"Option 2", disabled: true},
+              {id:2,value:"Option 3"},
+              {id:3,value:"Option 4"}]}
+            />
+        </Tooltip>
+        <Tooltip content="<p>Tousled keffiyeh marfa, celiac duis snackwave distillery.</p>" mode="RIGHT_TOP">
+          <Input label="Input" changeHandler={(value) => this.setState({inputValue:value})} value={this.state.inputValue}/>
+        </Tooltip>
+        <Tooltip content="<p>Tousled keffiyeh marfa, celiac duis snackwave distillery.</p>" mode="TOP_RIGHT">
+          <Button label="Button"/>
+        </Tooltip>
+        <Tooltip content="<p>Tousled keffiyeh marfa, celiac duis snackwave distillery.</p>" mode="TOP_LEFT">
+          <TextArea label="TextArea" changeHandler={(value) => this.setState({textAreaValue:value})} value={this.state.textAreaValue}/>
+        </Tooltip>
+        
+        
+        
+        
+        
+        
         <div className=""><NoDataPanel /></div>
         <ProgressBar progress={this.state.progress} message="Progress bar message"/>
       </div>
