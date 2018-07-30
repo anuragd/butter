@@ -28,26 +28,30 @@
 }
 
 .tooltip_content {
-	border-radius: 3px;
-	padding: @half-size /2;
-	.shadowOnly();
-	.lightFont();
+	border-radius: 5px;
+	.subtleShadow();
+	.lightFontSmall();
 	text-align: center;
-	color: @white;
-	background: @primary-bright;
+	color: @primary-dark;
+	background: @white;
 	position: relative;
-	top: 10px;
-	left: 10px;
-	bottom: 10px;
-	right: 10px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	min-height: @button-height;
 	align-items: center;
+	padding:@half-size;
 	p {
 		margin:0;
 	}
+}
+
+@supports ((-webkit-backdrop-filter: blur(10px)) or (backdrop-filter: blur(10px))) {
+  .tooltip_content {
+  	composes: tooltip_content;
+  	backdrop-filter: blur(10px);
+  	background: rgba(255,255,255,0.5);
+  }
 }
 
 .tooltip_content_TOP_RIGHT {
@@ -283,7 +287,7 @@
 	justify-content: center;
 	align-items: center;
 	cursor: pointer;
-	margin: 0 @half-size;
+	margin: 0;
 	img {
 		width: auto;
 		height: @small-text;

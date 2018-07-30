@@ -31,7 +31,7 @@ export default class App extends Component {
     return (
       <div className="kitchen_sink">
         <Slider label="Slider" min={0} max={100} value={this.state.sliderValue} changeHandler={(value) => this.setState({sliderValue:value})}/>
-        <Tooltip content="<p>Tousled keffiyeh marfa, celiac duis snackwave distillery.</p>" mode="LEFT_TOP">
+        <Tooltip content="<p>I'm a LEFT_TOP tooltip</p>" mode="LEFT_TOP">
           <DatePicker 
             label="Choose date" 
             value={this.state.datepickerValue} 
@@ -39,10 +39,10 @@ export default class App extends Component {
             min={this.state.minDate}
             max={this.state.maxDate}/>
         </Tooltip>
-        <Tooltip content="<p>Tousled keffiyeh marfa, celiac duis snackwave distillery.</p>" mode="LEFT_TOP">
+        <Tooltip content="<p>I'm a LEFT_BOTTOM tooltip</p>" mode="LEFT_BOTTOM">
           <Toggle value={this.state.toggleState} changeHandler={() => this.setState({toggleState: !this.state.toggleState})} label="Toggle" valueLabels={{on:"yes",off:"no"}}/>
         </Tooltip>
-        <Tooltip content="<p>Tousled keffiyeh marfa, celiac duis snackwave distillery.</p>" mode="BOTTOM_LEFT">
+        <Tooltip content="<p>I'm a BOTTOM_LEFT tooltip</p>" mode="BOTTOM_LEFT">
           <Radio 
             label="Select an option"
             options={[
@@ -52,10 +52,10 @@ export default class App extends Component {
               {id:3,value:"Option 4"}]}
             />
         </Tooltip>
-        <Tooltip content="<p>Tousled keffiyeh marfa, celiac duis snackwave distillery.</p>" mode="BOTTOM_RIGHT">
+        <Tooltip content="<p>I'm a BOTTOM_RIGHT tooltip</p>" mode="BOTTOM_RIGHT">
           <Checkbox label="Choose an option" options={this.state.checkboxOptions} value={this.state.checkboxValue} changeHandler={(val) => this.setState({checkboxValue:val})}/>
         </Tooltip>
-        <Tooltip content="<p>Tousled keffiyeh marfa, celiac duis snackwave distillery.</p>" mode="RIGHT_BOTTOM">
+        <Tooltip content="<p>I'm a RIGHT_BOTTOM tooltip</p>" mode="RIGHT_BOTTOM">
           <Dropdown 
             label="Select" 
             options={[
@@ -65,13 +65,13 @@ export default class App extends Component {
               {id:3,value:"Option 4"}]}
             />
         </Tooltip>
-        <Tooltip content="<p>Tousled keffiyeh marfa, celiac duis snackwave distillery.</p>" mode="RIGHT_TOP">
+        <Tooltip content="<p>I'm a RIGHT_TOP tooltip</p>" mode="RIGHT_TOP">
           <Input label="Input" changeHandler={(value) => this.setState({inputValue:value})} value={this.state.inputValue}/>
         </Tooltip>
-        <Tooltip content="<p>Tousled keffiyeh marfa, celiac duis snackwave distillery.</p>" mode="TOP_RIGHT">
+        <Tooltip content="<p>I'm a TOP_RIGHT tooltip</p>" mode="TOP_RIGHT">
           <Button label="Button"/>
         </Tooltip>
-        <Tooltip content="<p>Tousled keffiyeh marfa, celiac duis snackwave distillery.</p>" mode="TOP_LEFT">
+        <Tooltip content="<p>I'm a TOP_LEFT tooltip</p>" mode="TOP_LEFT">
           <TextArea label="TextArea" changeHandler={(value) => this.setState({textAreaValue:value})} value={this.state.textAreaValue}/>
         </Tooltip>
         

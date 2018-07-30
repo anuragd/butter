@@ -11,6 +11,7 @@ import { InfoSVG } from '../../utilities/Icons/Icons'
  * @version 0.0.1
  */
 export default class Tooptip extends Component {
+  
   static propTypes = {
     content: PropTypes.string,
     mode: PropTypes.oneOf(['TOP_RIGHT','TOP_LEFT','RIGHT_BOTTOM', 'RIGHT_TOP','BOTTOM_RIGHT', 'BOTTOM_LEFT','LEFT_BOTTOM', 'LEFT_TOP'])
@@ -24,6 +25,9 @@ export default class Tooptip extends Component {
         x: 0
       }
     }
+
+    this.arrowSize = 10
+
     this.tooltipIcon = React.createRef()
     this.tooltip = React.createRef()
     this.mouseEnterHandler = this.mouseEnterHandler.bind(this)
@@ -45,19 +49,22 @@ export default class Tooptip extends Component {
       bottom: 0,
       left: 0
     }
+    let iconStyle = this.tooltipIcon.current.getBoundingClientRect()
+    let parentStyle = this.tooltip.current.getBoundingClientRect()
+    if(mode==='LEFT_BOTTOM') console.log(iconStyle,parentStyle)
     switch(mode) {
       case 'BOTTOM_RIGHT':
         tooltipOffset = {
-          top: this.tooltipIcon.current.offsetTop + this.tooltipIcon.current.getBoundingClientRect().height,
+          top: (iconStyle.top - parentStyle.top) + this.arrowSize + iconStyle.height,
           right: 'auto',
-          left: this.tooltipIcon.current.offsetLeft - 15,
+          left: (iconStyle.left - parentStyle.left) + (iconStyle.width / 2) - (this.arrowSize / 2),
           bottom: 'auto'
         }
         break
       case 'BOTTOM_LEFT':
         tooltipOffset = {
-          top: this.tooltipIcon.current.offsetTop + this.tooltipIcon.current.getBoundingClientRect().height,
-          right: this.tooltipIcon.current.getBoundingClientRect().width,
+          top: (iconStyle.top - parentStyle.top) + this.arrowSize + iconStyle.height,
+          right: (parentStyle.right - iconStyle.right) - this.arrowSize,
           left: 'auto',
           bottom: 'auto'
         }
@@ -66,30 +73,30 @@ export default class Tooptip extends Component {
         tooltipOffset = {
           top: 'auto',
           right: 'auto',
-          left: this.tooltipIcon.current.offsetLeft + this.tooltipIcon.current.getBoundingClientRect().width,
-          bottom:(this.tooltipIcon.current.getBoundingClientRect().height / 2) + 40
+          left: (iconStyle.left - parentStyle.left) + iconStyle.width + (this.arrowSize / 2),
+          bottom: (parentStyle.bottom - iconStyle.bottom) + (iconStyle.height / 2) - this.arrowSize
         }
         break
       case 'RIGHT_BOTTOM':
         tooltipOffset = {
-          top: 26,
+          top: (iconStyle.top - parentStyle.top) + (iconStyle.height / 2) - this.arrowSize,
           right: 'auto',
-          left: this.tooltipIcon.current.offsetLeft + this.tooltipIcon.current.getBoundingClientRect().width,
+          left: (iconStyle.left - parentStyle.left) + iconStyle.width + (this.arrowSize / 2),
           bottom: 'auto'
         }
         break
       case 'LEFT_BOTTOM':
         tooltipOffset = {
-          top: this.tooltip.current.offsetTop + this.tooltipIcon.current.getBoundingClientRect().height + 5,
-          right: this.tooltipIcon.current.getBoundingClientRect().width + 30,
+          top: (iconStyle.top - parentStyle.top) + (iconStyle.height / 2) - this.arrowSize,
+          right: (parentStyle.right - iconStyle.right) + iconStyle.width + this.arrowSize,
           left: 'auto',
           bottom: 'auto'
         }
         break
       case 'LEFT_TOP':
         tooltipOffset = {
-          bottom: this.tooltip.current.offsetTop + (this.tooltipIcon.current.getBoundingClientRect().height) + 20,
-          right: this.tooltipIcon.current.getBoundingClientRect().width + 30,
+          bottom: (parentStyle.bottom - iconStyle.bottom) + (iconStyle.height / 2) - this.arrowSize,
+          right: (parentStyle.right - iconStyle.right) + iconStyle.width + this.arrowSize,
           left: 'auto',
           top: 'auto'
         }
@@ -97,9 +104,9 @@ export default class Tooptip extends Component {
       case 'TOP_LEFT':
       tooltipOffset = {
         top: 'auto',
-        right: 17,
+        right: (parentStyle.right - iconStyle.right) - (this.arrowSize / 2),
         left: 'auto',
-        bottom: this.tooltipIcon.current.getBoundingClientRect().height + 65
+        bottom: (parentStyle.bottom - iconStyle.bottom) + iconStyle.height + this.arrowSize
       }
       break
       case 'TOP_RIGHT':
@@ -107,8 +114,8 @@ export default class Tooptip extends Component {
       tooltipOffset = {
         top: 'auto',
         right: 'auto',
-        left: this.tooltipIcon.current.offsetLeft - 16,
-        bottom: this.tooltipIcon.current.getBoundingClientRect().height + 65
+        left: (iconStyle.left - parentStyle.left) - (this.arrowSize / 2),
+        bottom: (parentStyle.bottom - iconStyle.bottom) + iconStyle.height + this.arrowSize
       }
     }
     return tooltipOffset
@@ -134,12 +141,11 @@ export default class Tooptip extends Component {
     } = this.props
     let activeModeClass = mode?'tooltip_content_'+mode:'tooltip_content_top'
     return (
-      <div className={styles.tooltip_container}>
+      <div className={styles.tooltip_container} ref={this.tooltip} >
         <div 
           className={this.state.showTooltip?styles.tooltip_active:styles.tooltip}
           style={this.state.tooltipOffset}>
           <div
-            ref={this.tooltip} 
             className={styles[activeModeClass]}>
             <div dangerouslySetInnerHTML={{__html:content}} />
           </div>
