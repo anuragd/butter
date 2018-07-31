@@ -1,0 +1,34 @@
+@import "../../styles/grid.less";
+@import '../../styles/color.less';
+@import "../../styles/mixins.less";
+@import "../../styles/animations.less";
+@import "../../styles/type.less";
+
+.tabs_container {
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+}
+
+.tab_option {
+	.regularFont();
+	color: @primary-bright;
+	padding: @half-size;
+	cursor: pointer;
+}
+.active_tab {
+	composes: tab_option;
+	color: @primary-dark;
+}
+
+.active_marker {
+	position: absolute;
+	height: 5px;
+	border-radius: 3px;
+	background: @primary-bright;
+	transition: @standard-transition;
+}

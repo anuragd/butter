@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Radio, Dropdown, Input, Button, TextArea, NoDataPanel, ProgressBar, ProgressBarMini, Toggle, Slider, Checkbox, DatePicker, Tooltip, Table } from 'dcn-ux-resources'
+import { Radio, Dropdown, Input, Button, TextArea, NoDataPanel, ProgressBar, ProgressBarMini, Toggle, Slider, Checkbox, DatePicker, Tooltip, Table, Tabs } from 'dcn-ux-resources'
 
 export default class App extends Component {
   constructor(props) {
@@ -45,13 +45,15 @@ export default class App extends Component {
       checkboxValue:{id:4,value:"Option 5"},
       datepickerValue: new Date(),
       minDate: new Date(2017,6,1),
-      maxDate: new Date(2020,6,1)
+      maxDate: new Date(2020,6,1),
+      activeTab: 'Tab2'
     }
   }
 
   render () {
     return (
       <div className="kitchen_sink">
+        <Tabs options={['Tab1','Tab2','Tab3','Tab4']} activeTab={this.state.activeTab} changeHandler={(tab) => this.setState({activeTab:tab})}/>
         <Table data={this.state.tableData}/>
         <Slider label="Slider" min={0} max={100} value={this.state.sliderValue} changeHandler={(value) => this.setState({sliderValue:value})}/>
         <Tooltip content="<p>I'm a LEFT_TOP tooltip</p>" mode="LEFT_TOP">
