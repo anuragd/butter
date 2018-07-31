@@ -42,7 +42,6 @@ export default class Tabs extends Component {
     if(prevProps.options !== this.props.options) {
       let bounds = this.activeTab.current.getBoundingClientRect()
       this.setState({
-        top: bounds.top + bounds.height - 12,
         left: bounds.left + 12,
         width: bounds.width - 24
       })
@@ -52,7 +51,6 @@ export default class Tabs extends Component {
   clickHandler(e) {
     let bounds = e.currentTarget.getBoundingClientRect()
     this.setState({
-      top: bounds.top + bounds.height - 12,
       left: bounds.left + 12,
       width: bounds.width - 24
     })
@@ -66,10 +64,11 @@ export default class Tabs extends Component {
     } = this.props
     return (
       <div className={styles.tabs_container}>
-        <div className={styles.active_marker} style={{top:this.state.top,left:this.state.left, width:this.state.width}}></div>
+        <div className={styles.active_marker} style={{left:this.state.left, width:this.state.width}}></div>
         {
           options.map((value,key) =>
             <div
+              key={key}
               ref={activeTab===value?this.activeTab:null} 
               className={activeTab===value?styles.active_tab:styles.tab_option} 
               onClick={this.clickHandler}>
