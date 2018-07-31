@@ -51,7 +51,6 @@ export default class Tooptip extends Component {
     }
     let iconStyle = this.tooltipIcon.current.getBoundingClientRect()
     let parentStyle = this.tooltip.current.getBoundingClientRect()
-    if(mode==='LEFT_BOTTOM') console.log(iconStyle,parentStyle)
     switch(mode) {
       case 'BOTTOM_RIGHT':
         tooltipOffset = {

@@ -1,0 +1,69 @@
+@import "../../styles/grid.less";
+@import '../../styles/color.less';
+@import "../../styles/mixins.less";
+@import "../../styles/animations.less";
+@import "../../styles/type.less";
+
+.table_container {
+	padding: @base-size;
+}
+
+.table_header_cell {
+	padding: @half-size;
+	.regularFont();
+	color: @primary-bright;
+	text-align: left;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	cursor: pointer;
+	user-select: none;
+}
+
+.sorters {
+	margin-left: @half-size;
+
+}
+
+.sorter_triangle {
+	font-size: @small-text;
+	line-height: @mini-text;
+	color: @disable-text;
+}
+
+.sorter_triangle_active {
+	composes: sorter_triangle;
+	color: @primary-bright;
+}
+
+.table_body_cell {
+	padding: @half-size;
+	.lightFont();
+	color: @primary-dark;
+	cursor: auto;
+}
+
+.table_row {
+	transition: @standard-transition;
+	transform: perspective(0) translateZ(0);
+	&:nth-child(2n) {
+		background: @row-highlight;
+	}
+}
+
+.table_row_attention {
+	composes: table_row;
+	background: @row-attention !important;
+}
+
+.table {
+	thead {
+		box-shadow: 0 2px 3px #DFDFDF;
+	}
+	tbody {
+		position: relative;
+	}
+}
+
+
+

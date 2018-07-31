@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Radio, Dropdown, Input, Button, TextArea, NoDataPanel, ProgressBar, ProgressBarMini, Toggle, Slider, Checkbox, DatePicker, Tooltip } from 'dcn-ux-resources'
+import { Radio, Dropdown, Input, Button, TextArea, NoDataPanel, ProgressBar, ProgressBarMini, Toggle, Slider, Checkbox, DatePicker, Tooltip, Table } from 'dcn-ux-resources'
 
 export default class App extends Component {
   constructor(props) {
@@ -20,6 +20,28 @@ export default class App extends Component {
         {id:5,value:"Option 6"},
         {id:6,value:"Option 7"},
       ],
+      tableData: {
+        keys: [
+          {key:'switch',label:'Switch',type:'text',sortable:true},
+          {key:'ipAddress',label:'IP Address',type:'text',sortable:true},
+          {key:'serial',label:'Serial No',type:'text',sortable:true},
+          {key:'managed',label:'Managed',type:'text',sortable:true},
+          {key:'snmp',label:'SNMP Status',type:'text',sortable:true},
+          {key:'lastUpdated',label:'Last updated at',type:'date',sortable:true}
+        ],
+        data: [
+          {id:0,switch:'leaf1',ipAddress:'24.0.80.200',serial:'SAL18432P5Q ',managed:'true',snmp:'Unreachable',lastUpdated:'2018-07-30 17:11:00',attention:true},
+          {id:1,switch:'leaf1',ipAddress:'24.0.80.202',serial:'SAL18432P4S',managed:'true',snmp:'ok',lastUpdated:'2018-07-30 17:11:00'},
+          {id:2,switch:'leaf2',ipAddress:'24.0.80.201',serial:'SAL18432P4X',managed:'true',snmp:'Unreachable',lastUpdated:'2018-07-30 17:11:00'},
+          {id:3,switch:'leaf3',ipAddress:'24.0.80.208',serial:'FDO210721L3',managed:'true',snmp:'ok',lastUpdated:'2018-07-30 17:11:00'},
+          {id:4,switch:'n9k-bg1',ipAddress:'24.0.80.212',serial:'FDO210705NY',managed:'true',snmp:'Unreachable',lastUpdated:'2018-07-30 17:11:00'},
+          {id:5,switch:'n9k-bg2',ipAddress:'24.0.80.209',serial:'SAL1833YM11',managed:'true',snmp:'ok',lastUpdated:'2018-07-30 17:11:00'},
+          {id:6,switch:'spine1',ipAddress:'24.0.80.217',serial:'SAL18422FUR',managed:'true',snmp:'Unreachable',lastUpdated:'2018-07-30 17:11:00'},
+          {id:7,switch:'spine2',ipAddress:'24.0.80.209',serial:'SAL18422FXL',managed:'true',snmp:'Unreachable',lastUpdated:'2018-07-30 17:11:00'},
+          {id:8,switch:'ste-n9k-18-deep',ipAddress:'24.0.80.311',serial:'SAL18432P11',managed:'true',snmp:'ok',lastUpdated:'2018-07-30 17:11:00'},
+          {id:9,switch:'ste-n9k-bg1',ipAddress:'24.0.80.303',serial:'FDO21061Q4W',managed:'true',snmp:'Unreachable',lastUpdated:'2018-07-30 17:11:00'}
+        ]
+      },
       checkboxValue:{id:4,value:"Option 5"},
       datepickerValue: new Date(),
       minDate: new Date(2017,6,1),
@@ -30,6 +52,7 @@ export default class App extends Component {
   render () {
     return (
       <div className="kitchen_sink">
+        <Table data={this.state.tableData}/>
         <Slider label="Slider" min={0} max={100} value={this.state.sliderValue} changeHandler={(value) => this.setState({sliderValue:value})}/>
         <Tooltip content="<p>I'm a LEFT_TOP tooltip</p>" mode="LEFT_TOP">
           <DatePicker 
