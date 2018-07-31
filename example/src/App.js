@@ -25,7 +25,7 @@ export default class App extends Component {
           {key:'switch',label:'Switch',type:'text',sortable:true},
           {key:'ipAddress',label:'IP Address',type:'text',sortable:true},
           {key:'serial',label:'Serial No',type:'text',sortable:true},
-          {key:'managed',label:'Managed',type:'text',sortable:true},
+          {key:'managed',label:'Managed',type:'text'},
           {key:'snmp',label:'SNMP Status',type:'text',sortable:true},
           {key:'lastUpdated',label:'Last updated at',type:'date',sortable:true}
         ],

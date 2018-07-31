@@ -27,9 +27,9 @@ export default class Table extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      keys: props.data.keys,
+      data: props.data,
       positionMap:null,
-      translateMap:null
+      translateMap:props.data.data.map(() => 0)
     }
     this.tableBody = React.createRef()
     this.headerClickHandler = this.headerClickHandler.bind(this)
@@ -83,8 +83,8 @@ export default class Table extends Component {
   headerClickHandler(keys,index) {
     let currentKey = keys[index]
     if(currentKey.sortable) {
-      let newKeys = this.state.keys
-      let newData = this.props.data.data
+      let newKeys = this.state.data.keys
+      let newData = this.state.data.data
       if(currentKey.sortedUp) {
         // Sort data in descending
         newData = this.sortDesc(newData,currentKey)
@@ -97,11 +97,23 @@ export default class Table extends Component {
       }
       newKeys = map(newKeys, (key) => {return({...key,sortedUp:null})})
       newKeys[index] = currentKey
-      let newTranslateMap = this.deriveTranslateMap(newData,this.props.data.data,this.state.positionMap)
+      let newTranslateMap = this.deriveTranslateMap(newData,this.state.data.data,this.state.positionMap)
       this.setState({
         translateMap: newTranslateMap,
-        keys: newKeys
+        data: {
+          ...this.state.data,
+          keys: newKeys
+        }
       })
+      // setTimeout(() => {
+      //   this.setState({
+      //     translateMap:this.props.data.data.map(() => 0),
+      //     data: {
+      //       ...this.state.data,
+      //       data: newData
+      //     }
+      //   })
+      // }, 200)
     }
   }
 
@@ -115,9 +127,9 @@ export default class Table extends Component {
   render() {
     const {
       data
-    } = this.props
-    const tableHeader = this.state.keys.map((value,key) => 
-      <th key={key} onClick={() => this.headerClickHandler( this.state.keys,key)}>
+    } = this.state
+    const tableHeader = data.keys.map((value,key) => 
+      <th key={key} onClick={() => this.headerClickHandler(data.keys,key)}>
         <div className={styles.table_header_cell}>
           <div className={styles.label}>{value.label}</div>
           <div className={value.sortable?styles.sorters:styles.hide}>
@@ -128,11 +140,11 @@ export default class Table extends Component {
       </th>
     )
     const tableData = data.data.map((value,key) => {
-      let row = this.getRow(value, this.state.keys)
+      let row = this.getRow(value,data.keys)
       if(this.state.translateMap) {
         return(
           <tr key={(value.id+'-row')} 
-              style={{transform: `translateY(${this.state.translateMap[key]}px)`, zIndex:key}}
+              style={{transform: `translateY(${this.state.translateMap[key]}px)`}}
               className={value.attention?styles.table_row_attention:styles.table_row}>
             {row}
           </tr>)
