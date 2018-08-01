@@ -14,6 +14,8 @@ import Tooltip from './components/Tooltip/Tooltip'
 import Table from './components/Table/Table'
 import Tabs from './components/Tabs/Tabs'
 
+import NIChartTheme from './utilities/Charts/Charts'
+
 // let components = {
 // 	Input,
 // 	Button,
@@ -23,5 +25,5 @@ import Tabs from './components/Tabs/Tabs'
 // 	ProgressBar
 // }
 
-export { Input, Button, TextArea, Dropdown, Radio, ProgressBar, NoDataPanel, ProgressBarMini, Toggle, Slider, Checkbox, DatePicker, Tooltip, Table, Tabs }
+export { Input, Button, TextArea, Dropdown, Radio, ProgressBar, NoDataPanel, ProgressBarMini, Toggle, Slider, Checkbox, DatePicker, Tooltip, Table, Tabs, NIChartTheme }
 
