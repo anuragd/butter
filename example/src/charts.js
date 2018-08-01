@@ -1,9 +1,6 @@
 import React, { Component } from 'react'
-import { NIChartTheme } from 'dcn-ux-resources'
-import Highcharts from 'react-highcharts'
+import { DCNCharts } from 'dcn-ux-resources'
 
-
-Highcharts.Highcharts.setOptions(NIChartTheme)
 
 
 
@@ -14,19 +11,40 @@ Highcharts.Highcharts.setOptions(NIChartTheme)
  * @version 0.0.1
  */
 export default class Charts extends Component {
-  render() {
-    const config = {
-      xAxis: {
-        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-      },
-      series: [{
-        data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 295.6, 454.4]
-      }]
-    }
-    return (
-      <div>
-        <Highcharts config={config}/>
-      </div>
-    )
-  }
+
+	constructor(props) {
+		super(props)
+		this.state = {
+			data: (() => {
+				let result = []
+				for(var i=0; i<50; i++) {
+					result.push(Math.random() * 10)
+				}
+				return result
+			})()
+		}
+	}
+
+	render() {
+		console.log(this.state.data)
+		const options = {
+			title: {
+				text: 'CPU Utilization'
+			},
+			series:[
+				{
+					name: 'Dummy Series',
+					data: this.state.data
+				}
+			]
+		}
+		return (
+		  <div>
+		    <DCNCharts.area options={options}/>
+		    <DCNCharts.pie options={options}/>
+		    <DCNCharts.vbar options={options}/>
+		    <DCNCharts.hbar options={options}/>
+		  </div>
+		)
+	}
 }

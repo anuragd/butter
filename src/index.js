@@ -13,8 +13,7 @@ import DatePicker from './components/DatePicker/DatePicker'
 import Tooltip from './components/Tooltip/Tooltip'
 import Table from './components/Table/Table'
 import Tabs from './components/Tabs/Tabs'
-
-import NIChartTheme from './utilities/Charts/Charts'
+import DCNCharts from './components/Charts/Charts'
 
 // let components = {
 // 	Input,
@@ -25,5 +24,21 @@ import NIChartTheme from './utilities/Charts/Charts'
 // 	ProgressBar
 // }
 
-export { Input, Button, TextArea, Dropdown, Radio, ProgressBar, NoDataPanel, ProgressBarMini, Toggle, Slider, Checkbox, DatePicker, Tooltip, Table, Tabs, NIChartTheme }
+export { 
+	Input, 
+	Button, 
+	TextArea, 
+	Dropdown, 
+	Radio, 
+	ProgressBar, 
+	NoDataPanel, 
+	ProgressBarMini, 
+	Toggle, 
+	Slider, 
+	Checkbox, 
+	DatePicker, 
+	Tooltip, 
+	Table, 
+	Tabs,
+	DCNCharts }
 
