@@ -21,7 +21,8 @@ export default class vbar extends Component {
 				...props.options,
 				...theme,
 				chart: {
-					type: 'column'
+					type: 'column',
+					height: '100%'
 				},
 				credits: {
 					enabled: false
@@ -57,7 +58,8 @@ export default class vbar extends Component {
 				],
 				legend: {
 					enabled: false
-				}
+				},
+				title:''
 			}
 		}
 

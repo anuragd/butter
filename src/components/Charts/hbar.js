@@ -4,6 +4,7 @@ import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
 
 import theme from './theme'
+import styles from './Charts.less'
 
 export default class hbar extends Component {
 
@@ -20,7 +21,8 @@ export default class hbar extends Component {
 				...props.options,
 				...theme,
 				chart: {
-					type: 'bar'
+					type: 'bar',
+					height: '100%'
 				},
 				credits: {
 					enabled: false
@@ -53,7 +55,8 @@ export default class hbar extends Component {
 				],
 				legend: {
 					enabled: false
-				}
+				},
+				title:''
 			}
 		}
 
@@ -71,7 +74,7 @@ export default class hbar extends Component {
 
 	render() {
 		return (
-			<div onMouseOver = {this.mouseEnter} onMouseOut = {this.mouseLeave}>
+			<div onMouseOver = {this.mouseEnter} onMouseOut = {this.mouseLeave} className={styles.chart_container}>
 				<HighchartsReact
 				    highcharts={Highcharts}
 				    options={this.state.chartOptions}

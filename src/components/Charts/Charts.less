@@ -1,7 +1,12 @@
 //Hiding the bottom rounded corners that highcharts makes when setting borderRadius on column charts
+.chart_container {
+	width: 100%;
+}
 .vbar_container {
+	composes: chart_container;
 	overflow: hidden;
+	transition: translateY(-20)
 }
 .vbar {
-	transform: translateY(20px);
+	transform: translateY(20);
 }

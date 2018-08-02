@@ -6,10 +6,11 @@
 
 .table_container {
 	padding: @base-size;
+	width: 100%;
 }
 
 .table_header_cell {
-	padding: @half-size;
+	padding: @half-size / 2;
 	.regularFont();
 	color: @primary-bright;
 	text-align: left;
@@ -21,7 +22,7 @@
 }
 
 .sorters {
-	margin-left: @half-size;
+	margin-left: @half-size / 2;
 
 }
 
@@ -37,7 +38,7 @@
 }
 
 .table_body_cell {
-	padding: @half-size;
+	padding: @half-size / 2;
 	.lightFont();
 	color: @primary-dark;
 	cursor: auto;
@@ -56,6 +57,7 @@
 }
 
 .table {
+	width: 100%;
 	thead {
 		box-shadow: 0 2px 3px #DFDFDF;
 	}

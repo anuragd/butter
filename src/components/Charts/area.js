@@ -4,8 +4,17 @@ import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
 
 import theme from './theme'
+import styles from './Charts.less'
 
 export default class pie extends Component {
+
+	static propTypes = {
+		mode: PropTypes.oneOf(['NORMAL','MINI'])
+	}
+
+	static defaultProps = {
+		mode: 'MINI'
+	}
 
 	constructor(props) {
 		super(props)
@@ -27,11 +36,16 @@ export default class pie extends Component {
 				},
 				chart: {
 					type: 'areaspline',
+					height: '100%'
+				},
+				xAxis: {
+					visible: props.mode==='NORMAL'?true:false
 				},
 				yAxis: {
 					gridLineColor: '#FFFFFF',
 					gridLineWidth: 1,
-					gridZIndex:4
+					gridZIndex:4,
+					visible: props.mode==='NORMAL'?true:false
 				},
 				plotOptions: {
 					areaspline: {
@@ -55,7 +69,8 @@ export default class pie extends Component {
 							enabled: false
 						}
 					}
-				]
+				],
+				title:''
 			}
 		}
 
@@ -73,7 +88,7 @@ export default class pie extends Component {
 
 	render() {
 		return (
-			<div onMouseOver = {this.mouseEnter} onMouseOut = {this.mouseLeave}>
+			<div onMouseOver = {this.mouseEnter} onMouseOut = {this.mouseLeave} className={styles.chart_container}>
 				<HighchartsReact
 				    highcharts={Highcharts}
 				    options={this.state.chartOptions}

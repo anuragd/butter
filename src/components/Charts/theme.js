@@ -8,6 +8,9 @@ let theme = {
 		borderWidth: 1,
 		shadow: false,
 		
+	},
+	title: {
+		margin:0
 	}
 }
 

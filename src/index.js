@@ -15,6 +15,15 @@ import Table from './components/Table/Table'
 import Tabs from './components/Tabs/Tabs'
 import DCNCharts from './components/Charts/Charts'
 
+import Container from './components/Grid/Container/Container'
+import Header from './components/Grid/Header/Header'
+import Content from './components/Grid/Content/Content'
+
+import Panel from './components/Grid/Panel/Panel'
+import HalfPanel from './components/Grid/HalfPanel/HalfPanel'
+import QuarterPanel from './components/Grid/QuarterPanel/QuarterPanel'
+import ThreeQuarterPanel from './components/Grid/ThreeQuarterPanel/ThreeQuarterPanel'
+
 // let components = {
 // 	Input,
 // 	Button,
@@ -40,5 +49,12 @@ export {
 	Tooltip, 
 	Table, 
 	Tabs,
-	DCNCharts }
+	DCNCharts,
+	Container,
+	Header,
+	Content,
+	HalfPanel,
+	QuarterPanel,
+	Panel,
+	ThreeQuarterPanel }
 

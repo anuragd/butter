@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Radio, Dropdown, Input, Button, TextArea, NoDataPanel, ProgressBar, ProgressBarMini, Toggle, Slider, Checkbox, DatePicker, Tooltip, Table, Tabs, DCNCharts } from 'dcn-ux-resources'
+import { Radio, Dropdown, Input, Button, TextArea, NoDataPanel, ProgressBar, ProgressBarMini, Toggle, Slider, Checkbox, DatePicker, Tooltip, Table, Tabs, DCNCharts, Container, Header, Content, Panel, HalfPanel, QuarterPanel,ThreeQuarterPanel } from 'dcn-ux-resources'
 
 export default class App extends Component {
   constructor(props) {
@@ -15,10 +15,7 @@ export default class App extends Component {
         {id:0,value:"Option 1"},
         {id:1,value:"Option 2", disabled: true},
         {id:2,value:"Option 3"},
-        {id:3,value:"Option 4"},
-        {id:4,value:"Option 5"},
-        {id:5,value:"Option 6"},
-        {id:6,value:"Option 7"},
+        {id:3,value:"Option 4"}
       ],
       tableData: {
         keys: [
@@ -49,7 +46,7 @@ export default class App extends Component {
       activeTab: 'Tab2',
       histoData: (() => {
         let result = []
-        for(var i=0; i<25; i++) {
+        for(var i=0; i<8; i++) {
           result.push(Math.random() * 10)
         }
         return result
@@ -60,66 +57,102 @@ export default class App extends Component {
 
   render () {
     return (
-      <div className="kitchen_sink">
-        <DCNCharts.pie options={{series:[{data:this.state.chartData}]}} />
-        <DCNCharts.hbar options={{series:[{data:this.state.chartData}]}} />
-        <DCNCharts.vbar options={{series:[{data:this.state.histoData}]}} />
-        <DCNCharts.area options={{series:[{data:this.state.histoData}]}} />
-        <Tabs options={['Tab1','Tab2','Tab3','Tab4']} activeTab={this.state.activeTab} changeHandler={(tab) => this.setState({activeTab:tab})}/>
-        <Table data={this.state.tableData}/>
-        <Slider label="Slider" min={0} max={100} value={this.state.sliderValue} changeHandler={(value) => this.setState({sliderValue:value})}/>
-        <Tooltip content="<p>I'm a LEFT_TOP tooltip</p>" mode="LEFT_TOP">
-          <DatePicker 
-            label="Choose date" 
-            value={this.state.datepickerValue} 
-            changeHandler={(val) => this.setState({datepickerValue:val})}
-            min={this.state.minDate}
-            max={this.state.maxDate}/>
-        </Tooltip>
-        <Tooltip content="<p>I'm a LEFT_BOTTOM tooltip</p>" mode="LEFT_BOTTOM">
-          <Toggle value={this.state.toggleState} changeHandler={() => this.setState({toggleState: !this.state.toggleState})} label="Toggle" valueLabels={{on:"yes",off:"no"}}/>
-        </Tooltip>
-        <Tooltip content="<p>I'm a BOTTOM_LEFT tooltip</p>" mode="BOTTOM_LEFT">
-          <Radio 
-            label="Select an option"
-            options={[
-              {id:0,value:"Option 1"},
-              {id:1,value:"Option 2", disabled: true},
-              {id:2,value:"Option 3"},
-              {id:3,value:"Option 4"}]}
-            />
-        </Tooltip>
-        <Tooltip content="<p>I'm a BOTTOM_RIGHT tooltip</p>" mode="BOTTOM_RIGHT">
-          <Checkbox label="Choose an option" options={this.state.checkboxOptions} value={this.state.checkboxValue} changeHandler={(val) => this.setState({checkboxValue:val})}/>
-        </Tooltip>
-        <Tooltip content="<p>I'm a RIGHT_BOTTOM tooltip</p>" mode="RIGHT_BOTTOM">
-          <Dropdown 
-            label="Select" 
-            options={[
-              {id:0,value:"Option 1"},
-              {id:1,value:"Option 2", disabled: true},
-              {id:2,value:"Option 3"},
-              {id:3,value:"Option 4"}]}
-            />
-        </Tooltip>
-        <Tooltip content="<p>I'm a RIGHT_TOP tooltip</p>" mode="RIGHT_TOP">
-          <Input label="Input" changeHandler={(value) => this.setState({inputValue:value})} value={this.state.inputValue}/>
-        </Tooltip>
-        <Tooltip content="<p>I'm a TOP_RIGHT tooltip</p>" mode="TOP_RIGHT">
-          <Button label="Button"/>
-        </Tooltip>
-        <Tooltip content="<p>I'm a TOP_LEFT tooltip</p>" mode="TOP_LEFT">
-          <TextArea label="TextArea" changeHandler={(value) => this.setState({textAreaValue:value})} value={this.state.textAreaValue}/>
-        </Tooltip>
-        
-        
-        
-        
-        
-        
-        <div className=""><NoDataPanel /></div>
-        <ProgressBar progress={this.state.progress} message="Progress bar message"/>
-      </div>
+      <Container>
+        <Header></Header>
+        <Content>
+          <HalfPanel>
+            <Panel>
+              <QuarterPanel><DCNCharts.pie options={{series:[{data:this.state.chartData}]}} /></QuarterPanel>
+              <QuarterPanel><DCNCharts.hbar options={{series:[{data:this.state.chartData}]}} /></QuarterPanel>
+              <QuarterPanel><DCNCharts.vbar options={{series:[{data:this.state.histoData}]}} /></QuarterPanel>
+              <QuarterPanel><DCNCharts.area options={{series:[{data:this.state.histoData}]}} /></QuarterPanel>
+            </Panel>
+            <Panel>
+              <Tabs options={['Tab1','Tab2','Tab3','Tab4']} activeTab={this.state.activeTab} changeHandler={(tab) => this.setState({activeTab:tab})}/>
+            </Panel>
+          </HalfPanel>
+          <HalfPanel>
+            <HalfPanel>
+              <Panel>
+                <Tooltip content="<p>I'm a LEFT_TOP tooltip</p>" mode="LEFT_TOP">
+                  <DatePicker 
+                    label="Choose date" 
+                    value={this.state.datepickerValue} 
+                    changeHandler={(val) => this.setState({datepickerValue:val})}
+                    min={this.state.minDate}
+                    max={this.state.maxDate}/>
+                </Tooltip>
+              </Panel>
+              <Panel>
+                <Tooltip content="<p>I'm a TOP_RIGHT tooltip</p>" mode="TOP_RIGHT">
+                  <Button label="Button"/>
+                </Tooltip>
+              </Panel>
+            </HalfPanel>
+            <HalfPanel>
+              <Tooltip content="<p>I'm a TOP_LEFT tooltip</p>" mode="TOP_LEFT">
+                <TextArea label="TextArea" changeHandler={(value) => this.setState({textAreaValue:value})} value={this.state.textAreaValue}/>
+              </Tooltip>
+            </HalfPanel>
+          </HalfPanel>
+          <Panel>
+            <QuarterPanel>
+              <Slider label="Slider" min={0} max={100} value={this.state.sliderValue} changeHandler={(value) => this.setState({sliderValue:value})}/>
+            </QuarterPanel>
+            <QuarterPanel>
+              <Tooltip content="<p>I'm a LEFT_BOTTOM tooltip</p>" mode="LEFT_BOTTOM">
+                <Toggle value={this.state.toggleState} changeHandler={() => this.setState({toggleState: !this.state.toggleState})} label="Toggle" valueLabels={{on:"yes",off:"no"}}/>
+              </Tooltip>
+              <Tooltip content="<p>I'm a RIGHT_TOP tooltip</p>" mode="RIGHT_TOP">
+                <Input label="Input" changeHandler={(value) => this.setState({inputValue:value})} value={this.state.inputValue}/>
+              </Tooltip>
+            </QuarterPanel>
+            <QuarterPanel>
+              <Tooltip content="<p>I'm a BOTTOM_RIGHT tooltip</p>" mode="BOTTOM_RIGHT">
+                <Checkbox label="Choose an option" options={this.state.checkboxOptions} value={this.state.checkboxValue} changeHandler={(val) => this.setState({checkboxValue:val})}/>
+              </Tooltip>
+            </QuarterPanel>
+            <QuarterPanel>
+              <Tooltip content="<p>I'm a BOTTOM_LEFT tooltip</p>" mode="BOTTOM_LEFT">
+                <Radio 
+                  label="Select an option"
+                  options={[
+                    {id:0,value:"Option 1"},
+                    {id:1,value:"Option 2", disabled: true},
+                    {id:2,value:"Option 3"},
+                    {id:3,value:"Option 4"}]}
+                  />
+              </Tooltip>
+            </QuarterPanel>
+          </Panel>
+          <ThreeQuarterPanel>
+            <Table data={this.state.tableData}/>
+          </ThreeQuarterPanel>
+          <QuarterPanel>
+            <Panel>
+              <Tooltip content="<p>I'm a RIGHT_BOTTOM tooltip</p>" mode="RIGHT_BOTTOM">
+                <Dropdown 
+                  label="Select" 
+                  options={[
+                    {id:0,value:"Option 1"},
+                    {id:1,value:"Option 2", disabled: true},
+                    {id:2,value:"Option 3"},
+                    {id:3,value:"Option 4"}]}
+                  />
+              </Tooltip>
+            </Panel>
+            <Panel>
+              <div className=""><NoDataPanel /></div>
+            </Panel>
+          </QuarterPanel>
+          <Panel>
+            <ProgressBar progress={this.state.progress} message="Progress bar message"/>
+          </Panel>
+          <HalfPanel>
+            <ProgressBarMini progress={this.state.progress} message="Progress bar message"/>
+          </HalfPanel>
+        </Content>
+      </Container>
     )
   }
 }

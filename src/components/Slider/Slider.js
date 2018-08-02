@@ -106,22 +106,23 @@ export default class Slider extends Component {
 
   keyUpHandler(e) {
     // Left Arrow
-    if(e.keyCode === 37) { 
+    if(e.keyCode === 37 || e.keyCode === 40) { 
+      e.preventDefault()
+      e.stopPropagation()
       let newValue = parseInt(this.state.valueX / this.state.xFactor) - ((this.props.max - this.props.min) / 10)
       if(newValue < this.props.min) newValue = 0
       this.props.changeHandler(newValue)
-      e.stopPropagation()
-      e.preventDefault();
     }
 
     // Right arrow
-    else if(e.keyCode === 39) {
+    else if(e.keyCode === 39 || e.keyCode === 38) {
+      e.preventDefault()
+      e.stopPropagation()
       let newValue = parseInt(this.state.valueX / this.state.xFactor) + ((this.props.max - this.props.min) / 10)
       if(newValue > this.props.max) newValue = 0
       this.props.changeHandler(newValue)
-      e.stopPropagation()
-      e.preventDefault();
     }
+    return false
   }
 
   startDrag(e) { 

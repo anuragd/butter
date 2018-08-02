@@ -4,6 +4,7 @@ import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
 
 import theme from './theme'
+import styles from './Charts.less'
 
 export default class pie extends Component {
 
@@ -20,15 +21,27 @@ export default class pie extends Component {
 				...props.options,
 				...theme,
 				chart: {
-					type: 'pie'
+					type: 'pie',
+					height: '100%',
+					margin: [0, 0, 0, 0],
+			        spacingTop: 0,
+			        spacingBottom: 0,
+			        spacingLeft: 0,
+			        spacingRight: 0
 				},
 				credits: {
 					enabled: false
 				},
+				plotOptions: {
+					pie: {
+						size: '100%',
+						minSize: 60
+					}
+				},
 				series: [
 					{
 						...props.options.series[0],
-						innerSize: '80%',
+						innerSize: '70%',
 						borderWidth: 12,
 						borderColor: '#FFFFFF',
 						dataLabels: {
@@ -36,7 +49,8 @@ export default class pie extends Component {
 							softConnector:0,
 						}
 					}
-				]
+				],
+				title:''
 			}
 		}
 
@@ -76,7 +90,7 @@ export default class pie extends Component {
 
 	render() {
 		return (
-			<div onMouseOver = {this.mouseEnter} onMouseOut = {this.mouseLeave}>
+			<div onMouseOver = {this.mouseEnter} onMouseOut = {this.mouseLeave} className={styles.chart_container}>
 				<HighchartsReact
 				    highcharts={Highcharts}
 				    options={this.state.chartOptions}
