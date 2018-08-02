@@ -11,15 +11,19 @@ export default class vbar extends Component {
 		super(props)
 		//Throw error if data has more or less than one specified series
 		if(!props.options || !props.options.series || !props.options.series instanceof Array || !(props.options.series.length === 1)) {
-			console.error('DCNCharts.pie can only run for a single series of data')
+			console.error('DCNCharts.hbar can only run for a single series of data')
 			return
 		}
 
 		this.state = {
 			chartOptions: {
 				...props.options,
+				...theme,
 				chart: {
 					type: 'column'
+				},
+				credits: {
+					enabled: false
 				},
 				plotOptions: {
 					column: {

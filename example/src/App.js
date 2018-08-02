@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Radio, Dropdown, Input, Button, TextArea, NoDataPanel, ProgressBar, ProgressBarMini, Toggle, Slider, Checkbox, DatePicker, Tooltip, Table, Tabs } from 'dcn-ux-resources'
+import { Radio, Dropdown, Input, Button, TextArea, NoDataPanel, ProgressBar, ProgressBarMini, Toggle, Slider, Checkbox, DatePicker, Tooltip, Table, Tabs, DCNCharts } from 'dcn-ux-resources'
 
 export default class App extends Component {
   constructor(props) {
@@ -40,19 +40,31 @@ export default class App extends Component {
           {id:7,switch:'spine2',ipAddress:'24.0.80.209',serial:'SAL18422FXL',managed:'true',snmp:'Unreachable',lastUpdated:'2018-07-30 17:11:00'},
           {id:8,switch:'ste-n9k-18-deep',ipAddress:'24.0.80.311',serial:'SAL18432P11',managed:'true',snmp:'ok',lastUpdated:'2018-07-30 17:11:00'},
           {id:9,switch:'ste-n9k-bg1',ipAddress:'24.0.80.303',serial:'FDO21061Q4W',managed:'true',snmp:'Unreachable',lastUpdated:'2018-07-30 17:11:00'}
-        ]
+        ],
       },
       checkboxValue:{id:4,value:"Option 5"},
       datepickerValue: new Date(),
       minDate: new Date(2017,6,1),
       maxDate: new Date(2020,6,1),
-      activeTab: 'Tab2'
+      activeTab: 'Tab2',
+      histoData: (() => {
+        let result = []
+        for(var i=0; i<25; i++) {
+          result.push(Math.random() * 10)
+        }
+        return result
+      })(),
+      chartData: [ 20, 30, 40, 10]
     }
   }
 
   render () {
     return (
       <div className="kitchen_sink">
+        <DCNCharts.pie options={{series:[{data:this.state.chartData}]}} />
+        <DCNCharts.hbar options={{series:[{data:this.state.chartData}]}} />
+        <DCNCharts.vbar options={{series:[{data:this.state.histoData}]}} />
+        <DCNCharts.area options={{series:[{data:this.state.histoData}]}} />
         <Tabs options={['Tab1','Tab2','Tab3','Tab4']} activeTab={this.state.activeTab} changeHandler={(tab) => this.setState({activeTab:tab})}/>
         <Table data={this.state.tableData}/>
         <Slider label="Slider" min={0} max={100} value={this.state.sliderValue} changeHandler={(value) => this.setState({sliderValue:value})}/>

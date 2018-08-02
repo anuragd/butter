@@ -22,6 +22,9 @@ export default class pie extends Component {
 				chart: {
 					type: 'pie'
 				},
+				credits: {
+					enabled: false
+				},
 				series: [
 					{
 						...props.options.series[0],
