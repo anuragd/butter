@@ -65,23 +65,26 @@ export default class Slider extends Component {
     this.manualEntry = this.manualEntry.bind(this)
     this.onChange = this.onChange.bind(this)
     this.keypressHandler = this.keypressHandler.bind(this)
+    this.keyUpHandler = this.keyUpHandler.bind(this)
   }
 
   componentDidMount() {
-    let thumbWidth = this.thumb.current.getBoundingClientRect().width
-    let trackBounds = this.track.current.getBoundingClientRect()
-    let maxX = trackBounds.width - (thumbWidth / 2)       // Get maximum possible x coordinate within the component boundaries and adjust for thumb width
-    let xFactor = maxX / ( this.props.max - this.props.min ) // Total available horizontal distance divided my provided range
-    let xPosition = this.props.value * xFactor
-    if(xPosition > maxX) xPosition = maxX       // If calculated position exceeds component bounds set to maximum or minimum
-    if(xPosition < 0) xPosition = 0             // If calculated position exceeds component bounds set to maximum or minimum
-    this.setState({
-      valueX: xPosition,
-      xFactor: xFactor,
-      offsetX: trackBounds.left,
-      maxX: maxX,
-      thumbOffset: thumbWidth / 2
-    })
+    setTimeout(() => {
+      let thumbWidth = this.thumb.current.getBoundingClientRect().width
+      let trackBounds = this.track.current.getBoundingClientRect()
+      let maxX = trackBounds.width - (thumbWidth / 2)       // Get maximum possible x coordinate within the component boundaries and adjust for thumb width
+      let xFactor = maxX / ( this.props.max - this.props.min ) // Total available horizontal distance divided my provided range
+      let xPosition = this.props.value * xFactor
+      if(xPosition > maxX) xPosition = maxX       // If calculated position exceeds component bounds set to maximum or minimum
+      if(xPosition < 0) xPosition = 0             // If calculated position exceeds component bounds set to maximum or minimum
+      this.setState({
+        valueX: xPosition,
+        xFactor: xFactor,
+        offsetX: trackBounds.left,
+        maxX: maxX,
+        thumbOffset: thumbWidth / 2
+      })
+    },0)
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -98,6 +101,26 @@ export default class Slider extends Component {
     if(prevProps.value !== this.props.value) {
       let xPosition = this.props.value * this.state.xFactor
       this.setState({manualValue:this.props.value, valueX: xPosition})
+    }
+  }
+
+  keyUpHandler(e) {
+    // Left Arrow
+    if(e.keyCode === 37) { 
+      let newValue = parseInt(this.state.valueX / this.state.xFactor) - ((this.props.max - this.props.min) / 10)
+      if(newValue < this.props.min) newValue = 0
+      this.props.changeHandler(newValue)
+      e.stopPropagation()
+      e.preventDefault();
+    }
+
+    // Right arrow
+    else if(e.keyCode === 39) {
+      let newValue = parseInt(this.state.valueX / this.state.xFactor) + ((this.props.max - this.props.min) / 10)
+      if(newValue > this.props.max) newValue = 0
+      this.props.changeHandler(newValue)
+      e.stopPropagation()
+      e.preventDefault();
     }
   }
 
@@ -161,7 +184,7 @@ export default class Slider extends Component {
     } = this.props
 
     return (
-      <div className={styles.slider_container}>
+      <div className={styles.slider_container} tabIndex="1" onKeyUp={this.keyUpHandler}>
         <div className={styles.label}>{label}</div>
         <div className={styles.slider}>
           <div className={styles.track} ref={this.track}></div>
@@ -172,7 +195,8 @@ export default class Slider extends Component {
                 className={disabled?styles.thumb_disabled:styles.thumb} 
                 style={{left: this.state.valueX+'px'}} 
                 onMouseDown={this.startDrag} 
-                onMouseUp={this.endDrag}>
+                onMouseUp={this.endDrag}
+                tabIndex="2">
           </div>
         </div>
         <input 

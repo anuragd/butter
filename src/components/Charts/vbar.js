@@ -4,6 +4,7 @@ import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
 
 import theme from './theme'
+import styles from './Charts.less'
 
 export default class vbar extends Component {
 
@@ -74,11 +75,13 @@ export default class vbar extends Component {
 
 	render() {
 		return (
-			<div onMouseOver = {this.mouseEnter} onMouseOut = {this.mouseLeave}>
-				<HighchartsReact
-				    highcharts={Highcharts}
-				    options={this.state.chartOptions}
-				  />
+			<div onMouseOver = {this.mouseEnter} onMouseOut = {this.mouseLeave} className={styles.vbar_container}>
+				<div className={styles.vbar}>
+					<HighchartsReact
+					    highcharts={Highcharts}
+					    options={this.state.chartOptions}
+					  />
+				 </div>
 			</div>
 		)
 	}
