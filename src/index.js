@@ -20,7 +20,6 @@ import Header from './components/Grid/Header/Header'
 import Content from './components/Grid/Content/Content'
 
 import Panel from './components/Grid/Panel/Panel'
-import Surface from './components/Grid/Surface/Surface'
 
 // let components = {
 // 	Input,
@@ -51,6 +50,5 @@ export {
 	Container,
 	Header,
 	Content,
-	Panel,
-	Surface }
+	Panel }
 

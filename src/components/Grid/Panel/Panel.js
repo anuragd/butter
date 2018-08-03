@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import filter from 'lodash/filter'
 
 import styles from './Panel.less'
 
@@ -12,6 +13,7 @@ export default class Panel extends React.Component {
 			bottom: PropTypes.bool,
 			left: PropTypes.bool
 		}),
+		hasSurface: PropTypes.bool,
 		size: PropTypes.oneOf(['full', 'half', 'quarter', 'threequarter'])
 	}
 
@@ -22,6 +24,7 @@ export default class Panel extends React.Component {
 			right: null,
 			left: null
 		},
+		hasSurface: false,
 		size: 'full'
 	}
 
@@ -47,13 +50,19 @@ export default class Panel extends React.Component {
 				style.width = '25%'
 				break
 		}
+		let children = this.props.children
+		if(this.props.hasSurface) children = <div className={styles.DCNSurface}>{this.props.children}</div>
 
+		//Remove non HTML props from props object
+		let props = filter(props,(prop, key) => {
+			return (key!=='collapse' && key !== 'hasSurface' && key !== 'size')
+		})
 		return(
 			<div 
 				style={style}
 				className={styles.DCNPanel} 
-				{...this.props}>
-				{this.props.children}
+				{...props}>
+				{children}
 			</div>
 		)
 	}

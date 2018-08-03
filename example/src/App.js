@@ -82,76 +82,80 @@ export default class App extends Component {
           <Panel size="full">
             <Panel size="half" collapse={{top:true,right:true,bottom:true,left:true}}>
               <Panel size="full" collapse={{top:true,right:true,bottom:true,left:true}}>
-                <Panel size="quarter" collapse={{top:true,left:true}}><Surface><DCNCharts.pie options={{series:[{data:this.state.chartData}]}} /></Surface></Panel>
-                <Panel  collapse={{top:true,left:true}} size="quarter"><DCNCharts.hbar options={{series:[{data:this.state.chartData}]}} /></Panel>
-                <Panel  collapse={{top:true,left:true}} size="quarter"><DCNCharts.vbar options={{series:[{data:this.state.histoData}]}} /></Panel>
-                <Panel  collapse={{top:true,left:true}}size="quarter"><DCNCharts.area options={{series:[{data:this.state.histoData}]}} /></Panel>
+                <Panel size="quarter" collapse={{top:true,left:true}} hasSurface><DCNCharts.pie options={{series:[{data:this.state.chartData}]}} /></Panel>
+                <Panel  collapse={{top:true,left:true}} size="quarter" hasSurface><DCNCharts.hbar options={{series:[{data:this.state.chartData}]}} /></Panel>
+                <Panel  collapse={{top:true,left:true}} size="quarter" hasSurface><DCNCharts.vbar options={{series:[{data:this.state.histoData}]}} /></Panel>
+                <Panel  collapse={{top:true,left:true}}size="quarter" hasSurface><DCNCharts.area options={{series:[{data:this.state.histoData}]}} /></Panel>
               </Panel>
-              <Panel collapse={{top:true,left:true, bottom: true, left: true}} size="full">
-                <Surface>
-                  <Tabs options={['Tab1','Tab2','Tab3','Tab4']} activeTab={this.state.activeTab} changeHandler={(tab) => this.setState({activeTab:tab})}/>
-                </Surface>
+              <Panel collapse={{top:true,left:true, bottom: true, left: true}} size="full" hasSurface>
+                <Tabs options={['Tab1','Tab2','Tab3','Tab4']} activeTab={this.state.activeTab} changeHandler={(tab) => this.setState({activeTab:tab})}/>
               </Panel>
             </Panel>
             <Panel size="half" collapse={{top:true,right:true,bottom:true,left:true}}>
               <Panel size="half" collapse={{left:true,right:true,bottom:true,top:true}}>
-                <Panel size="full" collapse={{left:true,right:true,bottom:true,top:true}}>
-                  <Surface>
-                    <Tooltip content="<p>I'm a LEFT_TOP tooltip</p>" mode="LEFT_TOP">
-                      <DatePicker 
-                        label="Choose date" 
-                        value={this.state.datepickerValue} 
-                        changeHandler={(val) => this.setState({datepickerValue:val})}
-                        min={this.state.minDate}
-                        max={this.state.maxDate}/>
-                    </Tooltip>
-                  </Surface>
+                <Panel size="full" collapse={{left:true,right:true,bottom:true,top:true}} hasSurface>
+                  <Tooltip content="<p>I'm a LEFT_TOP tooltip</p>" mode="LEFT_TOP">
+                    <DatePicker 
+                      label="Choose date" 
+                      value={this.state.datepickerValue} 
+                      changeHandler={(val) => this.setState({datepickerValue:val})}
+                      min={this.state.minDate}
+                      max={this.state.maxDate}/>
+                  </Tooltip>
                 </Panel>
-                <Panel  size="full" collapse={{left:true,right:true,bottom:true,top:true}}>
-                  <Surface>
-                    <Tooltip content="<p>I'm a TOP_RIGHT tooltip</p>" mode="TOP_RIGHT">
-                      <Button label="Button"/>
-                    </Tooltip>
-                  </Surface>
+                <Panel  size="full" collapse={{left:true,right:true,bottom:true,top:true}} hasSurface>
+                  <Tooltip content="<p>I'm a TOP_RIGHT tooltip</p>" mode="TOP_RIGHT">
+                    <Button label="Button"/>
+                  </Tooltip>
                 </Panel>
               </Panel>
-              <Panel  size="half" collapse={{left:true,right:true,bottom:true,top:true}}>
-                <Surface>
-                  <Tooltip content="<p>I'm a TOP_LEFT tooltip</p>" mode="TOP_LEFT">
+              <Panel  size="half" collapse={{left:true,right:true,bottom:true,top:true}} hasSurface>
+                <Tooltip content="<p>I'm a TOP_LEFT tooltip</p>" mode="TOP_LEFT">
                     <TextArea label="TextArea" changeHandler={(value) => this.setState({textAreaValue:value})} value={this.state.textAreaValue}/>
                   </Tooltip>
-                </Surface>
               </Panel>
             </Panel>
           </Panel>
           <Panel  size="full" collapse={{top:true, bottom:true}}>
-            <Panel  size="quarter" collapse={{left:true, top:true}}>
-              <Surface>
-                <Slider label="Slider" min={0} max={100} value={this.state.sliderValue} changeHandler={(value) => this.setState({sliderValue:value})}/>
-              </Surface>
+            <Panel  size="quarter" collapse={{left:true, top:true}} hasSurface>
+              <Slider label="Slider" min={0} max={100} value={this.state.sliderValue} changeHandler={(value) => this.setState({sliderValue:value})}/>
             </Panel>
             <Panel  size="quarter" collapse={{left:true, top:true}}>
-              <Surface>
+              <Panel size="full" collapse={{left:true,top:true,right:true,bottom:true}} hasSurface>
                 <Tooltip content="<p>I'm a LEFT_BOTTOM tooltip</p>" mode="LEFT_BOTTOM">
                   <Toggle value={this.state.toggleState} changeHandler={() => this.setState({toggleState: !this.state.toggleState})} label="Toggle" valueLabels={{on:"yes",off:"no"}}/>
                 </Tooltip>
+              </Panel>
+              <Panel size="full" collapse={{left:true,top:true,right:true,bottom:true}} hasSurface>
                 <Tooltip content="<p>I'm a RIGHT_TOP tooltip</p>" mode="RIGHT_TOP">
                   <Input label="Input" changeHandler={(value) => this.setState({inputValue:value})} value={this.state.inputValue}/>
                 </Tooltip>
-              </Surface>
+              </Panel>
             </Panel>
-            <Panel  size="quarter" collapse={{left:true, top:true}}>
-              <Surface>
-                <Tooltip content="<p>I'm a BOTTOM_RIGHT tooltip</p>" mode="BOTTOM_RIGHT">
-                  <Checkbox label="Choose an option" options={this.state.checkboxOptions} value={this.state.checkboxValue} changeHandler={(val) => this.setState({checkboxValue:val})}/>
-                </Tooltip>
-              </Surface>
+            <Panel  size="quarter" collapse={{left:true, top:true}} hasSurface>
+              <Tooltip content="<p>I'm a BOTTOM_LEFT tooltip</p>" mode="BOTTOM_LEFT">
+                <Radio 
+                  label="Select an option"
+                  options={[
+                    {id:0,value:"Option 1"},
+                    {id:1,value:"Option 2", disabled: true},
+                    {id:2,value:"Option 3"},
+                    {id:3,value:"Option 4"}]}
+                  />
+              </Tooltip>
             </Panel>
-            <Panel  size="quarter" collapse={{left:true, top:true, right:true}}>
-              <Surface>
-                <Tooltip content="<p>I'm a BOTTOM_LEFT tooltip</p>" mode="BOTTOM_LEFT">
-                  <Radio 
-                    label="Select an option"
+            <Panel size="quarter" collapse={{left:true, top:true, right:true}} hasSurface>
+              <Tooltip content="<p>I'm a BOTTOM_RIGHT tooltip</p>" mode="BOTTOM_RIGHT">
+                <Checkbox label="Choose an option" options={this.state.checkboxOptions} value={this.state.checkboxValue} changeHandler={(val) => this.setState({checkboxValue:val})}/>
+              </Tooltip>
+            </Panel>
+          </Panel>
+          <Panel size="full" collapse={{top:true}}>
+            <Panel  size="quarter" collapse={{top:true, left:true, bottom:true}}>
+              <Panel  size="full" collapse={{top:true, left:true, bottom:true, right:true}} hasSurface>
+                <Tooltip content="<p>I'm a RIGHT_BOTTOM tooltip</p>" mode="RIGHT_BOTTOM">
+                  <Dropdown 
+                    label="Select" 
                     options={[
                       {id:0,value:"Option 1"},
                       {id:1,value:"Option 2", disabled: true},
@@ -159,48 +163,21 @@ export default class App extends Component {
                       {id:3,value:"Option 4"}]}
                     />
                 </Tooltip>
-              </Surface>
-            </Panel>
-          </Panel>
-          <Panel size="full" collapse={{top:true}}>
-            <Panel  size="threequarter" collapse={{top:true, left:true, bottom: true}}>
-              <Surface>
-                <Table data={this.state.tableData}/>
-              </Surface>
-              <div style={{width: '12px'}}></div>
-            </Panel>
-            <Panel  size="quarter" collapse={{top:true, left:true, right:true, bottom:true}}>
-              <Panel  size="full" collapse={{top:true, left:true, bottom:true, right:true}}>
-                <Surface>
-                  <Tooltip content="<p>I'm a RIGHT_BOTTOM tooltip</p>" mode="RIGHT_BOTTOM">
-                    <Dropdown 
-                      label="Select" 
-                      options={[
-                        {id:0,value:"Option 1"},
-                        {id:1,value:"Option 2", disabled: true},
-                        {id:2,value:"Option 3"},
-                        {id:3,value:"Option 4"}]}
-                      />
-                  </Tooltip>
-                </Surface>
               </Panel> 
-              <Panel  size="full" collapse={{top:true, left:true, bottom:true, right: true}}>
-                <Surface>
-                  <div className=""><NoDataPanel /></div>
-                </Surface>
+              <Panel  size="full" collapse={{top:true, left:true, bottom:true, right: true}} hasSurface>
+                <div className=""><NoDataPanel /></div>
               </Panel>        
+            </Panel>
+            <Panel  size="threequarter" collapse={{top:true, left:true, bottom: true, right: true}} hasSurface>
+              <Table data={this.state.tableData}/>
             </Panel>
           </Panel>
           <Panel  size="full" collapse={{top:true}}>
-            <Panel  size="quarter" collapse={{top:true, left:true, bottom:true}}>
-              <Surface>
-                <ProgressBarMini progress={this.state.progress} message="Progress bar message"/>
-              </Surface>
+            <Panel  size="quarter" collapse={{top:true, left:true, bottom:true}} hasSurface>
+              <ProgressBarMini progress={this.state.progress} message="Progress bar message"/>
             </Panel>
-            <Panel  size="threequarter" collapse={{top:true, right:true, bottom:true, left:true}}>
-              <Surface>
-                <ProgressBar progress={this.state.progress} message="Progress bar message"/>
-              </Surface>
+            <Panel  size="threequarter" collapse={{top:true, right:true, bottom:true, left:true}} hasSurface>
+              <ProgressBar progress={this.state.progress} message="Progress bar message"/>
             </Panel>
           </Panel>
         </Content>
