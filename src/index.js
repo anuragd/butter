@@ -1,34 +1,40 @@
-import Input from './components/Input/Input'
-import Button from './components/Button/Button'
-import TextArea from './components/TextArea/TextArea'
-import Dropdown from './components/Dropdown/Dropdown'
-import Radio from './components/Radio/Radio'
-import ProgressBar from './components/ProgressBar/ProgressBar'
-import ProgressBarMini from './components/ProgressBarMini/ProgressBarMini'
-import NoDataPanel from './components/NoDataPanel/NoDataPanel'
-import Toggle from './components/Toggle/Toggle'
-import Slider from './components/Slider/Slider'
-import Checkbox from './components/Checkbox/Checkbox'
-import DatePicker from './components/DatePicker/DatePicker'
-import Tooltip from './components/Tooltip/Tooltip'
-import Table from './components/Table/Table'
-import Tabs from './components/Tabs/Tabs'
-import DCNCharts from './components/Charts/Charts'
+import Input from './components/Form/Input/Input'
+import TextArea from './components/Form/TextArea/TextArea'
+import Dropdown from './components/Form/Dropdown/Dropdown'
+import Radio from './components/Form/Radio/Radio'
+import Toggle from './components/Form/Toggle/Toggle'
+import Slider from './components/Form/Slider/Slider'
+import Checkbox from './components/Form/Checkbox/Checkbox'
+import DatePicker from './components/Form/DatePicker/DatePicker'
+
+import Button from './components/Basics/Button/Button'
+import ProgressBar from './components/Basics/ProgressBar/ProgressBar'
+import ProgressBarMini from './components/Basics/ProgressBarMini/ProgressBarMini'
+import NoDataPanel from './components/Basics/NoDataPanel/NoDataPanel'
+import Tooltip from './components/Basics/Tooltip/Tooltip'
+import Table from './components/Basics/Table/Table'
+import Tabs from './components/Basics/Tabs/Tabs'
+
+import Charts from './components/Charts/Charts'
 
 import Container from './components/Grid/Container/Container'
 import Header from './components/Grid/Header/Header'
 import Content from './components/Grid/Content/Content'
-
 import Panel from './components/Grid/Panel/Panel'
 
-// let components = {
-// 	Input,
-// 	Button,
-// 	TextArea,
-// 	Dropdown,
-// 	Radio,
-// 	ProgressBar
-// }
+const Basics = {
+	Button, ProgressBar, ProgressBarMini, NoDataPanel, Tooltip, Table, Tabs
+}
+
+const Form = {
+	Input, TextArea, Dropdown, Radio, Toggle, Slider, Checkbox, DatePicker
+}
+
+const Grid = {
+	Container, Header, Content, Panel
+}
+
+const DCNUXResources = { Basics, Form, Grid, Charts }
 
 export { 
 	Input, 
@@ -50,5 +56,10 @@ export {
 	Container,
 	Header,
 	Content,
-	Panel }
+	Panel,
+
+	Basics,
+	Grid,
+	Form,
+	Charts }
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Radio, Dropdown, Input, Button, TextArea, NoDataPanel, ProgressBar, ProgressBarMini, Toggle, Slider, Checkbox, DatePicker, Tooltip, Table, Tabs, DCNCharts, Container, Header, Content, Panel, Surface } from 'dcn-ux-resources'
+import { Radio, Dropdown, Input, Button, TextArea, NoDataPanel, ProgressBar, ProgressBarMini, Toggle, Slider, Checkbox, DatePicker, Tooltip, Table, Tabs, Charts, Container, Header, Content, Panel, Surface } from 'dcn-ux-resources'
 
 export default class App extends Component {
   constructor(props) {
@@ -82,17 +82,17 @@ export default class App extends Component {
           <Panel size="full">
             <Panel size="half" collapse={{top:true,right:true,bottom:true,left:true}}>
               <Panel size="full" collapse={{top:true,right:true,bottom:true,left:true}}>
-                <Panel size="quarter" collapse={{top:true,left:true}} hasSurface><DCNCharts.pie options={{series:[{data:this.state.chartData}]}} /></Panel>
-                <Panel  collapse={{top:true,left:true}} size="quarter" hasSurface><DCNCharts.hbar options={{series:[{data:this.state.chartData}]}} /></Panel>
-                <Panel  collapse={{top:true,left:true}} size="quarter" hasSurface><DCNCharts.vbar options={{series:[{data:this.state.histoData}]}} /></Panel>
-                <Panel  collapse={{top:true,left:true}}size="quarter" hasSurface><DCNCharts.area options={{series:[{data:this.state.histoData}]}} /></Panel>
+                <Panel size="quarter" collapse={{top:true,left:true}} hasSurface><Charts.Pie options={{series:[{data:this.state.chartData}]}} /></Panel>
+                <Panel  collapse={{top:true,left:true}} size="quarter" hasSurface><Charts.Hbar options={{series:[{data:this.state.chartData}]}} /></Panel>
+                <Panel  collapse={{top:true,left:true}} size="quarter" hasSurface><Charts.Vbar options={{series:[{data:this.state.histoData}]}} /></Panel>
+                <Panel  collapse={{top:true,left:true}}size="quarter" hasSurface><Charts.Area options={{series:[{data:this.state.histoData}]}} /></Panel>
               </Panel>
               <Panel collapse={{top:true,left:true, bottom: true, left: true}} size="full" hasSurface>
                 <Tabs options={['Tab1','Tab2','Tab3','Tab4']} activeTab={this.state.activeTab} changeHandler={(tab) => this.setState({activeTab:tab})}/>
               </Panel>
             </Panel>
             <Panel size="half" collapse={{top:true,right:true,bottom:true,left:true}}>
-              <Panel size="half" collapse={{left:true,right:true,bottom:true,top:true}}>
+              <Panel size="half" collapse={{left:true,bottom:true,top:true}}>
                 <Panel size="full" collapse={{left:true,right:true,bottom:true,top:true}} hasSurface>
                   <Tooltip content="<p>I'm a LEFT_TOP tooltip</p>" mode="LEFT_TOP">
                     <DatePicker 
@@ -109,7 +109,7 @@ export default class App extends Component {
                   </Tooltip>
                 </Panel>
               </Panel>
-              <Panel  size="half" collapse={{left:true,right:true,bottom:true,top:true}} hasSurface>
+              <Panel  size="half" collapse={{right:true,left: true,bottom:true,top:true}} hasSurface>
                 <Tooltip content="<p>I'm a TOP_LEFT tooltip</p>" mode="TOP_LEFT">
                     <TextArea label="TextArea" changeHandler={(value) => this.setState({textAreaValue:value})} value={this.state.textAreaValue}/>
                   </Tooltip>

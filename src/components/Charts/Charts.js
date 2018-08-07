@@ -1,13 +1,13 @@
-import pie from './pie'
-import hbar from './hbar'
-import vbar from './vbar'
-import area from './area'
+import Pie from './Pie'
+import Hbar from './Hbar'
+import Vbar from './Vbar'
+import Area from './Area'
 
-let DCNCharts = {
-	pie,
-	hbar,
-	vbar,
-	area
+let Charts = {
+	Pie,
+	Hbar,
+	Vbar,
+	Area
 }
 
-export default DCNCharts
+export default Charts

@@ -1,0 +1,106 @@
+@import "../../../styles/grid.less";
+@import '../../../styles/color.less';
+@import "../../../styles/mixins.less";
+@import "../../../styles/animations.less";
+@import "../../../styles/type.less";
+
+.radio_container {
+	padding: @quarter-size;
+
+}
+
+.label {
+	.regularFontSmall();
+}
+
+.disabled_label {
+	.regularFontSmall();
+	color: @disable-text;
+}
+
+.radio_option {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin: @half-size 0;
+	cursor: pointer;
+	&:hover {
+		.radio_holder {
+			border-color: @primary-bright;
+		}
+		.radio_value {
+			color: @primary-bright;
+		}
+	}
+	.radio_holder {
+		width: @radio-size;
+		height: @radio-size;
+		border-radius: 100%;
+		border: 1px solid @primary-dark;
+		margin-right: @half-size;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		overflow: hidden;
+		.radio_blob_up {
+			width: @blob-size;
+			height: @blob-size;
+			background: @primary;
+			border-radius: 100%;
+			transform: translateY(-1 * @radio-size);
+			transition: @standard-transition;
+		}
+		.radio_blob_down {
+			width: @blob-size;
+			height: @blob-size;
+			background: @primary;
+			border-radius: 100%;
+			transform: translateY(@radio-size);
+			transition: @standard-transition;
+		}
+	}
+	.active_holder {
+		width: @radio-size;
+		height: @radio-size;
+		border-radius: 100%;
+		border: 1px solid @primary;
+		margin-right: @half-size;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		overflow: hidden;
+		.radio_blob_up, .radio_blob_down {
+			width: @blob-size;
+			height: @blob-size;
+			background: @primary;
+			border-radius: 100%;
+			transform: translateY(0);
+			transition: @standard-transition;
+		}
+	}
+	.radio_value {
+		.regularFont();
+		color: @primary-dark;
+		transition: @standard-transition;
+	}
+	.selected_radio_value {
+		.regularFont();
+		color: @primary-bright;
+		transition: @standard-transition;
+	}
+}
+.disabled_option {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin: @half-size 0;
+	cursor: pointer;
+	pointer-events: none;
+	.radio_holder {
+		background: @disable-bg;
+		border: none;
+	}
+	.radio_value {
+		color: @disable-text;
+	}
+}

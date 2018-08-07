@@ -6,7 +6,7 @@ import HighchartsReact from 'highcharts-react-official'
 import theme from './theme'
 import styles from './Charts.less'
 
-export default class hbar extends Component {
+export default class Hbar extends Component {
 
 	constructor(props) {
 		super(props)

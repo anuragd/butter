@@ -1,10 +1,32 @@
 module.exports = {
-  title: 'DCN UX Component Documentation',
-  ignore: ['**/**/**/ProgressGraphics.js'],
+  title: 'DCN UX Resources Documentation',
+  ignore: [
+    '**/**/**/ProgressGraphics.js',
+    '**/**/**/calendarData.js',
+    '**/**/**/Charts.js',
+    '**/**/**/Grid/Grid.js',
+    '**/**/**/theme.js'
+  ],
   sections: [
     {
-      name: 'Components',
-      components:'src/components/*/*.js',
+      name: 'Basics',
+      content: 'src/components/Basics/Basics.md',
+      components:'src/components/Basics/*/*.js'
+    },
+    {
+      name: 'Form',
+      content: 'src/components/Form/Form.md',
+      components:'src/components/Form/*/*.js',
+    },
+    {
+      name: 'Charts',
+      content: 'src/components/Charts/Charts.md',
+      components:'src/components/Charts/*.js',
+    },
+    {
+      name: 'Grid',
+      content: 'src/components/Grid/Grid.md',
+      components:'src/components/Grid/*/*.js',
     }
   ],
   webpackConfig: {

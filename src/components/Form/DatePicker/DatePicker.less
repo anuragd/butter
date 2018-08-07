@@ -1,0 +1,360 @@
+@import "../../../styles/grid.less";
+@import '../../../styles/color.less';
+@import "../../../styles/mixins.less";
+@import "../../../styles/animations.less";
+@import "../../../styles/type.less";
+
+.datepicker_container {
+	padding: @quarter-size;
+	position: relative;
+	width: @min-calendar-width;
+	height: @button-height;
+	&:focus {
+		.focusBox();
+	}
+}
+
+.datepicker {
+	position: absolute;
+	top: @quarter-size;
+	left: @quarter-size;
+	width: @min-calendar-width;
+	background: @input-bg;
+	border-radius: @button-height;
+	transition: @standard-transition;
+	z-index: 100;
+	overflow-x: hidden;
+	&:hover {
+		background: @white;
+		.highlightBorder();
+	}
+}
+
+.open_datepicker {
+	composes: datepicker;
+	.subtleShadow();
+	background: @white;
+	border-radius: @base-size;
+	&:hover {
+		.subtleShadow();
+	}
+}
+
+.header {
+	height: @button-height;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 @base-size;
+	position: relative;
+	cursor: pointer;
+	.label {
+		.lightFont();
+		color: @primary-dark;
+		position: absolute;
+		top: (@button-height / 2) - (@regular-text / 2);
+		line-height: @regular-text;
+		left: @base-size;
+		transition: @standard-transition;
+
+	}
+	.icon {
+		position: relative;
+		height: @button-height / 2;
+		width: @button-height / 2;
+		img {
+			height: @button-height / 2;
+			width: auto;
+			position: absolute;
+			top: 0;
+			left: 0;
+			transition: @standard-transition;
+			&.show_icon {
+				transform: scale(1);
+				transition-delay: 200ms;
+			}
+			&.hide_icon {
+				transform: scale(0);
+			}
+		}
+	}
+
+	.manual_entry {
+		.noOutlines();
+		background: transparent;
+		.lightFont();
+		height: @base-size * 1.5;
+		border-radius: (@base-size * 1.5) / 2;
+		width: 80%;
+		padding: 0;
+		transition: @standard-transition;
+		pointer-events: none;
+		&:focus {
+			.noOutlines();
+		}
+		&::placeholder {
+			opacity: 0;
+			.lightFontSmall();
+		}
+	}
+}
+
+.open_header {
+	composes: header;
+	padding: 0 @half-size;
+	.label {
+		.regularFontSmall();
+		top: -1 * (@small-text + (@half-size / 2));
+	}
+	.manual_entry {
+		pointer-events: auto;
+		background: @input-bg;
+		padding: 0 @half-size;
+		&::placeholder {
+			opacity: 1;
+		}
+	}
+}
+
+.small_label {
+	.regularFontSmall();
+	color: @primary-dark;
+	position: absolute;
+	top: -1 * (@small-text + (@half-size / 2));
+	line-height: @regular-text;
+	left: @base-size;
+	transition: @standard-transition;
+}
+
+.control_bar {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 @half-size;
+}
+
+.month_year_select {
+	align-self: center;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.month_control {
+	width: @button-height / 2;
+	height: @button-height / 2;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 100%;
+	background: @input-bg;
+	color: @primary-bright;
+	cursor: pointer;
+	img {
+		width: 10px;
+		height: auto;
+	}
+	&:hover {
+		background: @primary-bright;
+		color: @white;
+		img {
+			filter: brightness(300) grayscale(100%) contrast(300);
+		}
+	}
+}
+
+.last_month_control {
+	composes: month_control;
+	img {
+		transform: rotate(90deg);
+	}
+}
+
+.next_month_control {
+	composes: month_control;
+	img {
+		transform: rotate(-90deg);
+	}
+}
+
+.month_control_disabled {
+	composes: month_control;
+	opacity: 0;
+	pointer-events: none;
+}
+
+.month_select {
+	margin-right: 0;
+}
+
+
+/** Calendar body styling **/
+@month-size: (@min-input-width - ( @half-size * 2 ));
+@cell-size: @month-size / 7;
+
+.calendar_body {
+	padding: 0 @half-size (@half-size / 2) @half-size;
+	position: relative;
+}
+
+.selection_bubble {
+	position: absolute;
+	width: @cell-size - 2;
+	height: @cell-size - 2;
+	border-radius: 100%;
+	background: @primary-bright;
+	z-index: 1;
+	margin-left: 1px;
+	margin-top: 1px;
+	transition: @standard-transition;
+	cursor: pointer;
+}
+
+.day_names {
+	display: flex;
+}
+
+.day_cells {
+	transition: @standard-transition;
+	height: @cell-size * 5;
+	position: relative;
+	z-index: 3;
+}
+
+.changing_body {
+	composes: day_cells;
+	transform: translateX(@month-size);
+	opacity: 0;
+}
+
+.month_body {
+	display: flex;
+	flex-wrap: wrap;
+	transition: @standard-transition;
+	position: relative;
+	z-index: 2;
+}
+
+.active_month {
+	composes: month_body;
+	z-index: 2;
+	transform: translateX(0);
+	opacity: 1;
+}
+
+.active_month_changing_left {
+	composes:active_month;
+	.slideOutRight();
+}
+.active_month_changing_right {
+	composes:active_month;
+	.slideOutLeft();
+}
+
+.change_month {
+	composes: month_body;
+	z-index: 1;
+	opacity: 0;
+}
+
+.change_month_changing_left {
+	composes: change_month;
+	z-index: 3;
+	opacity: 1;
+}
+
+.change_month_changing_right {
+	composes: change_month;
+	z-index: 3;
+	opacity: 1;
+}
+
+.calendar_cell {
+	.regularFontSmall();
+	text-align: center;
+	line-height: @cell-size;
+	width: @cell-size;
+	height: @cell-size;
+	position: relative;
+	z-index: 2;
+}
+
+.day_name {
+	composes: calendar_cell;
+	.heavyFontSmall();
+	color: @primary-dark;
+}
+
+.day_cell {
+	composes: calendar_cell;
+	cursor: pointer;
+	color: @primary-dark;
+	transition: @standard-transition;
+	&:hover {
+		color: @white;
+	}
+}
+
+.active_cell {
+	composes: day_cell;
+	color: @white;
+	background: @primary-bright;
+	border-radius: 100%;
+}
+
+.diff_day_cell {
+	composes: day_cell;
+	color: @disable-text;
+}
+
+.slideOutRight() {
+	animation-name: slideOutRight;
+	animation-duration: 200ms;
+	animation-fill-mode: forwards;
+	animation-timing-function: cubic-bezier(0.280, 0.840, 0.420, 1);
+}
+
+@keyframes slideOutRight {
+	0% {
+		transform: translateX(0);
+		opacity: 1;
+	}
+	45% {
+		transform: translateX(unit(@month-size,px));
+		opacity: 0;
+	}
+	50% {
+		transform: translateX(unit(-1 * @month-size,px));
+		opacity: 0;
+	}
+	100% {
+		transform: translateX(0);
+		opacity: 1;
+	}
+}
+
+.slideOutLeft() {
+	animation-name: slideOutLeft;
+	animation-duration: 200ms;
+	animation-fill-mode: forwards;
+	animation-timing-function: cubic-bezier(0.280, 0.840, 0.420, 1);
+}
+
+@keyframes slideOutLeft {
+	0% {
+		transform: translateX(0);
+		opacity: 1;
+	}
+	45% {
+		transform: translateX(unit(-1 * @month-size,px));
+		opacity: 0;
+	}
+	50% {
+		transform: translateX(unit(@month-size,px));
+		opacity: 0;
+	}
+	100% {
+		transform: translateX(0);
+		opacity: 1;
+	}
+}

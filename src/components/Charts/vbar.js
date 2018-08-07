@@ -6,7 +6,7 @@ import HighchartsReact from 'highcharts-react-official'
 import theme from './theme'
 import styles from './Charts.less'
 
-export default class vbar extends Component {
+export default class Vbar extends Component {
 
 	constructor(props) {
 		super(props)

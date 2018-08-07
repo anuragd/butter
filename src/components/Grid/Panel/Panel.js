@@ -56,6 +56,7 @@ export default class Panel extends React.Component {
 		//Remove non HTML props from props object
 		let props = filter(props,(prop, key) => {
 			return (key!=='collapse' && key !== 'hasSurface' && key !== 'size')
+			// return (key!=='collapse' && key !== 'hasSurface')
 		})
 		return(
 			<div 
