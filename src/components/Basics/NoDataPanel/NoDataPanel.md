@@ -1,8 +1,8 @@
 NoDataPanel example:
-```js
+```jsx
 <NoDataPanel />
 ```
-```bash
+```jsx static
 import React, { Component } from 'react';
 import { NoDataPanel } from 'dcn-ux-resources';
 

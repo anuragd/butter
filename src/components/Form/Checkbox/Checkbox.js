@@ -6,7 +6,7 @@ import CheckSVG from './CheckSVG'
 
 
 /**
- * Toggles are to be used where a value can have two possible values that are opposites of each other(eg: on, off). You can pass a mode prop to this component(one of 'NORMAL','GOOD','BAD') if you want to indicate that a certain setting is 'good' or 'bad'. You can also supply labels for the on and off states via valueLabels. Try and ensure that the Label + valueLabel makes intuitive sense eg(Label: Data collection, valueLabel: off yields Data Collection off)
+ * Checkbox
  *
  * @version 0.0.1
  */
@@ -20,14 +20,14 @@ export default class Checkbox extends Component {
      * Value of the control. This can be either true or false. Value must be set exclusively by the parent container, and updated by listening for changes via the changeHandler function. This must be explicitly defined as value={true} or value={false}
      */
     value: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      value: PropTypes.string.isRequired
-    }),
+      id: PropTypes.number,
+      value: PropTypes.string
+    }).isRequired,
     /**
      * List of options as an array of objects, each containing id, value keys and optionally a disabled key
      */
     options: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.number.isRequired,
+      id: PropTypes.number,
       value: PropTypes.string.isRequired,
       disabled: PropTypes.bool
     })).isRequired,
@@ -59,8 +59,8 @@ export default class Checkbox extends Component {
       options,
       disabled
     } = this.props
-    const optionsList = options.map((option) =>
-      <div key={option.id} className={option.disabled?styles.disabled_container:styles.option_container} onClick={ () => this.clickHandler(option) }>
+    const optionsList = options.map((option,key) =>
+      <div key={option.id?option.id:key} className={option.disabled?styles.disabled_container:styles.option_container} onClick={ () => this.clickHandler(option) }>
         <div className={value && (value.id === option.id)? styles.box_active :styles.box}>
           <CheckSVG width="16px" height="12px" className={value && (value.id === option.id)? styles.check_active : styles.check}/>
         </div>

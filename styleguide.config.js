@@ -1,33 +1,40 @@
 module.exports = {
   title: 'DCN UX Resources Documentation',
+  pagePerSection: true,
+  sections: [
+    {
+      name: 'Documentation',
+      content: 'src/documentation.md',
+      sections: [
+        {
+          name: 'Basics',
+          content: 'src/components/Basics/Basics.md',
+          components: () => ['src/components/Basics/*/*.js']
+        },
+        {
+          name: 'Form',
+          content: 'src/components/Form/Form.md',
+          components: () => ['src/components/Form/*/*.js'],
+        },
+        // {
+        //   name: 'Charts',
+        //   content: 'src/components/Charts/Charts.md',
+        //   components: () => ['src/components/Charts/*.js'],
+        // },
+        // {
+        //   name: 'Grid',
+        //   content: 'src/components/Grid/Grid.md',
+        //   components: () => ['src/components/Grid/*/*.js'],
+        // }
+      ]
+    }
+  ],
   ignore: [
     '**/**/**/ProgressGraphics.js',
     '**/**/**/calendarData.js',
     '**/**/**/Charts.js',
     '**/**/**/Grid/Grid.js',
     '**/**/**/theme.js'
-  ],
-  sections: [
-    {
-      name: 'Basics',
-      content: 'src/components/Basics/Basics.md',
-      components:'src/components/Basics/*/*.js'
-    },
-    {
-      name: 'Form',
-      content: 'src/components/Form/Form.md',
-      components:'src/components/Form/*/*.js',
-    },
-    {
-      name: 'Charts',
-      content: 'src/components/Charts/Charts.md',
-      components:'src/components/Charts/*.js',
-    },
-    {
-      name: 'Grid',
-      content: 'src/components/Grid/Grid.md',
-      components:'src/components/Grid/*/*.js',
-    }
   ],
   webpackConfig: {
     output: {

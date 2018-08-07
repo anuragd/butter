@@ -18,12 +18,14 @@ export default {
     {
       file: pkg.main,
       format: 'cjs',
-      sourcemap:true
+      sourcemap:true,
+      exports: 'named'
     },
     {
       file: pkg.module,
       format: 'es',
-      sourcemap:true
+      sourcemap:true,
+      exports: 'named'
     }
   ],
   watch: {
@@ -39,6 +41,7 @@ export default {
     }),
     url(),
     babel({
+      plugins: ['external-helpers'],
       exclude: 'node_modules/**'
     }),
     resolve(),

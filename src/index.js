@@ -63,3 +63,5 @@ export {
 	Form,
 	Charts }
 
+export default DCNUXResources
+
