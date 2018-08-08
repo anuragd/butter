@@ -1,9 +1,5 @@
 # dcn-ux-resources
 
-> 
-
-[![NPM](https://img.shields.io/npm/v/dcn-ux-resources.svg)](https://www.npmjs.com/package/dcn-ux-resources) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
-
 Library containing React components and LESS mixins based on the following Style Guide: https://xd.adobe.com/view/0b45c23e-341f-471f-6e07-a666f064272d-7d74/
 
 ## Install

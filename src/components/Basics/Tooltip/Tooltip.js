@@ -10,7 +10,7 @@ import { InfoSVG } from '../../../utilities/Icons/Icons'
  * Requires a minimum width of 280px
  * @version 0.0.1
  */
-export default class Tooptip extends Component {
+export default class Tooltip extends Component {
   
   static propTypes = {
     content: PropTypes.string,

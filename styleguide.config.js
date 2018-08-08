@@ -1,32 +1,31 @@
+const path = require('path')
 module.exports = {
   title: 'DCN UX Resources Documentation',
   pagePerSection: true,
   sections: [
     {
-      name: 'Documentation',
-      content: 'src/documentation.md',
-      sections: [
-        {
-          name: 'Basics',
-          content: 'src/components/Basics/Basics.md',
-          components: () => ['src/components/Basics/*/*.js']
-        },
-        {
-          name: 'Form',
-          content: 'src/components/Form/Form.md',
-          components: () => ['src/components/Form/*/*.js'],
-        },
-        // {
-        //   name: 'Charts',
-        //   content: 'src/components/Charts/Charts.md',
-        //   components: () => ['src/components/Charts/*.js'],
-        // },
-        // {
-        //   name: 'Grid',
-        //   content: 'src/components/Grid/Grid.md',
-        //   components: () => ['src/components/Grid/*/*.js'],
-        // }
-      ]
+      name: 'Usage and Installation',
+      content: 'README.md'
+    },
+    {
+      name: 'Basics',
+      content: 'src/components/Basics/Basics.md',
+      components: 'src/components/Basics/*/*.js'
+    },
+    {
+      name: 'Form',
+      content: 'src/components/Form/Form.md',
+      components: 'src/components/Form/*/*.js'
+    },
+    {
+      name: 'Grid',
+      content: 'src/components/Grid/Grid.md',
+      components: 'src/components/Grid/*/*.js'
+    },
+    {
+      name: 'Charts',
+      content: 'src/components/Charts/Charts.md',
+      components: 'src/components/Charts/*.js'
     }
   ],
   ignore: [
@@ -36,6 +35,7 @@ module.exports = {
     '**/**/**/Grid/Grid.js',
     '**/**/**/theme.js'
   ],
+  styleguideDir: 'documentation',
   webpackConfig: {
     output: {
       publicPath: '../'
