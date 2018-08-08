@@ -6,20 +6,40 @@ import map from 'lodash/map'
 import styles from './Table.less'
 
 /**
- * Panel for displaying a note to users that a component has no data to display. It is important that this component is placed inside a container with a definite max-height set, or it will take all of the screen space vertically.
+ * The table component will consume a data object to output  a sortable table. Current version only allows for sorting functionality. Future versions will also include the following functionality:
+ * * Editing
+ * * Pagination
+ * * Mobile responsive column control
  *
- * Requires a minimum width of 280px
  * @version 0.0.1
  */
 export default class Table extends Component {
 
   static propTypes = {
+    /**
+     * The data object that will be rendered. This is expected to be an object with two keys:
+     *
+     * * __keys__ :An array of keys including metadata and options to control respective table columns. See below for details.
+     * * __data__ :An array of data objects
+     */
     data: PropTypes.shape({
+      /**
+       * The `keys` property on the data object is expected to be an array of objects, each with the following shape
+       *
+       * * __key__ :Key name to be used to access the data provided, 
+       * * __label__ :Display label for the corresponding column
+       * * __type__ :The type of column(one of `number`, `text` or `date`)
+       * * __sortable__ :An optional boolean key to denote whether or not the column is to be sortable
+       */
       keys: PropTypes.arrayOf(PropTypes.shape({
         key: PropTypes.string,
         label: PropTypes.string,
         type: PropTypes.oneOf(['text','number','date'])
       })),
+      /**
+       * An array of data objects, the keys of which are the same string as listed in the `key` property of the keys array.
+       * Additionally, attaching a boolean property called `attention` and setting it to true on a data object inside the array will cause the corresponding row __to be highlighted red__. Use this feature to draw the user attention to a specific row.
+       */
       data: PropTypes.array
     })
   }
@@ -56,26 +76,10 @@ export default class Table extends Component {
 
   sortDesc(data,key) {
     return orderBy(data,[key.key],['desc'])
-    // switch(type) {
-    //   case 'number':
-    //     return orderBy(data,[key.key],['desc'])
-    //     break
-    //   case 'text':
-    //     return sortBy(data, (row) => )
-    //     break
-    // }
   }
 
   sortAsc(data,key) {
     return orderBy(data,[key.key],['asc'])
-    // switch(type) {
-    //   case 'number':
-    //     return sortBy(data, (row) => (0 - row[key.key]))
-    //     break
-    //   case 'text':
-
-    //     break
-    // }
   }
 
   //End Sorting function

@@ -23,20 +23,18 @@ export default class App extends Component {
           {key:'ipAddress',label:'IP Address',type:'text',sortable:true},
           {key:'serial',label:'Serial No',type:'text',sortable:true},
           {key:'managed',label:'Managed',type:'text'},
-          {key:'snmp',label:'SNMP Status',type:'text',sortable:true},
-          {key:'lastUpdated',label:'Last updated at',type:'date',sortable:true}
         ],
         data: [
-          {id:0,switch:'leaf1',ipAddress:'24.0.80.200',serial:'SAL18432P5Q ',managed:'true',snmp:'Unreachable',lastUpdated:'2018-07-30 17:11:00',attention:true},
-          {id:1,switch:'leaf1',ipAddress:'24.0.80.202',serial:'SAL18432P4S',managed:'true',snmp:'ok',lastUpdated:'2018-07-30 17:11:00'},
-          {id:2,switch:'leaf2',ipAddress:'24.0.80.201',serial:'SAL18432P4X',managed:'true',snmp:'Unreachable',lastUpdated:'2018-07-30 17:11:00'},
-          {id:3,switch:'leaf3',ipAddress:'24.0.80.208',serial:'FDO210721L3',managed:'true',snmp:'ok',lastUpdated:'2018-07-30 17:11:00'},
-          {id:4,switch:'n9k-bg1',ipAddress:'24.0.80.212',serial:'FDO210705NY',managed:'true',snmp:'Unreachable',lastUpdated:'2018-07-30 17:11:00'},
-          {id:5,switch:'n9k-bg2',ipAddress:'24.0.80.209',serial:'SAL1833YM11',managed:'true',snmp:'ok',lastUpdated:'2018-07-30 17:11:00'},
-          {id:6,switch:'spine1',ipAddress:'24.0.80.217',serial:'SAL18422FUR',managed:'true',snmp:'Unreachable',lastUpdated:'2018-07-30 17:11:00'},
-          {id:7,switch:'spine2',ipAddress:'24.0.80.209',serial:'SAL18422FXL',managed:'true',snmp:'Unreachable',lastUpdated:'2018-07-30 17:11:00'},
-          {id:8,switch:'ste-n9k-18-deep',ipAddress:'24.0.80.311',serial:'SAL18432P11',managed:'true',snmp:'ok',lastUpdated:'2018-07-30 17:11:00'},
-          {id:9,switch:'ste-n9k-bg1',ipAddress:'24.0.80.303',serial:'FDO21061Q4W',managed:'true',snmp:'Unreachable',lastUpdated:'2018-07-30 17:11:00'}
+          {id:0,switch:'leaf1',ipAddress:'24.0.80.200',serial:'SAL18432P5Q ',managed:'true'},
+          {id:1,switch:'leaf1',ipAddress:'24.0.80.202',serial:'SAL18432P4S',managed:'true'},
+          {id:2,switch:'leaf2',ipAddress:'24.0.80.201',serial:'SAL18432P4X',managed:'true'},
+          {id:3,switch:'leaf3',ipAddress:'24.0.80.208',serial:'FDO210721L3',managed:'true'},
+          {id:4,switch:'n9k-bg1',ipAddress:'24.0.80.212',serial:'FDO210705NY',managed:'true'},
+          {id:5,switch:'n9k-bg2',ipAddress:'24.0.80.209',serial:'SAL1833YM11',managed:'true'},
+          {id:6,switch:'spine1',ipAddress:'24.0.80.217',serial:'SAL18422FUR',managed:'true'},
+          {id:7,switch:'spine2',ipAddress:'24.0.80.209',serial:'SAL18422FXL',managed:'true'},
+          {id:8,switch:'ste-n9k-18-deep',ipAddress:'24.0.80.311',serial:'SAL18432P11',managed:'true'},
+          {id:9,switch:'ste-n9k-bg1',ipAddress:'24.0.80.303',serial:'FDO21061Q4W',managed:'true'}
         ],
       },
       checkboxValue:{id:4,value:"Option 5"},
@@ -88,7 +86,7 @@ export default class App extends Component {
                 <Panel  collapse={{top:true,left:true}}size="quarter" hasSurface><Charts.Area options={{series:[{data:this.state.histoData}]}} /></Panel>
               </Panel>
               <Panel collapse={{top:true,left:true, bottom: true, left: true}} size="full" hasSurface>
-                <Tabs options={['Tab1','Tab2','Tab3','Tab4']} activeTab={this.state.activeTab} changeHandler={(tab) => this.setState({activeTab:tab})}/>
+                <Tabs options={['Tab1','Tab2','Tab3','Tab4']} activeTab={this.state.activeTab} onChange={(tab,key) => this.setState({activeTab:tab})}/>
               </Panel>
             </Panel>
             <Panel size="half" collapse={{top:true,right:true,bottom:true,left:true}}>

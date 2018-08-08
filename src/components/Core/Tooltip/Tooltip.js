@@ -5,15 +5,25 @@ import styles from './Tooltip.less'
 import { InfoSVG } from '../../../utilities/Icons/Icons'
 
 /**
- * Panel for displaying a note to users that a component has no data to display. It is important that this component is placed inside a container with a definite max-height set, or it will take all of the screen space vertically.
- *
- * Requires a minimum width of 280px
+ * Tooltip wrapper component. You can use this wrapper component to add a tooltip to any markup you have inside your react components. Comes with 8 positioning modes to give you control on where the tooltip will appear relative to the markup it wraps around. Use this feature to ensure that the tooltip appears in an area of the screen that is fully visible. The tooltip has a slightly translucent white background on Chrome and Firefox, but a background blurred background on Edge and Safari, Both behaviours will merge to the same blurred background version when Chrome and Firefox provide support for the `backdrop-filter` css property
  * @version 0.0.1
  */
 export default class Tooltip extends Component {
   
   static propTypes = {
+    /**
+     * HTML markup for the tooltip's content
+     */
     content: PropTypes.string,
+    /**
+     * Position modes are named using the following semantics:
+     * 
+     * * Each position name consists to two parts separated by an underscore eg: TOP_RIGHT
+     * * The first part denotes the position of the tooltip's arrow  with respect to the `i` icon that appears to the right of your wrapped content
+     * * The second part denotes the position of the tooltip's content with respect to the arrow position
+     * 
+     * Refer to the examples for more clarity
+     */
     mode: PropTypes.oneOf(['TOP_RIGHT','TOP_LEFT','RIGHT_BOTTOM', 'RIGHT_TOP','BOTTOM_RIGHT', 'BOTTOM_LEFT','LEFT_BOTTOM', 'LEFT_TOP'])
   }
 
