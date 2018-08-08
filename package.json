@@ -1,12 +1,12 @@
 {
-  "name": "dcn-ux-resources",
+  "name": "dcn-network-insights-ux",
   "version": "0.0.2",
   "description": "",
   "author": "",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://bitbucket-eng-sjc1.cisco.com/bitbucket/scm/dca/dcn-network-insights-resources.git"
+    "url": "https://bitbucket-eng-sjc1.cisco.com/bitbucket/scm/dca/dcn-network-insights-ux.git"
   },
   "main": "dist/index.js",
   "module": "dist/index.es.js",
