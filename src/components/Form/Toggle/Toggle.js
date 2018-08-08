@@ -5,7 +5,7 @@ import styles from './Toggle.less'
 
 
 /**
- * Toggles are to be used where a value can have two possible values that are opposites of each other(eg: on, off). You can pass a mode prop to this component(one of 'NORMAL','GOOD','BAD') if you want to indicate that a certain setting is 'good' or 'bad'. You can also supply labels for the on and off states via valueLabels. Try and ensure that the Label + valueLabel makes intuitive sense eg(Label: Data collection, valueLabel: off yields Data Collection off)
+ * Toggles are to be used where a value can have two possible values that are opposites of each other(eg: on, off). You can pass a mode prop to this component(one of '__NORMAL__', '__GOOD__', '__BAD__') if you want to indicate that a certain setting is 'good' or 'bad'. You can also supply labels for the on and off states via valueLabels. Try and ensure that the Label + valueLabel makes intuitive sense eg(Label: Data collection, valueLabel: off yields Data Collection off)
  *
  * @version 0.0.1
  */
@@ -16,7 +16,7 @@ export default class Toggle extends Component {
      */
     label: PropTypes.string.isRequired,
     /**
-     * Value of the control. This can be either true or false. Value must be set exclusively by the parent container, and updated by listening for changes via the changeHandler function. This must be explicitly defined as value={true} or value={false}
+     * Value of the control. This can be either true or false. Value must be set exclusively by the parent container, and updated by listening for changes via the onChange function. This must be explicitly defined as value={true} or value={false}
      */
     value: PropTypes.oneOf([false,true]).isRequired,
     /**
@@ -27,9 +27,9 @@ export default class Toggle extends Component {
       off: PropTypes.string
     }),
     /**
-     * Function fired whenever user clicks on the toggle. Must be used to pass the modified value back to the component
+     * Function fired whenever user clicks on the toggle. Must be used to pass the modified value back to the component. Parameter passed is the current value
      */
-    changeHandler: PropTypes.func.isRequired,
+    onChange: PropTypes.func.isRequired,
     /**
      * Boolean for disabling the control.
      */
@@ -51,7 +51,7 @@ export default class Toggle extends Component {
   }
 
   clickHandler(e) {
-    if(this.props.changeHandler instanceof Function && !this.props.disabled) this.props.changeHandler()
+    if(this.props.onChange instanceof Function && !this.props.disabled) this.props.onChange(!this.props.value)
   }
 
 

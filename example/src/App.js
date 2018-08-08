@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Radio, Dropdown, Input, Button, TextArea, NoDataPanel, ProgressBar, ProgressBarMini, Toggle, Slider, Checkbox, DatePicker, Tooltip, Table, Tabs, Charts, Container, Header, Content, Panel, Surface } from 'dcn-ux-resources'
+import { Radio, Dropdown, Input, Button, TextArea, NoDataPanel, ProgressBar, ProgressBarMini, Toggle, Slider, Checkbox, Datepicker, Tooltip, Table, Tabs, Charts, Container, Header, Content, Panel, Surface } from 'dcn-ux-resources'
 
 export default class App extends Component {
   constructor(props) {
@@ -93,7 +93,7 @@ export default class App extends Component {
               <Panel size="half" collapse={{left:true,bottom:true,top:true}}>
                 <Panel size="full" collapse={{left:true,right:true,bottom:true,top:true}} hasSurface>
                   <Tooltip content="<p>I'm a LEFT_TOP tooltip</p>" mode="LEFT_TOP">
-                    <DatePicker 
+                    <Datepicker 
                       label="Choose date" 
                       value={this.state.datepickerValue} 
                       changeHandler={(val) => this.setState({datepickerValue:val})}

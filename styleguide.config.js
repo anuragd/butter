@@ -33,10 +33,11 @@ module.exports = {
     '**/**/**/calendarData.js',
     '**/**/**/Charts.js',
     '**/**/**/Grid/Grid.js',
-    '**/**/**/theme.js'
+    '**/**/**/theme.js',
   ],
   styleguideDir: 'documentation',
   usageMode: 'expand',
+  skipComponentsWithoutExample: true,
   webpackConfig: {
     output: {
       publicPath: '../'
