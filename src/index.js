@@ -7,13 +7,13 @@ import Slider from './components/Form/Slider/Slider'
 import Checkbox from './components/Form/Checkbox/Checkbox'
 import DatePicker from './components/Form/DatePicker/DatePicker'
 
-import Button from './components/Basics/Button/Button'
-import ProgressBar from './components/Basics/ProgressBar/ProgressBar'
-import ProgressBarMini from './components/Basics/ProgressBarMini/ProgressBarMini'
-import NoDataPanel from './components/Basics/NoDataPanel/NoDataPanel'
-import Tooltip from './components/Basics/Tooltip/Tooltip'
-import Table from './components/Basics/Table/Table'
-import Tabs from './components/Basics/Tabs/Tabs'
+import Button from './components/Core/Button/Button'
+import ProgressBar from './components/Core/ProgressBar/ProgressBar'
+import ProgressBarMini from './components/Core/ProgressBarMini/ProgressBarMini'
+import NoDataPanel from './components/Core/NoDataPanel/NoDataPanel'
+import Tooltip from './components/Core/Tooltip/Tooltip'
+import Table from './components/Core/Table/Table'
+import Tabs from './components/Core/Tabs/Tabs'
 
 import Charts from './components/Charts/Charts'
 
@@ -22,7 +22,7 @@ import Header from './components/Grid/Header/Header'
 import Content from './components/Grid/Content/Content'
 import Panel from './components/Grid/Panel/Panel'
 
-const Basics = {
+const Core = {
 	Button, ProgressBar, ProgressBarMini, NoDataPanel, Tooltip, Table, Tabs
 }
 
@@ -34,7 +34,7 @@ const Grid = {
 	Container, Header, Content, Panel
 }
 
-const DCNUXResources = { Basics, Form, Grid, Charts }
+const DCNUXResources = { Core, Form, Grid, Charts }
 
 export { 
 	Input, 
@@ -58,7 +58,7 @@ export {
 	Content,
 	Panel,
 
-	Basics,
+	Core,
 	Grid,
 	Form,
 	Charts }

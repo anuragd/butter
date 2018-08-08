@@ -1,6 +1,6 @@
 const path = require('path')
 module.exports = {
-  title: 'DCN UX Resources Documentation',
+  title: 'DCN Network Insights UX',
   pagePerSection: true,
   sections: [
     {
@@ -8,9 +8,9 @@ module.exports = {
       content: 'README.md'
     },
     {
-      name: 'Basics',
-      content: 'src/components/Basics/Basics.md',
-      components: 'src/components/Basics/*/*.js'
+      name: 'Core',
+      content: 'src/components/Core/Core.md',
+      components: 'src/components/Core/*/*.js'
     },
     {
       name: 'Form',
@@ -36,6 +36,7 @@ module.exports = {
     '**/**/**/theme.js'
   ],
   styleguideDir: 'documentation',
+  usageMode: 'expand',
   webpackConfig: {
     output: {
       publicPath: '../'
