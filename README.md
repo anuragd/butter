@@ -1,4 +1,4 @@
-# dcn-ux-resources
+# dcn-network-insights-ux
 
 > 
 
