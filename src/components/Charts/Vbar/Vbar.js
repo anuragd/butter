@@ -3,9 +3,14 @@ import PropTypes from 'prop-types'
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
 
-import theme from './theme'
-import styles from './Charts.less'
+import theme from '../theme'
+import styles from '../Charts.less'
 
+/**
+ * Wrapper around HighCharts Column graph.
+ *
+ * @version 0.0.1
+ */
 export default class Vbar extends Component {
 
 	constructor(props) {

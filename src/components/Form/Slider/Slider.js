@@ -16,7 +16,7 @@ export default class Slider extends Component {
      */
     label: PropTypes.string.isRequired,
     /**
-     * Value of the control. This has to be a number within the range provided via min-max. Value must be set exclusively by the parent container, and updated by listening for changes via the changeHandler function.
+     * Value of the control. This has to be a number within the range provided via min-max. Value must be set exclusively by the parent container, and updated by listening for changes via the onChange function. Must not be null. Set to minimum value to reset component
      */
     value: PropTypes.number.isRequired,
     /**
@@ -30,7 +30,7 @@ export default class Slider extends Component {
     /**
      * Function fired whenever user moves slider or manually enters a value in the input. Must be used to pass the modified value back to the component
      */
-    changeHandler: PropTypes.func.isRequired,
+    onChange: PropTypes.func.isRequired,
     /**
      * Boolean for disabling the control.
      */
@@ -61,6 +61,7 @@ export default class Slider extends Component {
     this.thumb = React.createRef()      //Reference to the thumb
     this.startDrag = this.startDrag.bind(this)
     this.updateDrag = this.updateDrag.bind(this)
+    this.updatePosition = this.updatePosition.bind(this)
     this.endDrag = this.endDrag.bind(this)
     this.manualEntry = this.manualEntry.bind(this)
     this.onChange = this.onChange.bind(this)
@@ -111,7 +112,7 @@ export default class Slider extends Component {
       e.stopPropagation()
       let newValue = parseInt(this.state.valueX / this.state.xFactor) - ((this.props.max - this.props.min) / 10)
       if(newValue < this.props.min) newValue = 0
-      this.props.changeHandler(newValue)
+      this.props.onChange(newValue)
     }
 
     // Right arrow
@@ -120,7 +121,7 @@ export default class Slider extends Component {
       e.stopPropagation()
       let newValue = parseInt(this.state.valueX / this.state.xFactor) + ((this.props.max - this.props.min) / 10)
       if(newValue > this.props.max) newValue = 0
-      this.props.changeHandler(newValue)
+      this.props.onChange(newValue)
     }
     return false
   }
@@ -136,6 +137,10 @@ export default class Slider extends Component {
 
   updateDrag(e) {
     if (!this.state.dragging) return
+    updatePosition(e)
+  }
+
+  updatePosition(e) {
     let newPosition = e.pageX - this.state.offsetX
     // If calculated position exceeds component bounds set to maximum or minimum
     if (e.pageX - this.state.offsetX > this.state.maxX) 
@@ -143,11 +148,10 @@ export default class Slider extends Component {
     // If calculated position exceeds component bounds set to maximum or minimum
     else if (e.pageX - this.state.offsetX < 0)
       newPosition = 0
-    this.setState({
-      valueX: newPosition,
-
-    })
-    if(this.props.changeHandler instanceof Function) this.props.changeHandler(parseInt(this.state.valueX / this.state.xFactor))
+    // this.setState({
+    //   valueX: newPosition,
+    // })
+    if(this.props.onChange instanceof Function) this.props.onChange(parseInt(newPosition / this.state.xFactor))
     e.stopPropagation()
     e.preventDefault()
   }
@@ -156,14 +160,14 @@ export default class Slider extends Component {
     this.setState({
       dragging: false
     })
-    if(this.props.changeHandler instanceof Function) this.props.changeHandler(parseInt(this.state.valueX / this.state.xFactor))
+    if(this.props.onChange instanceof Function) this.props.onChange(parseInt(this.state.valueX / this.state.xFactor))
     e.stopPropagation()
     e.preventDefault()
   }
 
-  // On blur from input field, call parent changeHandler with new value
+  // On blur from input field, call parent onChange with new value
   manualEntry(e) {
-    if(this.props.changeHandler instanceof Function) this.props.changeHandler(parseInt(e.target.value))
+    if(this.props.onChange instanceof Function) this.props.onChange(parseInt(e.target.value))
   }
 
   // On change in the input field, update display text inside field, but not on the slider. That is called on blur or on pressing enter
@@ -174,7 +178,7 @@ export default class Slider extends Component {
   // Call parent change handler if ENTER is pressed in the input field
   keypressHandler(e) {
     if(e.keyCode === 13)
-      if(this.props.changeHandler instanceof Function) this.props.changeHandler(parseInt(e.target.value))
+      if(this.props.onChange instanceof Function) this.props.onChange(parseInt(e.target.value))
   }
 
   render() {
@@ -188,7 +192,7 @@ export default class Slider extends Component {
       <div className={styles.slider_container} tabIndex="1" onKeyUp={this.keyUpHandler}>
         <div className={styles.label}>{label}</div>
         <div className={styles.slider}>
-          <div className={styles.track} ref={this.track}></div>
+          <div className={styles.track} ref={this.track} onClick={this.updatePosition}></div>
           <div  className={disabled?styles.active_range_disabled:styles.active_range}
                 style={{width:(this.state.valueX + this.state.thumbOffset)+'px'}}>
           </div>

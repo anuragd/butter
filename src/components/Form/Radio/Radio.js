@@ -4,8 +4,9 @@ import PropTypes from 'prop-types'
 import styles from './Radio.less'
 
 /**
- * Description of Dropdown
- *
+ * Replacement for default HTML Radio buttons. Use this when presenting the user with the option of selcting one of 2-5 options. For cases with more options, use a dropdown instead.
+ * 
+ * This is a [controlled react input](/#/Form).
  * @version 0.0.1
  */
 export default class Radio extends Component {
@@ -17,13 +18,22 @@ export default class Radio extends Component {
     /**
      * Callback fired when user makes a new selection. Callback will receive the selected option (eg: {id:0, value: "Option 1"} as an argument)
      */
-    changeHandler: PropTypes.func,
+    onChange: PropTypes.func.isRequired,
     /**
      * List of options as an array of objects, each containing id, value keys and optionally a disabled key.
      */
     options: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.number.isRequired,
+      /**
+       *  An unique number representing the option. This can be omitted if you want the component to use it's own internal ids instead
+       */
+      id: PropTypes.number,
+      /**
+       * The string label for the option
+       */
       value: PropTypes.string.isRequired,
+      /**
+       * Set `disabled` to `true` to disable selection of this option
+       */
       disabled: PropTypes.bool
     })).isRequired,
     /**
@@ -43,7 +53,7 @@ export default class Radio extends Component {
 
   clickHandler(option) {
     this.setState({selected:option.id})
-    if(this.props.changeHandler instanceof Function) this.props.changeHandler(option)
+    if(this.props.onChange instanceof Function) this.props.onChange(option)
   }
 
   render() {
@@ -53,8 +63,8 @@ export default class Radio extends Component {
       options
     } = this.props
 
-    const optionsList = options.map((option) => 
-      <div className={(option.disabled || disabled)?`${styles.radio_option} ${styles.disabled_option}`:styles.radio_option} onClick={() => this.clickHandler(option)} key={option.id}>
+    const optionsList = options.map((option, key) => 
+      <div className={(option.disabled || disabled)?`${styles.radio_option} ${styles.disabled_option}`:styles.radio_option} onClick={() => this.clickHandler(option)} key={option.id?option.id:key}>
         <div className={(this.state.selected===option.id)?styles.active_holder:styles.radio_holder}>
           <div className={(this.state.selected < option.id)?styles.radio_blob_up:styles.radio_blob_down}></div>
         </div>

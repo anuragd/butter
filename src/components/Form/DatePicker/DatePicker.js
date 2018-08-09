@@ -2,38 +2,45 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
 
-import styles from './DatePicker.less'
+import styles from './Datepicker.less'
 import { CalendarSVG, DropdownSVG, CloseSVG } from '../../../utilities/Icons/Icons'
 import Dropdown from '../Dropdown/Dropdown'
 import { months, getMonth, getYears, getYear, monthToString, checkEdge, processMonthsForEdge, processYearsForEdge } from './calendarData'
 
 /**
- * Panel for displaying a note to users that a component has no data to display. It is important that this component is placed inside a container with a definite max-height set, or it will take all of the screen space vertically.
+ * Custom DatePicker component that allows for a custom format manual entry via a text box. This is a [controlled react input](/#/Form).
  *
- * Requires a minimum width of 280px
+ * The text input uses the `moment(string)` from the excellent [Moment.js](https://momentjs.com/) library to parse the string entered in the input into a Javascript date and hence is subject to format restrictions as described [here](https://momentjs.com/docs/#/parsing/string/). This is a fairly robust functions and manages to catch most date formats making this a flexible way to enter dates.
  * @version 0.0.1
  */
-export default class DatePicker extends Component {
+export default class Datepicker extends Component {
 
   static propTypes = {
     /**
-     * Description of prop "label".
+     * Label for the datepicker. Try to keep this within 25 characters
      */
     label: PropTypes.string.isRequired,
     /**
-     * Description of prop "value".
+     * The currently active value of the component. Pass a null value to render component in a default state
      */
     value: PropTypes.instanceOf(Date),
     /**
-     * Function fired whenever user moves slider or manually enters a value in the input. Must be used to pass the modified value back to the component
+     * Callback fired when the user changes the date using one of two methods. The callback takes the form
+     *  `callback(value, change_method)`
+     * where
+     * 
+     * * __value__ :Date chosen by user. A Javascript Date value will be passed
+     * * __change_method__ : Method used by user to change the date. Possible values are 'CALENDAR\_CLICK' and 'MANUAL\_ENTRY'
+     * 
+     * __Remember to update the `value` prop everytime this callback is fired__
      */
-    changeHandler: PropTypes.func.isRequired,
+    onChange: PropTypes.func.isRequired,
     /**
-     * Description of prop "value".
+     * Javascript Date value indicating the earliest possible date that can be selected
      */
     min: PropTypes.instanceOf(Date),
     /**
-     * Description of prop "value".
+     * Javascript Date value indicating the latest possible date that can be selected
      */
     max: PropTypes.instanceOf(Date),
   }
@@ -142,7 +149,7 @@ export default class DatePicker extends Component {
       let newDate = this.convertDate(e.target.value)
       if(newDate) {
         this.setState({open: false, internalValue:null})
-        this.props.changeHandler(newDate)
+        this.props.onChange(newDate, 'MANUAL_ENTRY')
       }
     }
   }
@@ -152,7 +159,7 @@ export default class DatePicker extends Component {
   }
 
   selectDate(selectedDay) {
-    this.props.changeHandler(selectedDay)
+    this.props.onChange(selectedDay, 'CALENDAR_CLICK')
     this.setState({open: false,internalValue:null})
   }
 
@@ -247,13 +254,13 @@ export default class DatePicker extends Component {
               label="Month" 
               options={processMonthsForEdge(months,this.state.currentMonth.year,min,max)} 
               value={monthToString(this.state.currentMonth.month)} 
-              changeHandler={this.monthSelectHandler} 
+              onChange={this.monthSelectHandler} 
               mini/>
             <Dropdown 
               label="Year" 
               options={processYearsForEdge(getYears(min,max), this.state.currentMonth.month, min, max)} 
               value={this.state.currentMonth.year} 
-              changeHandler={this.yearSelectHandler} 
+              onChange={this.yearSelectHandler} 
               mini/>
           </div>
           <div 
@@ -314,9 +321,9 @@ export default class DatePicker extends Component {
       internalValue = moment(value).format('D MMM YYYY')
 
     return (
-      <div className={styles.datepicker_container} onBlur={this.blurHandler} tabIndex="0">
+      <div className={styles.datepicker_container} tabIndex="0">
         <div className={this.state.open?styles.open_datepicker:styles.datepicker}>
-          <div className={this.state.open?styles.open_header:styles.header} onClick={this.headerClickHandler}>
+          <div className={this.state.open?styles.open_header:styles.header} onClick={this.headerClickHandler} onBlur={this.blurHandler}>
             <input 
               className={styles.manual_entry} 
               type="text" 

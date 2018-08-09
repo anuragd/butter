@@ -7,7 +7,7 @@ import CheckSVG from './CheckSVG'
 
 /**
  * Checkbox
- *
+ * 
  * @version 0.0.1
  */
 export default class Checkbox extends Component {

@@ -5,24 +5,29 @@ import styles from './TextArea.less'
 import { SuccessSVG } from '../../../utilities/Icons/Icons'
 
 /**
- * Description of TextArea
+ * Replacement for the default HTML `<Textarea />` component
  *
  * @version 0.0.1
  */
-export default class TextArea extends Component {
+export default class Textarea extends Component {
   static propTypes = {
     /**
      * Label for the TextArea component. This will provide content for the float label that positions itself depending on the state on the component
      */
     label: PropTypes.string.isRequired,
     /**
-     * Value of the TextArea. This is a controlled React component (https://reactjs.org/docs/forms.html). This means that the single source of truth for the value is this prop. Typically, this prop will be linked to the state of the parent container and must be updated when the changeHandler is invoked
+     * Value of the TextArea. This is a controlled React component (https://reactjs.org/docs/forms.html). This means that the single source of truth for the value is this prop. Typically, this prop will be linked to the state of the parent container and must be updated when the onChange is invoked
      */
     value: PropTypes.string.isRequired,
     /**
-     * Returns the current value of the input on 'every' change. Use this callback to update the value prop. (See example below). You should also use this to perform any validation checks you might require and pass the result of the validation to the validated prop.
+     * Returns the current value of the input on 'every' change. Use this callback to update the value prop. (See example below). 
+     * The callback takes the following form:
+     * 
+     * `callback(value)`
+     * where `value` represents the string value enetered by the user in the input. The original HTML event is __not__ passed on.
+     * You should also use this to perform any validation checks you might require and pass the result of the validation to the validated prop.
      */
-    changeHandler: PropTypes.func.isRequired,
+    onChange: PropTypes.func.isRequired,
     /**
      * Fired when the user starts interacting with the component. Passes no arguments
      */
@@ -54,7 +59,7 @@ export default class TextArea extends Component {
     };
     this.focusHandler = this.focusHandler.bind(this)
     this.blurHandler = this.blurHandler.bind(this)
-    this.changeHandler = this.changeHandler.bind(this)
+    this.onChange = this.onChange.bind(this)
   }
 
   focusHandler(e) {
@@ -67,9 +72,9 @@ export default class TextArea extends Component {
     if(this.props.blurHandler) this.props.blurHandler()
   }
 
-  changeHandler(e) {
+  onChange(e) {
     this.setState({invalid: false, valid: false})
-    if(this.props.changeHandler instanceof Function) this.props.changeHandler(e.target.value)
+    if(this.props.onChange instanceof Function) this.props.onChange(e.target.value)
   }
 
   render() {
@@ -94,7 +99,7 @@ export default class TextArea extends Component {
           onFocus={this.focusHandler} 
           onBlur={this.blurHandler} 
           value={value} 
-          onChange={this.changeHandler}
+          onChange={this.onChange}
           disabled={disabled}></textarea>
         <div className={(this.state.isTyping || value)?styles.float_focus:(disabled?styles.float_disable:styles.float_label)}>{label}</div>
         {validated}

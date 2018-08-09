@@ -5,7 +5,7 @@ import styles from './Input.less'
 import { SuccessSVG } from '../../../utilities/Icons/Icons'
 
 /**
- * Description of Input
+ * Replacement for the default HTML `<input />` component
  *
  * @version 0.0.1
  */
@@ -16,15 +16,20 @@ export default class Input extends Component {
      */
     label: PropTypes.string.isRequired,
     /**
-     * Value of the input. This is a controlled React component (https://reactjs.org/docs/forms.html). This means that the single source of truth for the value is this prop. Typically, this prop will be linked to the state of the parent container and must be updated when the changeHandler is invoked
+     * Value of the input. This cannot be null. Pass an empty string to reset component instead. This is a controlled React component (https://reactjs.org/docs/forms.html). This means that the single source of truth for the value is this prop. Typically, this prop will be linked to the state of the parent container and must be updated when the changeHandler is invoked
      */
     value: PropTypes.string.isRequired,
     /**
-     * Returns the current value of the input on 'every' change. Use this callback to update the value prop. (See example below). You should also use this to perform any validation checks you might require and pass the result of the validation to the validated prop.
+     * Returns the current value of the input on 'every' change. Use this callback to update the value prop. (See example below). 
+     * The callback takes the following form:
+     * 
+     * `callback(value)`
+     * where `value` represents the string value enetered by the user in the input. The original HTML event is __not__ passed on.
+     * You should also use this to perform any validation checks you might require and pass the result of the validation to the validated prop.
      */
-    changeHandler: PropTypes.func.isRequired,
+    onChange: PropTypes.func.isRequired,
     /**
-     * Fired when the user starts interacting with the component. Passes no arguments
+     * Fired when the user starts interacting with the component. Passes no arguments.
      */
     focusHandler: PropTypes.func,
     /**
@@ -69,7 +74,7 @@ export default class Input extends Component {
 
   changeHandler(e) {
     this.setState({valid: false, invalid: false})
-    if(this.props.changeHandler instanceof Function) this.props.changeHandler(e.target.value)
+    if(this.props.onChange instanceof Function) this.props.onChange(e.target.value)
   }
 
   render() {

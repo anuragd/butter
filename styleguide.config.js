@@ -20,23 +20,22 @@ module.exports = {
     {
       name: 'Grid',
       content: 'src/components/Grid/Grid.md',
-      components: 'src/components/Grid/*/*.js'
+      components: 'src/components/Grid/*.js',
     },
     {
       name: 'Charts',
       content: 'src/components/Charts/Charts.md',
-      components: 'src/components/Charts/*.js'
+      components: 'src/components/Charts/*/*.js'
     }
   ],
   ignore: [
     '**/**/**/ProgressGraphics.js',
-    '**/**/**/calendarData.js',
-    '**/**/**/Charts.js',
     '**/**/**/Grid/Grid.js',
-    '**/**/**/theme.js'
+    '**/**/**/theme.js',
   ],
   styleguideDir: 'documentation',
   usageMode: 'expand',
+  skipComponentsWithoutExample: true,
   webpackConfig: {
     output: {
       publicPath: '../'

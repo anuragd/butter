@@ -1,11 +1,11 @@
 import Input from './components/Form/Input/Input'
-import TextArea from './components/Form/TextArea/TextArea'
+import Textarea from './components/Form/Textarea/Textarea'
 import Dropdown from './components/Form/Dropdown/Dropdown'
 import Radio from './components/Form/Radio/Radio'
 import Toggle from './components/Form/Toggle/Toggle'
 import Slider from './components/Form/Slider/Slider'
 import Checkbox from './components/Form/Checkbox/Checkbox'
-import DatePicker from './components/Form/DatePicker/DatePicker'
+import Datepicker from './components/Form/Datepicker/Datepicker'
 
 import Button from './components/Core/Button/Button'
 import ProgressBar from './components/Core/ProgressBar/ProgressBar'
@@ -15,7 +15,10 @@ import Tooltip from './components/Core/Tooltip/Tooltip'
 import Table from './components/Core/Table/Table'
 import Tabs from './components/Core/Tabs/Tabs'
 
-import Charts from './components/Charts/Charts'
+import Area from './components/Charts/Area/Area'
+import Hbar from './components/Charts/Hbar/Hbar'
+import Vbar from './components/Charts/Vbar/Vbar'
+import Pie from './components/Charts/Pie/Pie'
 
 import Container from './components/Grid/Container/Container'
 import Header from './components/Grid/Header/Header'
@@ -27,7 +30,11 @@ const Core = {
 }
 
 const Form = {
-	Input, TextArea, Dropdown, Radio, Toggle, Slider, Checkbox, DatePicker
+	Input, Textarea, Dropdown, Radio, Toggle, Slider, Checkbox, Datepicker
+}
+
+const Charts = {
+	Area, Hbar, Vbar, Pie
 }
 
 const Grid = {
@@ -39,7 +46,7 @@ const DCNUXResources = { Core, Form, Grid, Charts }
 export { 
 	Input, 
 	Button, 
-	TextArea, 
+	Textarea, 
 	Dropdown, 
 	Radio, 
 	ProgressBar, 
@@ -48,7 +55,7 @@ export {
 	Toggle, 
 	Slider, 
 	Checkbox, 
-	DatePicker, 
+	Datepicker, 
 	Tooltip, 
 	Table, 
 	Tabs,

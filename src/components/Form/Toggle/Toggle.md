@@ -1,4 +1,4 @@
-```jsx
+```jsx noeditor
 initialState = {value1:false, value2:false, value3:false};
 
 <div style={{
@@ -14,7 +14,7 @@ initialState = {value1:false, value2:false, value3:false};
 		NORMAL:
 		<Toggle value={state.value1} 
 				label="Toggle" 
-				changeHandler={() => setState({value1:!state.value1})} />
+				onChange={(val) => setState({value1:val})} />
 
 	</div>
 	<div style={{
@@ -24,7 +24,7 @@ initialState = {value1:false, value2:false, value3:false};
 		GOOD:
 		<Toggle value={state.value2} 
 				label="Toggle" 
-				changeHandler={() => setState({value2:!state.value2})} 
+				onChange={(val) => setState({value2:val})} 
 				mode="GOOD"/>
 
 	</div>
@@ -35,10 +35,28 @@ initialState = {value1:false, value2:false, value3:false};
 		BAD:
 		<Toggle value={state.value3} 
 					label="Toggle" 
-					changeHandler={() => setState({value3:!state.value3})} 
+					onChange={(val) => setState({value3:val})} 
 					mode="BAD"/>
 
 	</div>
 
 </div>
+```
+```jsx static
+import { Toggle } from 'dcn-network-insights-ux';
+constructor(props) {
+    super(props);
+    this.state = {
+        value: false
+    }
+}
+render() {
+    return(
+        <Toggle 
+        	value={state.value} 
+			label="Toggle" 
+			onChange={() => setState({value:!state.value})} 
+			mode="GOOD"/>
+    )
+}
 ```
