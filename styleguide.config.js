@@ -20,7 +20,7 @@ module.exports = {
     {
       name: 'Grid',
       content: 'src/components/Grid/Grid.md',
-      components: 'src/components/Grid/*.js',
+      components: 'src/components/Grid/*/*.js',
     },
     {
       name: 'Charts',
@@ -30,7 +30,6 @@ module.exports = {
   ],
   ignore: [
     '**/**/**/ProgressGraphics.js',
-    '**/**/**/Grid/Grid.js',
     '**/**/**/theme.js',
   ],
   styleguideDir: 'documentation',
