@@ -15,7 +15,10 @@ import Tooltip from './components/Core/Tooltip/Tooltip'
 import Table from './components/Core/Table/Table'
 import Tabs from './components/Core/Tabs/Tabs'
 
-import Charts from './components/Charts/Charts'
+import Area from './components/Charts/Area/Area'
+import Hbar from './components/Charts/Hbar/Hbar'
+import Vbar from './components/Charts/Vbar/Vbar'
+import Pie from './components/Charts/Pie/Pie'
 
 import Container from './components/Grid/Container/Container'
 import Header from './components/Grid/Header/Header'
@@ -28,6 +31,10 @@ const Core = {
 
 const Form = {
 	Input, Textarea, Dropdown, Radio, Toggle, Slider, Checkbox, Datepicker
+}
+
+const Charts = {
+	Area, Hbar, Vbar, Pie
 }
 
 const Grid = {

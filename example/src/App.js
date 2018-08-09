@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Radio, Dropdown, Input, Button, TextArea, NoDataPanel, ProgressBar, ProgressBarMini, Toggle, Slider, Checkbox, Datepicker, Tooltip, Table, Tabs, Charts, Container, Header, Content, Panel, Surface } from 'dcn-ux-resources'
+import { Radio, Dropdown, Input, Button, Textarea, NoDataPanel, ProgressBar, ProgressBarMini, Toggle, Slider, Checkbox, Datepicker, Tooltip, Table, Tabs, Charts, Container, Header, Content, Panel, Surface } from 'dcn-ux-resources'
 
 export default class App extends Component {
   constructor(props) {
@@ -109,7 +109,7 @@ export default class App extends Component {
               </Panel>
               <Panel  size="half" collapse={{right:true,left: true,bottom:true,top:true}} hasSurface>
                 <Tooltip content="<p>I'm a TOP_LEFT tooltip</p>" mode="TOP_LEFT">
-                    <TextArea label="TextArea" changeHandler={(value) => this.setState({textAreaValue:value})} value={this.state.textAreaValue}/>
+                    <Textarea label="TextArea" changeHandler={(value) => this.setState({textAreaValue:value})} value={this.state.textAreaValue}/>
                   </Tooltip>
               </Panel>
             </Panel>

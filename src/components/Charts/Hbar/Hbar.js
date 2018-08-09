@@ -3,9 +3,14 @@ import PropTypes from 'prop-types'
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
 
-import theme from './theme'
-import styles from './Charts.less'
+import theme from '../theme'
+import styles from '../Charts.less'
 
+/**
+ * Wrapper around HighCharts Bar graph.
+ *
+ * @version 0.0.1
+ */
 export default class Hbar extends Component {
 
 	constructor(props) {
@@ -22,7 +27,7 @@ export default class Hbar extends Component {
 				...theme,
 				chart: {
 					type: 'bar',
-					height: '100%'
+					height: '50%'
 				},
 				credits: {
 					enabled: false

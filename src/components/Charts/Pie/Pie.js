@@ -3,18 +3,15 @@ import PropTypes from 'prop-types'
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
 
-import theme from './theme'
-import styles from './Charts.less'
+import theme from '../theme'
+import styles from '../Charts.less'
 
-export default class Area extends Component {
-
-	static propTypes = {
-		mode: PropTypes.oneOf(['NORMAL','MINI'])
-	}
-
-	static defaultProps = {
-		mode: 'MINI'
-	}
+/**
+ * Wrapper around HighCharts Pie graph.
+ *
+ * @version 0.0.1
+ */
+export default class Pie extends Component {
 
 	constructor(props) {
 		super(props)
@@ -28,45 +25,33 @@ export default class Area extends Component {
 			chartOptions: {
 				...props.options,
 				...theme,
-				legend: {
-					enabled: false
+				chart: {
+					type: 'pie',
+					height: '100%',
+					margin: [0, 0, 0, 0],
+			        spacingTop: 0,
+			        spacingBottom: 0,
+			        spacingLeft: 0,
+			        spacingRight: 0
 				},
 				credits: {
 					enabled: false
 				},
-				chart: {
-					type: 'areaspline',
-					height: '100%'
-				},
-				xAxis: {
-					visible: props.mode==='NORMAL'?true:false
-				},
-				yAxis: {
-					gridLineColor: '#FFFFFF',
-					gridLineWidth: 1,
-					gridZIndex:4,
-					visible: props.mode==='NORMAL'?true:false
-				},
 				plotOptions: {
-					areaspline: {
-						marker: {
-							enabled: false
-						},
-						color: {
-							linearGradient: {x1:0.5,y1:0, x2:0.5,y2:1},
-							stops: [
-								[0, '#D92780'],
-								[0.5, '#FF7D85'],
-								[1, '#FFC87D']
-							]
-						}
+					pie: {
+						size: '80%',
+						minSize: 60
 					}
 				},
 				series: [
 					{
 						...props.options.series[0],
+						innerSize: '70%',
+						borderWidth: 12,
+						borderColor: '#FFFFFF',
 						dataLabels: {
-							enabled: false
+							enabled: false,
+							softConnector:0,
 						}
 					}
 				],
@@ -79,11 +64,33 @@ export default class Area extends Component {
 	}
 
 	mouseEnter() {
-		
+		this.setState({
+			chartOptions: {
+				...this.state.chartOptions,
+				series: [{
+					...this.state.chartOptions.series[0],
+					dataLabels: {
+						...this.state.chartOptions.series[0].dataLabels,
+						enabled: true
+					}
+				}]
+			}
+		})
 	}
 
 	mouseLeave() {
-		
+		this.setState({
+			chartOptions: {
+				...this.state.chartOptions,
+				series: [{
+					...this.state.chartOptions.series[0],
+					dataLabels: {
+						...this.state.chartOptions.series[0].dataLabels,
+						enabled: false
+					}
+				}]
+			}
+		})
 	}
 
 	render() {
