@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Radio, Dropdown, Input, Button, Textarea, NoDataPanel, ProgressBar, ProgressBarMini, Toggle, Slider, Checkbox, Datepicker, Tooltip, Table, Tabs, Charts, Container, Header, Content, Panel, Surface } from 'dcn-ux-resources'
+import { Radio, Dropdown, Input, Button, Textarea, NoDataPanel, ProgressBar, ProgressBarMini, Toggle, Slider, Checkbox, Datepicker, Tooltip, Table, Tabs, Charts, Container, Header, Content, Panel } from 'dcn-network-insights-ux'
 
 export default class App extends Component {
   constructor(props) {
