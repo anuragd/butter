@@ -1,3 +1,4 @@
+/* This is planned to be the eventual home of all momentjs function calls, thereby enabling the removal of any direct references in the main component file */
 import moment from 'moment'
 
 let months = [
@@ -55,6 +56,8 @@ let monthToString = (month) => {
 	return moment().month(month).format('MMMM')
 }
 
+
+// Disable days that are beyond the specified min-max range
 let checkEdge = (month, year, min, max) => {
 	if(!(min instanceof Date) || !(max instanceof Date) || moment(max).isBefore(moment(min)))
 		return false
@@ -66,6 +69,7 @@ let checkEdge = (month, year, min, max) => {
 	return false
 }
 
+// Disable months that are beyond the specified min-max range
 let processMonthsForEdge = (months, currentYear, min, max) => {
 	let mutableDate = moment().startOf('month').year(currentYear)
 	return months.map((month) => {
@@ -78,6 +82,7 @@ let processMonthsForEdge = (months, currentYear, min, max) => {
 	})
 }
 
+// Disable years that are beyond the specified min-max range
 let processYearsForEdge = (years, currentMonth, min, max) => {
 	let mutableDate = moment().startOf('month').month(currentMonth)
 	return years.map((year) => {

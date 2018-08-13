@@ -101,7 +101,13 @@ export default class Slider extends Component {
     // If a new value is passed, calculate new x position
     if(prevProps.value !== this.props.value) {
       let xPosition = this.props.value * this.state.xFactor
-      this.setState({manualValue:this.props.value, valueX: xPosition})
+      if(xPosition > this.state.maxX) {
+        this.props.onChange(this.props.max)
+      }
+      else if(xPosition < 0)
+        this.props.onChange(this.props.min)
+      else
+        this.setState({manualValue:this.props.value, valueX: xPosition})
     }
   }
 
@@ -137,7 +143,7 @@ export default class Slider extends Component {
 
   updateDrag(e) {
     if (!this.state.dragging) return
-    updatePosition(e)
+    this.updatePosition(e)
   }
 
   updatePosition(e) {

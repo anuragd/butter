@@ -117,6 +117,7 @@ export default class Datepicker extends Component {
     return this.getMonthCalendar(inputDate)
   }
 
+  // Close icon
   iconClickHandler(e) {
     if(this.state.open) this.setState({open:false, internalValue: null})
   }
@@ -144,6 +145,7 @@ export default class Datepicker extends Component {
     this.setState({showSelectBubble:false})
   }
 
+  // Data entry using text input box
   manualDateEntryHandler(e) {
     if(e.keyCode===13 || e.type === 'blur') {
       let newDate = this.convertDate(e.target.value)
@@ -239,7 +241,6 @@ export default class Datepicker extends Component {
     /** Build Calendar **/
     let calendar;
     
-
     if(this.state.open) {
       let calendarControls =
         <div className={styles.control_bar}>
@@ -322,8 +323,8 @@ export default class Datepicker extends Component {
 
     return (
       <div className={styles.datepicker_container} tabIndex="0">
-        <div className={this.state.open?styles.open_datepicker:styles.datepicker}>
-          <div className={this.state.open?styles.open_header:styles.header} onClick={this.headerClickHandler} onBlur={this.blurHandler}>
+        <div className={this.state.open?styles.open_datepicker:styles.datepicker} onBlur={this.blurHandler}>
+          <div className={this.state.open?styles.open_header:styles.header} onClick={this.headerClickHandler}>
             <input 
               className={styles.manual_entry} 
               type="text" 

@@ -48,7 +48,7 @@ export default class Button extends Component {
           onClick={this.props.onClick} 
           onMouseEnter={this.props.onMouseEnter}
           onMouseLeave={this.props.onMouseLeave}
-          disabled
+          disabled={disabled}
           >
           {label}
         </button>

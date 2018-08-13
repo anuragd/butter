@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render a normal button 1`] = `
+<div
+  className={undefined}
+>
+  <button
+    className={undefined}
+    disabled={undefined}
+    onClick={undefined}
+    onMouseEnter={undefined}
+    onMouseLeave={undefined}
+  >
+    Button
+  </button>
+</div>
+`;

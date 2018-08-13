@@ -59,8 +59,7 @@ export default class Dropdown extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      open: false,
-      value:props.value?props.value:null
+      open: false
     };
     this.clickHandler = this.clickHandler.bind(this)
     this.blurHandler = this.blurHandler.bind(this)
@@ -68,8 +67,6 @@ export default class Dropdown extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if(prevProps.value !== this.props.value)
-      this.setState({value:this.props.value?this.props.value:null})
   }
 
   clickHandler(e) {
@@ -88,6 +85,7 @@ export default class Dropdown extends Component {
   render() {
     const {
       label,
+      value,
       options,
       disabled,
       mini
@@ -102,11 +100,11 @@ export default class Dropdown extends Component {
 
     return (
       <div className={mini?styles.mini_dropdown_container:styles.dropdown_container} onBlur={this.blurHandler} tabIndex="0">
-        <div className={this.state.value?styles.focus_label:styles.float_label}>{label}</div>
+        <div className={value?styles.focus_label:styles.float_label}>{label}</div>
         <div className={this.state.open?styles.open_list:styles.list}>
           <div className={this.state.open?styles.open_header:(disabled?styles.disabled_header:styles.header)} onClick={this.clickHandler}>
-            {this.state.value?'':label}
-            <div className={styles.selected_option}>{this.state.value}</div>
+            {value?'':label}
+            <div className={styles.selected_option}>{value}</div>
             <img className={styles.arrow} src={DropdownSVG} />
           </div>
           <ul className={styles.options}>

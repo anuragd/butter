@@ -109,15 +109,6 @@ export default class Table extends Component {
           keys: newKeys
         }
       })
-      // setTimeout(() => {
-      //   this.setState({
-      //     translateMap:this.props.data.data.map(() => 0),
-      //     data: {
-      //       ...this.state.data,
-      //       data: newData
-      //     }
-      //   })
-      // }, 200)
     }
   }
 

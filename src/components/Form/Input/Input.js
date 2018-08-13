@@ -31,11 +31,11 @@ export default class Input extends Component {
     /**
      * Fired when the user starts interacting with the component. Passes no arguments.
      */
-    focusHandler: PropTypes.func,
+    onFocus: PropTypes.func,
     /**
      * Fired when the user changes focus(interacts) with some other element on the page. Passes no arguments
      */
-    blurHandler: PropTypes.func,
+    onBlur: PropTypes.func,
     /**
      * Include this prop if the input has an attached validation function and passes the validation check. Note that validated and invalid props cannot be passed at the same time.
      */
@@ -54,8 +54,6 @@ export default class Input extends Component {
     super(props)
     this.state = {
       isTyping : false,
-      valid: props.validated,
-      invalid: props.invalid
     };
     this.focusHandler = this.focusHandler.bind(this)
     this.blurHandler = this.blurHandler.bind(this)
@@ -85,17 +83,17 @@ export default class Input extends Component {
     } = this.props
 
     let errorMessage
-    if(this.state.invalid && !this.state.isTyping)
-      errorMessage = <div className={styles.error}>{this.state.invalid}</div>
+    if(this.props.invalid && !this.state.isTyping)
+      errorMessage = <div className={styles.error}>{this.props.invalid}</div>
 
     let validated
-      if(this.state.valid && value)
+      if(this.props.valid && value)
         validated = <div className={styles.validated}><img src={SuccessSVG} /></div>
 
     return (
       <div className={styles.container}>
         <input type="text"
-          className={this.state.valid?styles.valid_input:(this.state.invalid?styles.invalid_input:'')}
+          className={this.props.valid?styles.valid_input:(this.props.invalid?styles.invalid_input:'')}
           onFocus={this.focusHandler} 
           onBlur={this.blurHandler} 
           value={value} 

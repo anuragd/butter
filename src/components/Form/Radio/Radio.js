@@ -51,9 +51,17 @@ export default class Radio extends Component {
     this.clickHandler = this.clickHandler.bind(this)
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if(prevProps.value !== this.props.value) {
+      let currentOption = this.props.options.find((option) => option.value===this.props.value)
+      console.log(currentOption)
+      currentOption && this.setState({selected: currentOption.id})
+    }
+  }
+
   clickHandler(option) {
     this.setState({selected:option.id})
-    if(this.props.onChange instanceof Function) this.props.onChange(option)
+    if(this.props.onChange instanceof Function) this.props.onChange(option.value)
   }
 
   render() {
