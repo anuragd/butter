@@ -29,8 +29,11 @@ export default class ProgressBarMini extends Component {
 
   render() {
     let progress = this.props.progress
-    
-   
+    if(this.props.progress > 100 || this.props.progress < 0) {
+      progress = progress > 100 ? 100:0
+      console.error("Invalid progress value. Must be between 0 - 100")
+    }
+
     return (
       <div className={styles.progress_bar}>
         <div className={styles.progress_message}>{this.props.message} </div>
