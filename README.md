@@ -80,7 +80,7 @@ npm run doc:build
 To run tests, you can use thw following commands:
 ```bash
 npm test
-``
+```
 or
 ```bash
 npm run test:watch
