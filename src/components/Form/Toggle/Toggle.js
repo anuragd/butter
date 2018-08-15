@@ -117,7 +117,8 @@ export default class Toggle extends Component {
         onMouseEnter={this.props.onMouseEnter}
         onMouseLeave={this.props.onMouseLeave}
         onFocus={this.props.onFocus}
-        onBlur={this.props.onBlur}>
+        onBlur={this.props.onBlur}
+        tabIndex={this.props.disabled?"":"0"}>
         <div className={track}>
           <div className={thumb}></div>
         </div>

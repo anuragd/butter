@@ -115,7 +115,8 @@ export default class Input extends Component {
           onChange={this.changeHandler}
           disabled={disabled}
           onMouseEnter={this.props.onMouseEnter}
-          onMouseLeave={this.props.onMouseLeave}/>
+          onMouseLeave={this.props.onMouseLeave}
+          tabIndex={disabled?"":"0"}/>
         <div className={(this.state.isTyping || value)?styles.float_focus:(disabled?styles.float_disable:styles.float_label)}>{label}</div>
         {validated}
         {errorMessage}

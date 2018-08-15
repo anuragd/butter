@@ -139,7 +139,7 @@ export default class Dropdown extends Component {
         onMouseLeave={this.props.onMouseLeave}
         onFocus={this.props.onFocus} 
         onBlur={this.blurHandler} 
-        tabIndex="0">
+        tabIndex={disabled?"":"0"}>
         <div className={value?styles.focus_label:styles.float_label}>{label}</div>
         <div className={this.state.open?styles.open_list:styles.list}>
           <div className={this.state.open?styles.open_header:(disabled?styles.disabled_header:styles.header)} onClick={this.clickHandler}>

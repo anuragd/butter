@@ -212,34 +212,37 @@ export default class Slider extends Component {
     } = this.props
 
     return (
-      <div className={styles.slider_container}
-        tabIndex="0" 
+      <div 
+        className={styles.slider_super_container}
         onKeyUp={this.keyUpHandler}
         onMouseEnter={this.props.onMouseEnter}
         onMouseLeave={this.props.onMouseLeave}
         onFocus={this.props.onFocus}
         onBlur={this.props.onBlur}>
-        <div className={styles.label}>{label}</div>
-        <div className={styles.slider}>
-          <div className={styles.track} ref={this.track} onClick={this.updatePosition}></div>
-          <div  className={disabled?styles.active_range_disabled:styles.active_range}
-                style={{width:(this.state.valueX + this.state.thumbOffset)+'px'}}>
+        <div className={styles.slider_container}
+          tabIndex={disabled?"":"0"}>
+          <div className={styles.label}>{label}</div>
+          <div className={styles.slider}>
+            <div className={styles.track} ref={this.track} onClick={this.updatePosition}></div>
+            <div  className={disabled?styles.active_range_disabled:styles.active_range}
+                  style={{width:(this.state.valueX + this.state.thumbOffset)+'px'}}>
+            </div>
+            <div  ref={this.thumb}
+                  className={disabled?styles.thumb_disabled:styles.thumb} 
+                  style={{left: this.state.valueX+'px'}} 
+                  onMouseDown={this.startDrag} 
+                  onMouseUp={this.endDrag}
+                  tabIndex="2">
+            </div>
           </div>
-          <div  ref={this.thumb}
-                className={disabled?styles.thumb_disabled:styles.thumb} 
-                style={{left: this.state.valueX+'px'}} 
-                onMouseDown={this.startDrag} 
-                onMouseUp={this.endDrag}
-                tabIndex="2">
-          </div>
+          <input 
+            className={disabled?styles.input_disabled:styles.input}
+            disabled ={disabled} 
+            type="number" value={this.state.manualValue} 
+            onBlur={this.manualEntry} 
+            onChange={this.onChange} 
+            onKeyUp={this.keypressHandler}/>
         </div>
-        <input 
-          className={disabled?styles.input_disabled:styles.input}
-          disabled ={disabled} 
-          type="number" value={this.state.manualValue} 
-          onBlur={this.manualEntry} 
-          onChange={this.onChange} 
-          onKeyUp={this.keypressHandler}/>
       </div>
     )
   }

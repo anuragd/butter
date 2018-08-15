@@ -4,6 +4,10 @@
 @import "../../../styles/animations.less";
 @import "../../../styles/type.less";
 
+.slider_super_container {
+	display: inline-block;
+}
+
 .slider_container {
 	padding: @quarter-size;
 	display: flex;
@@ -52,6 +56,9 @@
 	z-index: 3;
 	&:hover {
 		background: @primary-bright;
+	}
+	&:focus, &:active {
+		.noOutlines();
 	}
 }
 

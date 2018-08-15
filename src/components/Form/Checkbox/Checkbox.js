@@ -111,7 +111,7 @@ export default class Checkbox extends Component {
     return (
       <div 
         className={styles.checkbox_container}
-        tabIndex="0"
+        tabIndex={disabled?"":"0"}
         onMouseEnter={this.props.onMouseEnter}
         onMouseLeave={this.props.onMouseLeave}
         onFocus={this.props.onFocus}

@@ -337,7 +337,7 @@ export default class Datepicker extends Component {
       internalValue = moment(value).format('D MMM YYYY')
 
     return (
-      <div className={styles.datepicker_container} tabIndex="0">
+      <div className={styles.datepicker_container} tabIndex={disabled?"":"0"}>
         <div 
         className={disabled?styles.disabled_datepicker:(this.state.open?styles.open_datepicker:styles.datepicker)} 
         onBlur={this.blurHandler}
