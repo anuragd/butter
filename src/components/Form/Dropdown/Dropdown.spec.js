@@ -47,6 +47,7 @@ describe("Basic Dropdown render", () => {
 	})
 })
 
+
 describe('User interactions', () => {
 	let wrapper
 	let mockFunction = jest.fn()

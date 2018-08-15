@@ -23,11 +23,16 @@
 	border-radius: @button-height;
 	transition: @standard-transition;
 	z-index: 100;
-	overflow-x: hidden;
 	&:hover {
 		background: @white;
 		.highlightBorder();
 	}
+}
+
+.disabled_datepicker {
+	composes: datepicker;
+	background: @disable-bg;
+	pointer-events: none;
 }
 
 .open_datepicker {
@@ -58,6 +63,15 @@
 		transition: @standard-transition;
 
 	}
+	.disabled_label {
+		.lightFont();
+		color: @disable-text;
+		position: absolute;
+		top: (@button-height / 2) - (@regular-text / 2);
+		line-height: @regular-text;
+		left: @base-size;
+		transition: @standard-transition;
+	}
 	.icon {
 		position: relative;
 		height: @button-height / 2;
@@ -75,6 +89,9 @@
 			}
 			&.hide_icon {
 				transform: scale(0);
+			}
+			&.disabled_icon {
+				filter: brightness(100) contrast(300) saturate(100);
 			}
 		}
 	}
@@ -219,6 +236,7 @@
 	height: @cell-size * 5;
 	position: relative;
 	z-index: 3;
+	overflow: hidden;
 }
 
 .changing_body {

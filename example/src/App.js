@@ -41,7 +41,7 @@ export default class App extends Component {
         ],
       },
       checkboxValue:[],
-      datepickerValue: new Date(),
+      datepickerValue: null,
       minDate: new Date(2017,6,1),
       maxDate: new Date(2020,6,1),
       activeTab: 'Tab2',
@@ -95,6 +95,7 @@ export default class App extends Component {
             <Panel size="half" collapse={{top:true,right:true,bottom:true,left:true}}>
               <Panel size="half" collapse={{left:true,bottom:true,top:true}}>
                 <Panel size="full" collapse={{left:true,right:true,bottom:true,top:true}} hasSurface>
+                  <button onClick={() => this.setState({datepickerValue: new Date()})}>Add date</button>
                   <Tooltip content="<p>I'm a LEFT_TOP tooltip</p>" mode="LEFT_TOP">
                     <Datepicker 
                       label="Choose date" 

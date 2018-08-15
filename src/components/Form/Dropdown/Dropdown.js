@@ -112,8 +112,12 @@ export default class Dropdown extends Component {
   }
 
   blurHandler(e) {
-    this.setState({open: false})
+    if(this.state.open) {
+      this.setState({open: false})
+    }
     if(this.props.onBlur instanceof Function) this.props.onBlur(e)
+    e.stopPropagation()
+    e.preventDefault()
   }
 
   render() {
