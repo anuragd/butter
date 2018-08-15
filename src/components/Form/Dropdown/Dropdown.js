@@ -45,10 +45,6 @@ export default class Dropdown extends Component {
        * The number or string label for the option
        */
       value: PropTypes.oneOfType([PropTypes.number,PropTypes.string]).isRequired,
-      /**
-       * Set `disabled` to `true` to disable selection of this option
-       */
-      disabled: PropTypes.bool
     }),
     /**
      * Callback fired when the user selects a new option on the dropdown. The callback takes the form of

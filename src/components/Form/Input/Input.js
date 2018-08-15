@@ -29,10 +29,6 @@ export default class Input extends Component {
      */
     onChange: PropTypes.func.isRequired,
     /**
-     * Fired when the user changes focus(interacts) with some other element on the page. Passes no arguments
-     */
-    onBlur: PropTypes.func,
-    /**
      * Include this prop if the input has an attached validation function and passes the validation check. Note that validated and invalid props cannot be passed at the same time.
      */
     validated: PropTypes.bool,

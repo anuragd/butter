@@ -111,6 +111,17 @@ describe("User interactions & callbacks", () => {
 			expect(wrapper.state('currentMonth').year).toEqual('2002')
 		}, 200)
 	})
+	it('disallows selection of months beyond range', () => {
+		wrapper.find('Dropdown').at(0).find('.header').simulate('click')
+		wrapper.find('Dropdown').at(0).find('.options li').at(0).simulate('click')
+		wrapper.find('Dropdown').at(1).find('.header').simulate('click')
+		wrapper.find('Dropdown').at(1).find('.options li').at(0).simulate('click')
+		setTimeout(() => {
+			expect(wrapper.find('.last_month_control').length).toEqual(0)
+			wrapper.find('.diff_day_cell').simulate('click')
+			expect(wrapper.find('.calendar_container').length).toEqual(1)
+		}, 200)
+	})
 	it('fires onChange event on selecting date', () => {
 		expect(wrapper.find('.calendar_container').length).toEqual(1)
 		let cells = wrapper.find('.day_cell')

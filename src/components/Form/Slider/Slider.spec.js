@@ -74,6 +74,12 @@ describe('User interactions', () => {
 		expect(mockFunction).toHaveBeenCalled()
 		expect(wrapper.find('input').props().value).toEqual(min)
 	})
+	if('disallows input values beyond the specified range', () => {
+		wrapper.setProps({value:max+50})
+		expect(wrapper.find('input').props().value).toEqual(max)
+		wrapper.setProps({value:min-50})
+		expect(wrapper.find('input').props().value).toEqual(min)
+	})
 	it('fires onFocus event', () => {
 		wrapper.simulate('focus')
 		expect(mockFunction).toHaveBeenCalled()

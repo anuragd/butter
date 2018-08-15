@@ -1,6 +1,6 @@
 {
   "name": "dcn-network-insights-ux",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "description": "",
   "author": "",
   "license": "MIT",
@@ -14,7 +14,7 @@
   "scripts": {
     "test": "cross-env CI=1 node scripts/test.js --env=jsdom",
     "test:watch": "npm test -- --verbose && ./node_modules/.bin/chokidar \"src/**\" -c \"clear && printf '\\e[3J' && npm test -- --verbose\"",
-    "build": "rollup -c",
+    "build": "npm test && npm run doc:build && rollup -c",
     "postbuild": "./node_modules/.bin/lessc ./src/styles/exports.less ./dist/dcn-ux.less",
     "start": "rollup -c -m inline && ./node_modules/.bin/chokidar \"src/**\" -c \"rollup -c -m inline\"",
     "prepare": "npm run build",
