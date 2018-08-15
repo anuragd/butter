@@ -21,9 +21,9 @@ export default class Dropdown extends Component {
      */
     options: PropTypes.arrayOf(PropTypes.shape({
       /**
-       *  An unique number representing the option. This can be omitted if you want the component to use it's own internal ids instead
+       *  An unique number representing the option.
        */
-      id: PropTypes.number,
+      id: PropTypes.number.isRequired,
       /**
        * The number or string label for the option
        */
@@ -36,7 +36,20 @@ export default class Dropdown extends Component {
     /**
      * Selected value. Must correspond to the type passed in the `value` property of objects in the options array. Remember to update this value when the `onChange` callback is fired.
      */
-    value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    value: PropTypes.shape({
+      /**
+       *  An unique number representing the option.
+       */
+      id: PropTypes.number.isRequired,
+      /**
+       * The number or string label for the option
+       */
+      value: PropTypes.oneOfType([PropTypes.number,PropTypes.string]).isRequired,
+      /**
+       * Set `disabled` to `true` to disable selection of this option
+       */
+      disabled: PropTypes.bool
+    }),
     /**
      * Callback fired when the user selects a new option on the dropdown. The callback takes the form of
      * `callback(value)`
@@ -49,6 +62,24 @@ export default class Dropdown extends Component {
      * Set this boolean to disable the dropdown component completely
      */
     disabled: PropTypes.bool,
+
+    /**
+     * The `onMouseEnter` callback is fired when the mouse is moved over the button. Mouse event is passed as a param.
+     */
+    onMouseEnter: PropTypes.func,
+    /**
+     * The `onMouseLeave` callback is fired when the mouse is moved out of the buttons hit area. Mouse event is passed as a param.
+     */
+    onMouseLeave: PropTypes.func,
+    /**
+     * Callback for user focus event. Mouse event is passed as a param.
+     */
+    onFocus: PropTypes.func,
+    /**
+     * Callback for loss of focus from the component. Mouse event is passed as a param.
+     */
+    onBlur: PropTypes.func,
+
     /**
      * Prop used to render mini version of dropdown inside datepicker component. NOT FOR EXTERNAL USE
      * @ignore
@@ -73,13 +104,16 @@ export default class Dropdown extends Component {
     this.setState({open: !this.state.open})
   }
   
-  optionClickHandler(id,value) {
-    this.setState({open:false})
-    if(this.props.onChange instanceof Function) this.props.onChange({id:id, value: value})
+  optionClickHandler(value) {
+    if(!value.disabled && !this.props.disabled) {
+      this.setState({open:false})
+      if(this.props.onChange instanceof Function) this.props.onChange(value)
+    }
   }
 
   blurHandler(e) {
     this.setState({open: false})
+    if(this.props.onBlur instanceof Function) this.props.onBlur(e)
   }
 
   render() {
@@ -92,19 +126,25 @@ export default class Dropdown extends Component {
     } = this.props
 
     const optionsList = options.map((option, key) =>
-      <li key={option.id?option.id:key} onClick={() => this.optionClickHandler(option.id, option.value)} className={option.disabled?styles.disabled:''}>
+      <li key={option.id?option.id:key} onClick={() => this.optionClickHandler(option)} className={option.disabled?styles.disabled:''}>
         <div className={styles.list_bg}></div>
         <div className={styles.option_label}>{option.value}</div>
       </li>
     )
 
     return (
-      <div className={mini?styles.mini_dropdown_container:styles.dropdown_container} onBlur={this.blurHandler} tabIndex="0">
+      <div 
+        className={mini?styles.mini_dropdown_container:styles.dropdown_container}
+        onMouseEnter={this.props.onMouseEnter}
+        onMouseLeave={this.props.onMouseLeave}
+        onFocus={this.props.onFocus} 
+        onBlur={this.blurHandler} 
+        tabIndex="0">
         <div className={value?styles.focus_label:styles.float_label}>{label}</div>
         <div className={this.state.open?styles.open_list:styles.list}>
           <div className={this.state.open?styles.open_header:(disabled?styles.disabled_header:styles.header)} onClick={this.clickHandler}>
             {value?'':label}
-            <div className={styles.selected_option}>{value}</div>
+            <div className={styles.selected_option}>{value?value.value:''}</div>
             <img className={styles.arrow} src={DropdownSVG} />
           </div>
           <ul className={styles.options}>

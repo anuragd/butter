@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 import {shallow, mount} from 'enzyme'
 
 import Table from './Table'
@@ -46,8 +47,12 @@ describe('Basic Table render:', () => {
 })
 
 describe('Sorting functionality', () => {
-	let wrapper
+	let component, node, wrapper
 	beforeAll(() => {
+		let div = document.createElement('div')
+		document.body.appendChild(div)
+		component = ReactDOM.render(<Table data={data} />, div)
+		node = ReactDOM.findDOMNode(component) 
 		wrapper = mount(<Table data={data}/>)
 	})
 	it('renders sorting icon', () => {
@@ -55,9 +60,11 @@ describe('Sorting functionality', () => {
 		expect(wrapper.find('.sorters').length).toEqual(sortableColumns.length)
 	})
 	/* The below test depends on reading DOM positions and cannot be done without a headless browser */
-	// it('sorts on clicking icon', () => {
-	// 	let serialHeader = wrapper.find('th').at(2)
-	// 	expect(serialHeader.html()).toContain(data.keys[2].label)
-	// })
+	it('sorts on clicking icon', () => {
+		let serialHeader = document.querySelector('th:nth-child(3)')
+		expect(serialHeader.innerHTML).toContain(data.keys[2].label)
+		serialHeader.click()
+		expect(component.state.data.keys[2].sortedUp).toBeTruthy()
+	})
 })
 

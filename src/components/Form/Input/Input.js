@@ -16,9 +16,9 @@ export default class Input extends Component {
      */
     label: PropTypes.string.isRequired,
     /**
-     * Value of the input. This cannot be null. Pass an empty string to reset component instead. This is a controlled React component (https://reactjs.org/docs/forms.html). This means that the single source of truth for the value is this prop. Typically, this prop will be linked to the state of the parent container and must be updated when the changeHandler is invoked
+     * Value of the input. This is a controlled React component (https://reactjs.org/docs/forms.html). This means that the single source of truth for the value is this prop. Typically, this prop will be linked to the state of the parent container and must be updated when the changeHandler is invoked
      */
-    value: PropTypes.string.isRequired,
+    value: PropTypes.string,
     /**
      * Returns the current value of the input on 'every' change. Use this callback to update the value prop. (See example below). 
      * The callback takes the following form:
@@ -28,10 +28,6 @@ export default class Input extends Component {
      * You should also use this to perform any validation checks you might require and pass the result of the validation to the validated prop.
      */
     onChange: PropTypes.func.isRequired,
-    /**
-     * Fired when the user starts interacting with the component. Passes no arguments.
-     */
-    onFocus: PropTypes.func,
     /**
      * Fired when the user changes focus(interacts) with some other element on the page. Passes no arguments
      */
@@ -47,31 +43,54 @@ export default class Input extends Component {
     /**
      * Include this prop if you want to disable the component completely
      */
-    disabled: PropTypes.bool
+    disabled: PropTypes.bool,
+
+
+    /**
+     * The `onMouseEnter` callback is fired when the mouse is moved over the button. Mouse event is passed as a param.
+     */
+    onMouseEnter: PropTypes.func,
+    /**
+     * The `onMouseLeave` callback is fired when the mouse is moved out of the buttons hit area. Mouse event is passed as a param.
+     */
+    onMouseLeave: PropTypes.func,
+    /**
+     * Callback for user focus event. Mouse event is passed as a param.
+     */
+    onFocus: PropTypes.func,
+    /**
+     * Callback for loss of focus from the component. Mouse event is passed as a param.
+     */
+    onBlur: PropTypes.func,
   }
 
   constructor(props) {
     super(props)
     this.state = {
-      isTyping : false,
+      isTyping : false
     };
     this.focusHandler = this.focusHandler.bind(this)
     this.blurHandler = this.blurHandler.bind(this)
     this.changeHandler = this.changeHandler.bind(this)
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    if(prevProps.value !== this.props.value) {
+      this.setState({isTyping: false})
+    }
+  }
+
   focusHandler(e) {
     this.setState({isTyping:true})
-    if(this.props.focusHandler instanceof Function) this.props.focusHandler()
+    if(this.props.onFocus instanceof Function) this.props.onFocus(e)
   }
 
   blurHandler(e) {
     this.setState({isTyping: false})
-    if(this.props.blurHandler instanceof Function) this.props.blurHandler()
+    if(this.props.onBlur instanceof Function) this.props.onBlur(e)
   }
 
   changeHandler(e) {
-    this.setState({valid: false, invalid: false})
     if(this.props.onChange instanceof Function) this.props.onChange(e.target.value)
   }
 
@@ -87,18 +106,20 @@ export default class Input extends Component {
       errorMessage = <div className={styles.error}>{this.props.invalid}</div>
 
     let validated
-      if(this.props.valid && value)
+      if(this.props.validated && value)
         validated = <div className={styles.validated}><img src={SuccessSVG} /></div>
 
     return (
       <div className={styles.container}>
         <input type="text"
-          className={this.props.valid?styles.valid_input:(this.props.invalid?styles.invalid_input:'')}
+          className={this.props.validated?styles.valid_input:(this.props.invalid?styles.invalid_input:'')}
           onFocus={this.focusHandler} 
           onBlur={this.blurHandler} 
           value={value} 
           onChange={this.changeHandler}
-          disabled={disabled}/>
+          disabled={disabled}
+          onMouseEnter={this.props.onMouseEnter}
+          onMouseLeave={this.props.onMouseLeave}/>
         <div className={(this.state.isTyping || value)?styles.float_focus:(disabled?styles.float_disable:styles.float_label)}>{label}</div>
         {validated}
         {errorMessage}

@@ -40,7 +40,7 @@ export default class App extends Component {
           {id:9,switch:'ste-n9k-bg1',ipAddress:'24.0.80.303',serial:'FDO21061Q4W',managed:'true'}
         ],
       },
-      checkboxValue:["Option 4"],
+      checkboxValue:[],
       datepickerValue: new Date(),
       minDate: new Date(2017,6,1),
       maxDate: new Date(2020,6,1),
@@ -129,7 +129,7 @@ export default class App extends Component {
               </Panel>
               <Panel size="full" collapse={{left:true,top:true,right:true,bottom:true}} hasSurface>
                 <Tooltip content="<p>I'm a RIGHT_TOP tooltip</p>" mode="RIGHT_TOP">
-                  <Input label="Input" onChange={(value) => this.setState({inputValue:value})} value={this.state.inputValue} invalid={this.state.errorString}/>
+                  <Input label="Input" onChange={(value) => this.setState({inputValue:value})} value={this.state.inputValue} validated disabled/>
                 </Tooltip>
               </Panel>
             </Panel>
@@ -160,7 +160,7 @@ export default class App extends Component {
                   <Dropdown 
                     label="Select"
                     value={this.state.dropdownValue}
-                    onChange={(val) => this.setState({dropdownValue:val.value})} 
+                    onChange={(val) => this.setState({dropdownValue:val})} 
                     options={[
                       {id:0,value:"Option 1"},
                       {id:1,value:"Option 2", disabled: true},

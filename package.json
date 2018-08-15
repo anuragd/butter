@@ -13,7 +13,7 @@
   "jsnext:main": "dist/index.es.js",
   "scripts": {
     "test": "cross-env CI=1 node scripts/test.js --env=jsdom",
-    "test:watch": "npm test -- --verbose && clear && printf '\\e[3J' && ./node_modules/.bin/chokidar \"src/**\" -c \"clear && printf '\\e[3J' && npm test -- --verbose\"",
+    "test:watch": "npm test -- --verbose && ./node_modules/.bin/chokidar \"src/**\" -c \"clear && printf '\\e[3J' && npm test -- --verbose\"",
     "build": "rollup -c",
     "postbuild": "./node_modules/.bin/lessc ./src/styles/exports.less ./dist/dcn-ux.less",
     "start": "rollup -c -m inline && ./node_modules/.bin/chokidar \"src/**\" -c \"rollup -c -m inline\"",
@@ -135,7 +135,7 @@
       "<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs}",
       "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs}"
     ],
-    "testEnvironment": "node",
+    "testEnvironment": "jsdom",
     "testURL": "http://localhost",
     "transform": {
       "^.+\\.(js|jsx|mjs)$": "<rootDir>/node_modules/babel-jest",

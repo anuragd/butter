@@ -19,7 +19,7 @@
 .label {
 	.regularFontSmall();
 	position: absolute;
-	top: @quarter-size - @small-text - (@quarter-size / 2);
+	top: @quarter-size - @small-text - (@quarter-size);
 	left: @quarter-size;
 }
 
@@ -50,6 +50,9 @@
 	top: 0;
 	left: 0;
 	z-index: 3;
+	&:hover {
+		background: @primary-bright;
+	}
 }
 
 .thumb_disabled {

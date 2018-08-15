@@ -39,14 +39,34 @@ export default class Toggle extends Component {
      */
     mode: PropTypes.oneOf(['NORMAL','GOOD','BAD']),
 
+    /**
+     * The `onMouseEnter` callback is fired when the mouse is moved over the button. Mouse event is passed as a param.
+     */
+    onMouseEnter: PropTypes.func,
+    /**
+     * The `onMouseLeave` callback is fired when the mouse is moved out of the buttons hit area. Mouse event is passed as a param.
+     */
+    onMouseLeave: PropTypes.func,
+    /**
+     * Callback for user focus event. Mouse event is passed as a param.
+     */
+    onFocus: PropTypes.func,
+    /**
+     * Callback for loss of focus from the component. Mouse event is passed as a param.
+     */
+    onBlur: PropTypes.func,
+
+  }
+
+  static defaultProps = {
+    valueLabels: {
+      on: "yes",
+      off: "no"
+    }
   }
 
   constructor(props) {
     super(props)
-    //Setup valueLabels based on provided props or resort to default
-    this.state = {
-      valueLabels: props.valueLabels?props.valueLabels:{off:"off", on: "on"}
-    }
     this.clickHandler = this.clickHandler.bind(this)
   }
 
@@ -91,12 +111,18 @@ export default class Toggle extends Component {
     }
 
     return (
-      <div className={styles.toggle_container} onClick={this.clickHandler}>
+      <div 
+        className={styles.toggle_container} 
+        onClick={this.clickHandler}
+        onMouseEnter={this.props.onMouseEnter}
+        onMouseLeave={this.props.onMouseLeave}
+        onFocus={this.props.onFocus}
+        onBlur={this.props.onBlur}>
         <div className={track}>
           <div className={thumb}></div>
         </div>
         <div className={styles.label}>
-          {this.props.label} {this.props.value?this.state.valueLabels.on:this.state.valueLabels.off}
+          {this.props.label} {this.props.value?this.props.valueLabels.on:this.props.valueLabels.off}
         </div>
       </div>
     )

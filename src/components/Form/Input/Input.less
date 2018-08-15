@@ -30,7 +30,8 @@
   	}
 
     &:disabled {
-      background: @disable-bg;
+      background: @disable-bg !important;
+      .noOutlines() !important;
       color: @disable-text;
       pointer-events: none;
       &:active {
@@ -41,7 +42,7 @@
     &.valid_input {
       background: @white;
       .validBorder();
-      padding-left: (@base-size * 2) + (@base-size / 4);
+      padding-left: @base-size + @half-size;
       min-width: @min-input-width - (@base-size / 4) - @base-size;
     }
 
@@ -89,18 +90,18 @@
 
 
 .validated {
-  width: @button-height;
+  width: @large-text;
   height: @button-height;
   position: absolute;
   z-index: 1;
-  top: @base-size;
-  left: @base-size * 2;
+  top: @quarter-size;
+  left: @quarter-size + @half-size;
   display: flex;
   align-items: center;
 
   img {
-    width: @regular-text;
-    height: @regular-text;
+    width: @large-text;
+    height: @large-text;
   }
 }
 

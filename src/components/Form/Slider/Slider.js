@@ -36,6 +36,23 @@ export default class Slider extends Component {
      */
     disabled: PropTypes.bool,
 
+    /**
+     * The `onMouseEnter` callback is fired when the mouse is moved over the button. Mouse event is passed as a param.
+     */
+    onMouseEnter: PropTypes.func,
+    /**
+     * The `onMouseLeave` callback is fired when the mouse is moved out of the buttons hit area. Mouse event is passed as a param.
+     */
+    onMouseLeave: PropTypes.func,
+    /**
+     * Callback for user focus event. Mouse event is passed as a param.
+     */
+    onFocus: PropTypes.func,
+    /**
+     * Callback for loss of focus from the component. Mouse event is passed as a param.
+     */
+    onBlur: PropTypes.func,
+
   }
 
   constructor(props) {
@@ -75,7 +92,7 @@ export default class Slider extends Component {
       let trackBounds = this.track.current.getBoundingClientRect()
       let maxX = trackBounds.width - (thumbWidth / 2)       // Get maximum possible x coordinate within the component boundaries and adjust for thumb width
       let xFactor = maxX / ( this.props.max - this.props.min ) // Total available horizontal distance divided my provided range
-      let xPosition = this.props.value * xFactor
+      let xPosition = (this.props.value - this.props.min) * xFactor
       if(xPosition > maxX) xPosition = maxX       // If calculated position exceeds component bounds set to maximum or minimum
       if(xPosition < 0) xPosition = 0             // If calculated position exceeds component bounds set to maximum or minimum
       this.setState({
@@ -100,7 +117,7 @@ export default class Slider extends Component {
 
     // If a new value is passed, calculate new x position
     if(prevProps.value !== this.props.value) {
-      let xPosition = this.props.value * this.state.xFactor
+      let xPosition = (this.props.value - this.props.min) * this.state.xFactor
       if(xPosition > this.state.maxX) {
         this.props.onChange(this.props.max)
       }
@@ -157,7 +174,7 @@ export default class Slider extends Component {
     // this.setState({
     //   valueX: newPosition,
     // })
-    if(this.props.onChange instanceof Function) this.props.onChange(parseInt(newPosition / this.state.xFactor))
+    if(this.props.onChange instanceof Function) this.props.onChange(parseInt(newPosition / this.state.xFactor) + this.props.min)
     e.stopPropagation()
     e.preventDefault()
   }
@@ -166,7 +183,7 @@ export default class Slider extends Component {
     this.setState({
       dragging: false
     })
-    if(this.props.onChange instanceof Function) this.props.onChange(parseInt(this.state.valueX / this.state.xFactor))
+    // if(this.props.onChange instanceof Function) this.props.onChange(parseInt(this.state.valueX / this.state.xFactor))
     e.stopPropagation()
     e.preventDefault()
   }
@@ -195,7 +212,13 @@ export default class Slider extends Component {
     } = this.props
 
     return (
-      <div className={styles.slider_container} tabIndex="1" onKeyUp={this.keyUpHandler}>
+      <div className={styles.slider_container}
+        tabIndex="0" 
+        onKeyUp={this.keyUpHandler}
+        onMouseEnter={this.props.onMouseEnter}
+        onMouseLeave={this.props.onMouseLeave}
+        onFocus={this.props.onFocus}
+        onBlur={this.props.onBlur}>
         <div className={styles.label}>{label}</div>
         <div className={styles.slider}>
           <div className={styles.track} ref={this.track} onClick={this.updatePosition}></div>
