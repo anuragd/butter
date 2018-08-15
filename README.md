@@ -76,6 +76,16 @@ To build the documentation into files that can be hosted on a separate web-serve
 npm run doc:build
 ```
 
+## Testing
+To run tests, you can use thw following commands:
+```bash
+npm test
+``
+or
+```bash
+npm run test:watch
+```
+
 ## License
 
 MIT © [](https://github.com/)
