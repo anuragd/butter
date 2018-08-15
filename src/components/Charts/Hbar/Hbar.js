@@ -27,7 +27,7 @@ export default class Hbar extends Component {
 				...theme,
 				chart: {
 					type: 'bar',
-					height: '50%'
+					height: '100%'
 				},
 				credits: {
 					enabled: false

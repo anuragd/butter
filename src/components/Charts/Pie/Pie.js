@@ -46,8 +46,8 @@ export default class Pie extends Component {
 				series: [
 					{
 						...props.options.series[0],
-						innerSize: '70%',
-						borderWidth: 12,
+						innerSize: '50%',
+						borderWidth: 8,
 						borderColor: '#FFFFFF',
 						dataLabels: {
 							enabled: false,

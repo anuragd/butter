@@ -6,17 +6,17 @@ initialState = {
         {id:2,value:"Option 3"},
         {id:3,value:"Option 4"}
       ],
-    value: null
+    value: []
 };
 
-<Radio 
+<Checkbox 
     label="Choose an option" 
     options={state.options} 
     value={state.value} 
     onChange={(val) => setState({value:val})}/>
 ```
 ```jsx static
-import { Radio } from 'dcn-network-insights-ux';
+import { Checkbox } from 'dcn-network-insights-ux';
 constructor(props) {
     super(props);
     this.state = {
@@ -26,13 +26,13 @@ constructor(props) {
             {id:2,value:"Option 3"},
             {id:3,value:"Option 4"}
         ],
-        value: null
+        value: []
     };
 }
 
 render() {
     return(
-        <Radio 
+        <Checkbox 
             label="Choose an option" 
             options={this.state.options} 
             value={this.state.value} 

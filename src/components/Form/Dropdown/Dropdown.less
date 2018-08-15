@@ -11,6 +11,7 @@
 	height: @button-height;
 	width: @min-input-width;
 	position: relative;
+	display: inline-block;
 	z-index: 100;
 	&:active, &:focus {
 		outline: none;
@@ -108,9 +109,6 @@
 					color:@white;
 					transition: @standard-transition;
 				}
-			}
-			&:last-child {
-				padding-bottom: @double-size * 2;
 			}
 		}
 	}
@@ -308,7 +306,7 @@
 	.open_list {
 		position: absolute;
 		width: @mini-input-width;
-		max-height: @max-mini-dropdown-height;
+		max-height: @max-mini-dropdown-height + @small-text + @half-size;
 		overflow: scroll;
 		.highlightBorder();
 		border-radius: @half-size;
@@ -335,7 +333,7 @@
 				flex-direction: row;
 				align-items: center;
 				&:last-child {
-					padding-bottom: @double-size;
+					margin-bottom: @half-size;
 				}
 				.list_bg {
 					position: absolute;

@@ -43,6 +43,27 @@ export default class Datepicker extends Component {
      * Javascript Date value indicating the latest possible date that can be selected
      */
     max: PropTypes.instanceOf(Date),
+    /**
+     * Boolean for disabling the control.
+     */
+    disabled: PropTypes.bool,
+
+    /**
+     * The `onMouseEnter` callback is fired when the mouse is moved over the button. Mouse event is passed as a param.
+     */
+    onMouseEnter: PropTypes.func,
+    /**
+     * The `onMouseLeave` callback is fired when the mouse is moved out of the buttons hit area. Mouse event is passed as a param.
+     */
+    onMouseLeave: PropTypes.func,
+    /**
+     * Callback for user focus event. Mouse event is passed as a param.
+     */
+    onFocus: PropTypes.func,
+    /**
+     * Callback for loss of focus from the component. Mouse event is passed as a param. onBlur has been disabled for this component since firing it causes focus conflicts with its child dropdowns
+     */
+    onBlur: PropTypes.func,
   }
 
   constructor(props) {
@@ -81,16 +102,9 @@ export default class Datepicker extends Component {
     if(prevProps.value !== this.props.value)
       newDate = this.convertDate(this.props.value)
     if(newDate) {
-      this.setState({currentMonth:this.getMonthCalendar(newDate)})
-    }
-    if(!prevState.open && this.state.open) {
-      let bounds = this.selectedDayCell.current
       this.setState({
-        showSelectBubble: true,
-        hoverLocation: {
-          x: bounds.offsetLeft,
-          y: bounds.offsetTop
-        }
+        currentMonth:this.getMonthCalendar(newDate),
+        internalValue:this.props.value?moment(this.props.value).format('D MMM YYYY'):'',
       })
     }
   }
@@ -117,16 +131,18 @@ export default class Datepicker extends Component {
     return this.getMonthCalendar(inputDate)
   }
 
+  // Close icon
   iconClickHandler(e) {
-    if(this.state.open) this.setState({open:false, internalValue: null})
+    this.setState({open:false, internalValue: null})
   }
 
   headerClickHandler(e) {
-    if(!this.state.open) this.setState({open:true})
+    if(!this.state.open && !this.props.disabled) this.setState({open:true})
   }
   
   blurHandler(e) {
-    this.setState({open: false})
+    // if(this.props.onBlur instanceof Function) this.props.onBlur(e)
+    if(this.state.open && !this.props.disabled) this.setState({open:false})
   }
 
   hoverHandler(e) {
@@ -144,6 +160,7 @@ export default class Datepicker extends Component {
     this.setState({showSelectBubble:false})
   }
 
+  // Data entry using text input box
   manualDateEntryHandler(e) {
     if(e.keyCode===13 || e.type === 'blur') {
       let newDate = this.convertDate(e.target.value)
@@ -225,11 +242,11 @@ export default class Datepicker extends Component {
   }
 
   render() {
-
     const {
       label,
       min,
-      max
+      max,
+      disabled
     } = this.props
 
     let value
@@ -239,7 +256,6 @@ export default class Datepicker extends Component {
     /** Build Calendar **/
     let calendar;
     
-
     if(this.state.open) {
       let calendarControls =
         <div className={styles.control_bar}>
@@ -253,13 +269,13 @@ export default class Datepicker extends Component {
             <Dropdown 
               label="Month" 
               options={processMonthsForEdge(months,this.state.currentMonth.year,min,max)} 
-              value={monthToString(this.state.currentMonth.month)} 
+              value={months.filter((month) => month.value === monthToString(this.state.currentMonth.month))[0]} 
               onChange={this.monthSelectHandler} 
               mini/>
             <Dropdown 
               label="Year" 
               options={processYearsForEdge(getYears(min,max), this.state.currentMonth.month, min, max)} 
-              value={this.state.currentMonth.year} 
+              value={getYears(min,max).filter((year) => year.value === this.state.currentMonth.year)[0]} 
               onChange={this.yearSelectHandler} 
               mini/>
           </div>
@@ -321,9 +337,14 @@ export default class Datepicker extends Component {
       internalValue = moment(value).format('D MMM YYYY')
 
     return (
-      <div className={styles.datepicker_container} tabIndex="0">
-        <div className={this.state.open?styles.open_datepicker:styles.datepicker}>
-          <div className={this.state.open?styles.open_header:styles.header} onClick={this.headerClickHandler} onBlur={this.blurHandler}>
+      <div className={styles.datepicker_container} tabIndex={disabled?"":"0"}>
+        <div 
+        className={disabled?styles.disabled_datepicker:(this.state.open?styles.open_datepicker:styles.datepicker)} 
+        onBlur={this.blurHandler}
+        onMouseEnter={this.props.onMouseEnter}
+        onMouseLeave={this.props.onMouseLeave}
+        onFocus={this.props.onFocus}>
+          <div className={this.state.open?styles.open_header:styles.header} onClick={this.headerClickHandler}>
             <input 
               className={styles.manual_entry} 
               type="text" 
@@ -332,9 +353,9 @@ export default class Datepicker extends Component {
               onChange={this.manualChange} 
               onKeyUp={this.manualDateEntryHandler}
               onBlur={this.manualDateEntryHandler}/>
-            <div className={value?styles.small_label:styles.label}>{label}</div>
+            <div className={value?styles.small_label:(disabled?styles.disabled_label:styles.label)}>{label}</div>
             <div className={styles.icon}>
-              <img src={CalendarSVG} className={this.state.open?styles.hide_icon:styles.show_icon}/>
+              <img src={CalendarSVG} className={this.state.open?styles.hide_icon:(disabled?styles.disabled_icon:styles.show_icon)}/>
               <img src={CloseSVG}  className={this.state.open?styles.show_icon:styles.hide_icon} onClick={this.iconClickHandler}/>
             </div>
           </div>

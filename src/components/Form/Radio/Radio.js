@@ -37,45 +37,85 @@ export default class Radio extends Component {
       disabled: PropTypes.bool
     })).isRequired,
     /**
+     * Selected value. Must correspond to the type passed in the `value` property of objects in the options array. Remember to update this value when the `onChange` callback is fired.
+     */
+    value: PropTypes.shape({
+      /**
+       *  An unique number representing the option.
+       */
+      id: PropTypes.number.isRequired,
+      /**
+       * The number or string label for the option
+       */
+      value: PropTypes.oneOfType([PropTypes.number,PropTypes.string]).isRequired,
+      /**
+       * Set `disabled` to `true` to disable selection of this option
+       */
+      disabled: PropTypes.bool
+    }),
+    /**
      * Boolean for disabling the control.
      */
     disabled: PropTypes.bool,
+
+    /**
+     * The `onMouseEnter` callback is fired when the mouse is moved over the button. Mouse event is passed as a param.
+     */
+    onMouseEnter: PropTypes.func,
+    /**
+     * The `onMouseLeave` callback is fired when the mouse is moved out of the buttons hit area. Mouse event is passed as a param.
+     */
+    onMouseLeave: PropTypes.func,
+    /**
+     * Callback for user focus event. Mouse event is passed as a param.
+     */
+    onFocus: PropTypes.func,
+    /**
+     * Callback for loss of focus from the component. Mouse event is passed as a param.
+     */
+    onBlur: PropTypes.func,
   }
 
   constructor(props) {
     super(props)
-    this.state = {
-      selected: null,
-      goingDown: true 
-    }
     this.clickHandler = this.clickHandler.bind(this)
   }
 
   clickHandler(option) {
-    this.setState({selected:option.id})
-    if(this.props.onChange instanceof Function) this.props.onChange(option)
+    if(this.props.onChange instanceof Function && !option.disabled) this.props.onChange(option)
   }
 
   render() {
     const {
       label,
       disabled,
-      options
+      options,
+      value
     } = this.props
 
     const optionsList = options.map((option, key) => 
-      <div className={(option.disabled || disabled)?`${styles.radio_option} ${styles.disabled_option}`:styles.radio_option} onClick={() => this.clickHandler(option)} key={option.id?option.id:key}>
-        <div className={(this.state.selected===option.id)?styles.active_holder:styles.radio_holder}>
-          <div className={(this.state.selected < option.id)?styles.radio_blob_up:styles.radio_blob_down}></div>
+      <div 
+      className={(option.disabled || disabled)?`${styles.radio_option} ${styles.disabled_option}`:styles.radio_option} 
+      onClick={() => this.clickHandler(option)} 
+      key={option.id?option.id:key} 
+      tabIndex={(option.disabled || disabled)?null:"1"}>
+        <div className={(value && value.id===option.id)?styles.active_holder:styles.radio_holder}>
+          <div className={(value && value.id < option.id)?styles.radio_blob_up:styles.radio_blob_down}></div>
         </div>
-        <div className={(this.state.selected===option.id)?styles.selected_radio_value:styles.radio_value}>{option.value}</div>
+        <div className={(value && value.id===option.id)?styles.selected_radio_value:styles.radio_value}>{option.value}</div>
       </div>
     )
 
     return (
-      <div className={styles.radio_container}>
-        <div className={disabled?styles.disabled_label:styles.label}>{label}</div>
-        {optionsList}
+      <div 
+        className={styles.radio_container}
+        onMouseEnter={this.props.onMouseEnter}
+        onMouseLeave={this.props.onMouseLeave}
+        onFocus={this.props.onFocus}
+        onBlur={this.props.onBlur}
+        tabIndex="0">
+          <div className={disabled?styles.disabled_label:styles.label}>{label}</div>
+          {optionsList}
       </div>
     )
   }

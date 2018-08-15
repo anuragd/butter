@@ -48,23 +48,16 @@ export default class Table extends Component {
     super(props)
     this.state = {
       data: props.data,
-      positionMap:null,
       translateMap:props.data.data.map(() => 0)
     }
     this.tableBody = React.createRef()
+    this.deriveTranslateMap = this.deriveTranslateMap.bind(this)
     this.headerClickHandler = this.headerClickHandler.bind(this)
   }
 
-  componentDidMount() {
-    setTimeout(() => {
-      let newPositionMap = map(this.tableBody.current.children, (tableRow) => tableRow.offsetTop)
-      this.setState({
-        positionMap: newPositionMap
-      })
-    }, 0)
-  }
 
-  deriveTranslateMap(newData, oldData, oldMap) {
+  deriveTranslateMap(newData, oldData) {
+    let oldMap = map(this.tableBody.current.children, (tableRow) => tableRow.offsetTop)
     let newMap = []
     for(var i = 0; i < oldData.length; i++) {
       newMap.push(oldMap[newData.indexOf(oldData[i])] - oldMap[i])
@@ -101,7 +94,7 @@ export default class Table extends Component {
       }
       newKeys = map(newKeys, (key) => {return({...key,sortedUp:null})})
       newKeys[index] = currentKey
-      let newTranslateMap = this.deriveTranslateMap(newData,this.state.data.data,this.state.positionMap)
+      let newTranslateMap = this.deriveTranslateMap(newData,this.state.data.data)
       this.setState({
         translateMap: newTranslateMap,
         data: {
@@ -109,15 +102,6 @@ export default class Table extends Component {
           keys: newKeys
         }
       })
-      // setTimeout(() => {
-      //   this.setState({
-      //     translateMap:this.props.data.data.map(() => 0),
-      //     data: {
-      //       ...this.state.data,
-      //       data: newData
-      //     }
-      //   })
-      // }, 200)
     }
   }
 

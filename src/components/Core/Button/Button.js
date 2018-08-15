@@ -14,6 +14,15 @@ export default class Button extends Component {
      */
     label: PropTypes.string.isRequired,
     /**
+     * Callback for user click. Mouse event is passed as a param.
+     */
+    onClick: PropTypes.func,
+    /**
+     * Setting this attribute will cause the button to be disabled. Disabled buttons will not fire any user interaction events
+     */
+    disabled: PropTypes.bool,
+
+    /**
      * The `onMouseEnter` callback is fired when the mouse is moved over the button. Mouse event is passed as a param.
      */
     onMouseEnter: PropTypes.func,
@@ -22,13 +31,13 @@ export default class Button extends Component {
      */
     onMouseLeave: PropTypes.func,
     /**
-     * Callback for user click. Mouse event is passed as a param.
+     * Callback for user focus event. Mouse event is passed as a param.
      */
-    onClick: PropTypes.func,
+    onFocus: PropTypes.func,
     /**
-     * Setting this attribute will cause the button to be disabled. Disabled buttons will not fire any user interaction events
+     * Callback for loss of focus from the component. Mouse event is passed as a param.
      */
-    disabled: PropTypes.bool
+    onBlur: PropTypes.func,
   }
 
   constructor(props) {
@@ -48,7 +57,10 @@ export default class Button extends Component {
           onClick={this.props.onClick} 
           onMouseEnter={this.props.onMouseEnter}
           onMouseLeave={this.props.onMouseLeave}
-          disabled
+          disabled={disabled}
+          onFocus={this.props.onFocus}
+          onBlur={this.props.onBlur}
+          tabIndex="1"
           >
           {label}
         </button>

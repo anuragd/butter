@@ -18,7 +18,7 @@ export default class Textarea extends Component {
     /**
      * Value of the TextArea. This is a controlled React component (https://reactjs.org/docs/forms.html). This means that the single source of truth for the value is this prop. Typically, this prop will be linked to the state of the parent container and must be updated when the onChange is invoked
      */
-    value: PropTypes.string.isRequired,
+    value: PropTypes.string,
     /**
      * Returns the current value of the input on 'every' change. Use this callback to update the value prop. (See example below). 
      * The callback takes the following form:
@@ -28,14 +28,6 @@ export default class Textarea extends Component {
      * You should also use this to perform any validation checks you might require and pass the result of the validation to the validated prop.
      */
     onChange: PropTypes.func.isRequired,
-    /**
-     * Fired when the user starts interacting with the component. Passes no arguments
-     */
-    focusHandler: PropTypes.func,
-    /**
-     * Fired when the user changes focus(interacts) with some other element on the page. Passes no arguments
-     */
-    blurHandler: PropTypes.func,
     /**
      * Include this prop if the input has an attached validation function and passes the validation check. Note that validated and invalid props cannot be passed at the same time.
      */
@@ -47,15 +39,29 @@ export default class Textarea extends Component {
     /**
      * Include this prop if you want to disable the component completely
      */
-    disabled: PropTypes.bool
+    disabled: PropTypes.bool,
+    /**
+     * The `onMouseEnter` callback is fired when the mouse is moved over the button. Mouse event is passed as a param.
+     */
+    onMouseEnter: PropTypes.func,
+    /**
+     * The `onMouseLeave` callback is fired when the mouse is moved out of the buttons hit area. Mouse event is passed as a param.
+     */
+    onMouseLeave: PropTypes.func,
+    /**
+     * Callback for user focus event. Mouse event is passed as a param.
+     */
+    onFocus: PropTypes.func,
+    /**
+     * Callback for loss of focus from the component. Mouse event is passed as a param.
+     */
+    onBlur: PropTypes.func,
   }
 
   constructor(props) {
     super(props)
     this.state = {
-      isTyping : false,
-      valid: props.validated,
-      invalid: props.invalid
+      isTyping : false
     };
     this.focusHandler = this.focusHandler.bind(this)
     this.blurHandler = this.blurHandler.bind(this)
@@ -64,16 +70,15 @@ export default class Textarea extends Component {
 
   focusHandler(e) {
     this.setState({isTyping:true})
-    if(this.props.focusHandler) this.props.focusHandler()
+    if(this.props.onFocus) this.props.onFocus(e)
   }
 
   blurHandler(e) {
     this.setState({isTyping: false})
-    if(this.props.blurHandler) this.props.blurHandler()
+    if(this.props.onBlur) this.props.onBlur(e)
   }
 
   onChange(e) {
-    this.setState({invalid: false, valid: false})
     if(this.props.onChange instanceof Function) this.props.onChange(e.target.value)
   }
 
@@ -85,22 +90,25 @@ export default class Textarea extends Component {
     } = this.props
 
     let errorMessage
-    if(this.state.invalid && !this.state.isTyping)
-      errorMessage = <div className={styles.error}>{this.state.invalid}</div>
+    if(this.props.invalid && !this.state.isTyping)
+      errorMessage = <div className={styles.error}>{this.props.invalid}</div>
 
     let validated
-      if(this.state.valid && value)
+      if(this.props.validated && value)
         validated = <div className={styles.validated}><img src={SuccessSVG} /></div>
 
     return (
       <div className={styles.container}>
         <textarea type="text"
-          className={this.state.valid?styles.valid_input:(this.state.invalid?styles.invalid_input:'')}
+          className={this.props.validated?styles.valid_input:(this.state.invalid?styles.invalid_input:'')}
           onFocus={this.focusHandler} 
           onBlur={this.blurHandler} 
           value={value} 
           onChange={this.onChange}
-          disabled={disabled}></textarea>
+          disabled={disabled}
+          onMouseEnter={this.props.onMouseEnter}
+          onMouseLeave={this.props.onMouseLeave}
+          tabIndex={disabled?'':'0'}></textarea>
         <div className={(this.state.isTyping || value)?styles.float_focus:(disabled?styles.float_disable:styles.float_label)}>{label}</div>
         {validated}
         {errorMessage}

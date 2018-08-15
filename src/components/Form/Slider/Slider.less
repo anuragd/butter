@@ -4,6 +4,10 @@
 @import "../../../styles/animations.less";
 @import "../../../styles/type.less";
 
+.slider_super_container {
+	display: inline-block;
+}
+
 .slider_container {
 	padding: @quarter-size;
 	display: flex;
@@ -19,7 +23,7 @@
 .label {
 	.regularFontSmall();
 	position: absolute;
-	top: @quarter-size - @small-text - (@quarter-size / 2);
+	top: @quarter-size - @small-text - (@quarter-size);
 	left: @quarter-size;
 }
 
@@ -50,6 +54,12 @@
 	top: 0;
 	left: 0;
 	z-index: 3;
+	&:hover {
+		background: @primary-bright;
+	}
+	&:focus, &:active {
+		.noOutlines();
+	}
 }
 
 .thumb_disabled {

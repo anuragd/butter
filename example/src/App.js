@@ -7,10 +7,13 @@ export default class App extends Component {
     super(props);
     this.state = {
       inputValue: 'Test',
+      errorString: '',
       textAreaValue:'',
       progress: 50,
       toggleState: true,
       sliderValue:26,
+      dropdownValue: null,
+      radioValue: null,
       checkboxOptions: [
         {id:0,value:"Option 1"},
         {id:1,value:"Option 2", disabled: true},
@@ -37,8 +40,8 @@ export default class App extends Component {
           {id:9,switch:'ste-n9k-bg1',ipAddress:'24.0.80.303',serial:'FDO21061Q4W',managed:'true'}
         ],
       },
-      checkboxValue:{id:4,value:"Option 5"},
-      datepickerValue: new Date(),
+      checkboxValue:[],
+      datepickerValue: null,
       minDate: new Date(2017,6,1),
       maxDate: new Date(2020,6,1),
       activeTab: 'Tab2',
@@ -66,7 +69,7 @@ export default class App extends Component {
             </Panel>
             <Panel size="threequarter" collapse={{top:true,right:true,bottom:true,left:true}}>
               <Dropdown 
-                label="Select" 
+                label="Select"
                 options={[
                   {id:0,value:"Option 1"},
                   {id:1,value:"Option 2", disabled: true},
@@ -92,41 +95,42 @@ export default class App extends Component {
             <Panel size="half" collapse={{top:true,right:true,bottom:true,left:true}}>
               <Panel size="half" collapse={{left:true,bottom:true,top:true}}>
                 <Panel size="full" collapse={{left:true,right:true,bottom:true,top:true}} hasSurface>
+                  <button onClick={() => this.setState({datepickerValue: new Date()})}>Add date</button>
                   <Tooltip content="<p>I'm a LEFT_TOP tooltip</p>" mode="LEFT_TOP">
                     <Datepicker 
                       label="Choose date" 
                       value={this.state.datepickerValue} 
-                      changeHandler={(val) => this.setState({datepickerValue:val})}
+                      onChange={(val) => this.setState({datepickerValue:val})}
                       min={this.state.minDate}
                       max={this.state.maxDate}/>
                   </Tooltip>
                 </Panel>
                 <Panel  size="full" collapse={{left:true,right:true,bottom:true,top:true}} hasSurface>
                   <Tooltip content="<p>I'm a TOP_RIGHT tooltip</p>" mode="TOP_RIGHT">
-                    <Button label="Button"/>
+                    <Button label="Button" onClick={() => alert('hi')}/>
                   </Tooltip>
                 </Panel>
               </Panel>
               <Panel  size="half" collapse={{right:true,left: true,bottom:true,top:true}} hasSurface>
                 <Tooltip content="<p>I'm a TOP_LEFT tooltip</p>" mode="TOP_LEFT">
-                    <Textarea label="TextArea" changeHandler={(value) => this.setState({textAreaValue:value})} value={this.state.textAreaValue}/>
+                    <Textarea label="TextArea" onChange={(value) => this.setState({textAreaValue:value})} value={this.state.textAreaValue}/>
                   </Tooltip>
               </Panel>
             </Panel>
           </Panel>
           <Panel  size="full" collapse={{top:true, bottom:true}}>
             <Panel  size="quarter" collapse={{left:true, top:true}} hasSurface>
-              <Slider label="Slider" min={0} max={100} value={this.state.sliderValue} changeHandler={(value) => this.setState({sliderValue:value})}/>
+              <Slider label="Slider" min={20} max={80} value={this.state.sliderValue} onChange={(value) => this.setState({sliderValue:value})}/>
             </Panel>
             <Panel  size="quarter" collapse={{left:true, top:true}}>
               <Panel size="full" collapse={{left:true,top:true,right:true,bottom:true}} hasSurface>
                 <Tooltip content="<p>I'm a LEFT_BOTTOM tooltip</p>" mode="LEFT_BOTTOM">
-                  <Toggle value={this.state.toggleState} changeHandler={() => this.setState({toggleState: !this.state.toggleState})} label="Toggle" valueLabels={{on:"yes",off:"no"}}/>
+                  <Toggle value={this.state.toggleState} onChange={(val) => this.setState({toggleState: val})} label="Toggle" valueLabels={{on:"yes",off:"no"}}/>
                 </Tooltip>
               </Panel>
               <Panel size="full" collapse={{left:true,top:true,right:true,bottom:true}} hasSurface>
                 <Tooltip content="<p>I'm a RIGHT_TOP tooltip</p>" mode="RIGHT_TOP">
-                  <Input label="Input" changeHandler={(value) => this.setState({inputValue:value})} value={this.state.inputValue}/>
+                  <Input label="Input" onChange={(value) => this.setState({inputValue:value})} value={this.state.inputValue} validated disabled/>
                 </Tooltip>
               </Panel>
             </Panel>
@@ -134,6 +138,8 @@ export default class App extends Component {
               <Tooltip content="<p>I'm a BOTTOM_LEFT tooltip</p>" mode="BOTTOM_LEFT">
                 <Radio 
                   label="Select an option"
+                  value={this.state.radioValue}
+                  onChange={(val) => this.setState({radioValue:val})}
                   options={[
                     {id:0,value:"Option 1"},
                     {id:1,value:"Option 2", disabled: true},
@@ -144,7 +150,7 @@ export default class App extends Component {
             </Panel>
             <Panel size="quarter" collapse={{left:true, top:true, right:true}} hasSurface>
               <Tooltip content="<p>I'm a BOTTOM_RIGHT tooltip</p>" mode="BOTTOM_RIGHT">
-                <Checkbox label="Choose an option" options={this.state.checkboxOptions} value={this.state.checkboxValue} changeHandler={(val) => this.setState({checkboxValue:val})}/>
+                <Checkbox label="Choose an option" options={this.state.checkboxOptions} value={this.state.checkboxValue} onChange={(val) => this.setState({checkboxValue:val})}/>
               </Tooltip>
             </Panel>
           </Panel>
@@ -153,7 +159,9 @@ export default class App extends Component {
               <Panel  size="full" collapse={{top:true, left:true, bottom:true, right:true}} hasSurface>
                 <Tooltip content="<p>I'm a RIGHT_BOTTOM tooltip</p>" mode="RIGHT_BOTTOM">
                   <Dropdown 
-                    label="Select" 
+                    label="Select"
+                    value={this.state.dropdownValue}
+                    onChange={(val) => this.setState({dropdownValue:val})} 
                     options={[
                       {id:0,value:"Option 1"},
                       {id:1,value:"Option 2", disabled: true},

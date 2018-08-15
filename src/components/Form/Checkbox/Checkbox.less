@@ -6,6 +6,11 @@
 
 .checkbox_container {
 	padding: @quarter-size;
+	display: inline-block;
+	transition: @standard-transition;
+	&:focus, &:active {
+		.focusBox();
+	}
 }
 
 .label {
@@ -34,8 +39,12 @@
 .option_container {
 	display: flex;
 	align-items: center;
-	padding: 0 0 @half-size 0;
+	margin: 0 0 @half-size 0;
 	cursor: pointer;
+	transition: @standard-transition;
+	&:focus, &:active {
+		.smallFocusBox();
+	}
 
 	&:hover {
 		.box {
@@ -50,6 +59,9 @@
 .disabled_container {
 	composes: option_container;
 	pointer-events: none;
+	&:focus, &:active {
+		.noOutlines();
+	}
 	.box {
 		.noOutlines();
 		background: @disable-bg;

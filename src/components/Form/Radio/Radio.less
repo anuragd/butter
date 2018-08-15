@@ -6,7 +6,11 @@
 
 .radio_container {
 	padding: @quarter-size;
-
+	transition: @standard-transition;
+	display: inline-block;
+	&:focus, &:active {
+		.focusBox();
+	}
 }
 
 .label {
@@ -31,6 +35,10 @@
 		.radio_value {
 			color: @primary-bright;
 		}
+	}
+	transition: @standard-transition;
+	&:focus, &:active {
+		.smallFocusBox();
 	}
 	.radio_holder {
 		width: @radio-size;

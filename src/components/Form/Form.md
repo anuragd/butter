@@ -31,3 +31,5 @@ render() {
     <Form.Input label="Label" value="Value" /> 
 }
 ```
+
+All components in this package provide `onMouseEnter`,`onMouseLeave`,`onFocus` and `onBlur` props. All of these callbacks are fired with the `e` mouseEvent. However, be highly cautious of basing any of your logic based on information contained within this `e` object as they are mostly non-sensical and based on the component's on internal implementation. This param is only being passed to maintain consistency of these handlers.
