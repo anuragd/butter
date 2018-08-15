@@ -103,7 +103,7 @@ describe('User interactions', () => {
 		wrapper.find('.header').simulate('click')
 		expect(wrapper.find('.open_list').length).toEqual(1)
 		//Dropdown is open
-		wrapper.simulate('blur')
+		wrapper.simulate('blur', {stopPropagation: () => true, preventDefault: () => true})
 		expect(wrapper.find('.open_list').length).toEqual(0)
 	})
 	it('fires onChange when selection is changed and renders appropriately', () => {
@@ -131,7 +131,7 @@ describe('User interactions', () => {
 		expect(mockFunction).toHaveBeenCalled()
 	})
 	it('fires onBlur event', () => {
-		wrapper.simulate('blur')
+		wrapper.simulate('blur', {stopPropagation: () => true, preventDefault: () => true})
 		expect(mockFunction).toHaveBeenCalled()
 	})
 })

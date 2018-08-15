@@ -62,10 +62,10 @@ describe('User interactions', () => {
 					mockFunction()
 					wrapper.setProps({value:value})
 				}}
-				onMouseEnter={mockWrapper}
-				onMouseLeave={mockWrapper}
-				onFocus={mockWrapper}
-				onBlur={mockWrapper} 
+				onMouseEnter={mockFunction}
+				onMouseLeave={mockFunction}
+				onFocus={mockFunction}
+				onBlur={mockFunction} 
 			/>)
 	})
 	beforeEach(() => {
