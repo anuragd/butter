@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { DCNCharts } from 'dcn-ux-resources'
+import { DCNCharts } from 'dcn-network-insights-ux'
 
 
 
