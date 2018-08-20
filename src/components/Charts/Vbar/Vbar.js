@@ -32,22 +32,30 @@ export default class Vbar extends Component {
 				credits: {
 					enabled: false
 				},
+				colors: ['#80BB5A','#FF7E1F','#CF202F'],
 				plotOptions: {
 					column: {
 						groupPadding:0.1,
 						pointPadding:0,
 						borderWidth:0,
-						pointWidth:16,
-						borderRadius: 8,
+						pointWidth:45,
+						borderRadius: 23,
 						borderColor:'#FFFFFF',
-						color: {
-							linearGradient: {x1:0.5,y1:0, x2:0.5,y2:1},
-							stops: [
-								[0, '#D92780'],
-								[0.5, '#FF7D85'],
-								[1, '#FFC87D']
-							]
+						colorByPoint: true,
+						dataLabels: {
+							enabled: true,
+							style: {
+								fontSize: '24px'
+							}
 						}
+						// color: {
+						// 	linearGradient: {x1:0.5,y1:0, x2:0.5,y2:1},
+						// 	stops: [
+						// 		[0, '#D92780'],
+						// 		[0.5, '#FF7D85'],
+						// 		[1, '#FFC87D']
+						// 	]
+						// }
 					}
 				},
 				xAxis: {

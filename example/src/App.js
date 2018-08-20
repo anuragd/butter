@@ -70,8 +70,8 @@ export default class App extends Component {
       activeTab: 'Tab2',
       histoData: (() => {
         let result = []
-        for(var i=0; i<8; i++) {
-          result.push(Math.random() * 10)
+        for(var i=0; i<3; i++) {
+          result.push(parseInt(Math.random() * 10))
         }
         return result
       })(),
@@ -105,7 +105,7 @@ export default class App extends Component {
         <Content>
           <Panel size="full">
             <Panel size="full"  collapse={{top:true,right:true,left:true}} hasSurface label="Overview">
-              <Panel size="quarter" collapse={{top:true, left:true, bottom:true}}><Scoreboard label="Switches" value="334" /></Panel>
+              <Panel size="quarter" collapse={{top:true, left:true, bottom:true}}><Scoreboard label="Switches" value={334} /></Panel>
               <Panel size="half" collapse={{top:true, left:true, bottom:true}}>
                 <Panel size="quarter" collapse={{top:true, left:true, bottom:true}}><AlertScore type="critical"/></Panel>
                 <Panel size="quarter" collapse={{top:true, left:true, bottom:true}}><AlertScore type="major"/></Panel>
@@ -118,7 +118,6 @@ export default class App extends Component {
                 <Panel size="quarter" collapse={{top:true,left:true}} hasSurface><Charts.Pie options={{series:[{data:this.state.chartData}]}} /></Panel>
                 <Panel  collapse={{top:true,left:true}} size="quarter" hasSurface><Charts.Hbar options={{series:[{data:this.state.chartData}]}} /></Panel>
                 <Panel  collapse={{top:true,left:true}} size="quarter" hasSurface><Charts.Vbar options={{series:[{data:this.state.histoData}]}} /></Panel>
-                <Panel  collapse={{top:true,left:true}}size="quarter" hasSurface><Charts.Area options={{series:[{data:this.state.histoData}]}} /></Panel>
               </Panel>
               <Panel collapse={{top:true,left:true, bottom: true, left: true}} size="full" hasSurface>
                 <Tabs options={['Tab1','Tab2','Tab3','Tab4']} activeTab={this.state.activeTab} onChange={(tab,key) => this.setState({activeTab:tab})}/>
