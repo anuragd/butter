@@ -15,6 +15,7 @@ import Tooltip from './components/Core/Tooltip/Tooltip'
 import Table from './components/Core/Table/Table'
 import Tabs from './components/Core/Tabs/Tabs'
 import Scoreboard from './components/Core/Scoreboard/Scoreboard'
+import StatusTitle from './components/Core/StatusTitle/StatusTitle'
 
 import Area from './components/Charts/Area/Area'
 import Hbar from './components/Charts/Hbar/Hbar'
@@ -27,7 +28,7 @@ import Content from './components/Grid/Content/Content'
 import Panel from './components/Grid/Panel/Panel'
 
 const Core = {
-	Button, ProgressBar, ProgressBarMini, NoDataPanel, Tooltip, Table, Tabs
+	Button, ProgressBar, ProgressBarMini, NoDataPanel, Tooltip, Table, Tabs, Scoreboard, StatusTitle
 }
 
 const Form = {
@@ -61,6 +62,7 @@ export {
 	Table, 
 	Tabs,
 	Scoreboard,
+	StatusTitle,
 	Container,
 	Header,
 	Content,

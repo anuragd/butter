@@ -17,6 +17,7 @@ import {
   Table, 
   Tabs,
   Scoreboard, 
+  StatusTitle,
   Charts, 
   Container, 
   Header, 
@@ -82,7 +83,7 @@ export default class App extends Component {
       <Container>
         <Header>
           <Panel size="threequarter" collapse={{top:true,right:true,bottom:true}}>
-            CISCO Network Insights
+            <StatusTitle label="Summary" isOk={true} />
           </Panel>
           <Panel size="quarter" collapse={{top:true,right:true,bottom:true,left:true}}>
             <Panel size="quarter" collapse={{top:true,right:true,bottom:true,left:true}}>
