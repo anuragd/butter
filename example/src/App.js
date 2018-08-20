@@ -18,6 +18,7 @@ import {
   Tabs,
   Scoreboard, 
   StatusTitle,
+  AlertScore,
   Charts, 
   Container, 
   Header, 
@@ -104,7 +105,13 @@ export default class App extends Component {
         <Content>
           <Panel size="full">
             <Panel size="full"  collapse={{top:true,right:true,left:true}} hasSurface label="Overview">
-              <Scoreboard />
+              <Panel size="quarter" collapse={{top:true, left:true, bottom:true}}><Scoreboard label="Switches" value="334" /></Panel>
+              <Panel size="half" collapse={{top:true, left:true, bottom:true}}>
+                <Panel size="quarter" collapse={{top:true, left:true, bottom:true}}><AlertScore type="critical"/></Panel>
+                <Panel size="quarter" collapse={{top:true, left:true, bottom:true}}><AlertScore type="major"/></Panel>
+                <Panel size="quarter" collapse={{top:true, left:true, bottom:true}}><AlertScore type="minor"/></Panel>
+                <Panel size="quarter" collapse={{top:true, left:true, bottom:true}}><AlertScore type="other"/></Panel>
+              </Panel>
             </Panel>
             <Panel size="half" collapse={{top:true,right:true,bottom:true,left:true}}>
               <Panel size="full" collapse={{top:true,right:true,bottom:true,left:true}}>
