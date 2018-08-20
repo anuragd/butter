@@ -14,6 +14,7 @@ import NoDataPanel from './components/Core/NoDataPanel/NoDataPanel'
 import Tooltip from './components/Core/Tooltip/Tooltip'
 import Table from './components/Core/Table/Table'
 import Tabs from './components/Core/Tabs/Tabs'
+import Scoreboard from './components/Core/Scoreboard/Scoreboard'
 
 import Area from './components/Charts/Area/Area'
 import Hbar from './components/Charts/Hbar/Hbar'
@@ -59,11 +60,15 @@ export {
 	Tooltip, 
 	Table, 
 	Tabs,
-	DCNCharts,
+	Scoreboard,
 	Container,
 	Header,
 	Content,
 	Panel,
+	Area,
+	Pie,
+	Column,
+	Bar,
 
 	Core,
 	Grid,

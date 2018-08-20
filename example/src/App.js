@@ -1,6 +1,27 @@
 import React, { Component } from 'react'
 
-import { Radio, Dropdown, Input, Button, Textarea, NoDataPanel, ProgressBar, ProgressBarMini, Toggle, Slider, Checkbox, Datepicker, Tooltip, Table, Tabs, Charts, Container, Header, Content, Panel } from 'dcn-network-insights-ux'
+import { 
+  Radio, 
+  Dropdown, 
+  Input, 
+  Button, 
+  Textarea, 
+  NoDataPanel, 
+  ProgressBar, 
+  ProgressBarMini, 
+  Toggle, 
+  Slider, 
+  Checkbox, 
+  Datepicker, 
+  Tooltip, 
+  Table, 
+  Tabs,
+  Scoreboard, 
+  Charts, 
+  Container, 
+  Header, 
+  Content, 
+  Panel } from 'dcn-network-insights-ux'
 
 export default class App extends Component {
   constructor(props) {
@@ -81,6 +102,9 @@ export default class App extends Component {
         </Header>
         <Content>
           <Panel size="full">
+            <Panel size="full"  collapse={{top:true,right:true,left:true}} hasSurface label="Overview">
+              <Scoreboard />
+            </Panel>
             <Panel size="half" collapse={{top:true,right:true,bottom:true,left:true}}>
               <Panel size="full" collapse={{top:true,right:true,bottom:true,left:true}}>
                 <Panel size="quarter" collapse={{top:true,left:true}} hasSurface><Charts.Pie options={{series:[{data:this.state.chartData}]}} /></Panel>
@@ -95,7 +119,6 @@ export default class App extends Component {
             <Panel size="half" collapse={{top:true,right:true,bottom:true,left:true}}>
               <Panel size="half" collapse={{left:true,bottom:true,top:true}}>
                 <Panel size="full" collapse={{left:true,right:true,bottom:true,top:true}} hasSurface>
-                  <button onClick={() => this.setState({datepickerValue: new Date()})}>Add date</button>
                   <Tooltip content="<p>I'm a LEFT_TOP tooltip</p>" mode="LEFT_TOP">
                     <Datepicker 
                       label="Choose date" 

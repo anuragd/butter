@@ -39,6 +39,7 @@ export default class Hbar extends Component {
 						groupPadding: 0,
 						borderColor: '#FFFFFF',
 						borderWidth: 9,
+						borderRadius: 12,
 						dataLabels: {
 							enabled: true,
 							style: {
