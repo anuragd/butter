@@ -19,6 +19,7 @@ import {
   Scoreboard, 
   StatusTitle,
   AlertScore,
+  FillMeter,
   Charts, 
   Container, 
   Header, 
@@ -112,6 +113,7 @@ export default class App extends Component {
                 <Panel size="quarter" collapse={{top:true, left:true, bottom:true}}><AlertScore type="minor"/></Panel>
                 <Panel size="quarter" collapse={{top:true, left:true, bottom:true}}><AlertScore type="other"/></Panel>
               </Panel>
+              <Panel size="quarter" collapse={{top:true, left:true, bottom:true}}><FillMeter label="Transceiver Alarm" value={4} max={100}/></Panel>
             </Panel>
             <Panel size="half" collapse={{top:true,right:true,bottom:true,left:true}}>
               <Panel size="full" collapse={{top:true,right:true,bottom:true,left:true}}>

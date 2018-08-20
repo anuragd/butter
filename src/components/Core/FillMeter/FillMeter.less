@@ -1,0 +1,46 @@
+@import "../../../styles/grid.less";
+@import '../../../styles/color.less';
+@import "../../../styles/mixins.less";
+@import "../../../styles/animations.less";
+@import "../../../styles/type.less";
+
+.fillmeter_container {
+	display: inline-block;
+	min-width: @min-input-width;
+	padding: @base-size;
+}
+
+.inner_container {
+
+}
+
+.label_row {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	margin-bottom: @quarter-size;
+}
+
+.label {
+	.regularFontSmall();
+	color: @primary-dark;
+	margin-right: @quarter-size;
+}
+
+.value {
+	.heavyFontSmall();
+	color: @primary-bright;
+}
+
+.barfill {
+	height: @regular-text;
+	width: 100%;
+	border-radius: @small-text;
+	border: 1px solid @primary;
+}
+
+.fill_amount {
+	background: @primary;
+	border-radius: @small-text;
+	height: 100%;
+}
