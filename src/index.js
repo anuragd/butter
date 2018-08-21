@@ -18,6 +18,7 @@ import Scoreboard from './components/Core/Scoreboard/Scoreboard'
 import StatusTitle from './components/Core/StatusTitle/StatusTitle'
 import AlertScore from './components/Core/AlertScore/AlertScore'
 import FillMeter from './components/Core/FillMeter/FillMeter'
+import SplitScoreboard from './components/Core/SplitScoreboard/SplitScoreboard'
 
 import Area from './components/Charts/Area/Area'
 import Hbar from './components/Charts/Hbar/Hbar'
@@ -30,7 +31,7 @@ import Content from './components/Grid/Content/Content'
 import Panel from './components/Grid/Panel/Panel'
 
 const Core = {
-	Button, ProgressBar, ProgressBarMini, NoDataPanel, Tooltip, Table, Tabs, Scoreboard, StatusTitle, AlertScore, FillMeter
+	Button, ProgressBar, ProgressBarMini, NoDataPanel, Tooltip, Table, Tabs, Scoreboard, StatusTitle, AlertScore, FillMeter, SplitScoreboard
 }
 
 const Form = {
@@ -64,6 +65,7 @@ export {
 	Table, 
 	Tabs,
 	Scoreboard,
+	SplitScoreboard,
 	StatusTitle,
 	AlertScore,
 	FillMeter,

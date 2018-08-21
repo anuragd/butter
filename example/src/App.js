@@ -18,6 +18,7 @@ import {
   Tabs,
   Scoreboard, 
   StatusTitle,
+  SplitScoreboard,
   AlertScore,
   FillMeter,
   Charts, 
@@ -113,13 +114,15 @@ export default class App extends Component {
                 <Panel size="quarter" collapse={{top:true, left:true, bottom:true}}><AlertScore type="minor"/></Panel>
                 <Panel size="quarter" collapse={{top:true, left:true, bottom:true}}><AlertScore type="other"/></Panel>
               </Panel>
-              <Panel size="quarter" collapse={{top:true, left:true, bottom:true}}><FillMeter label="Transceiver Alarm" value={4} max={100}/></Panel>
+              <Panel size="quarter" collapse={{top:true, left:true, bottom:true}}>
+                <Panel size="full"><FillMeter label="Transceiver Alarm" value={4} max={100}/></Panel>
+                <Panel size="full"><SplitScoreboard label="Total" good={10} bad={20}/></Panel>
+              </Panel>
             </Panel>
             <Panel size="half" collapse={{top:true,right:true,bottom:true,left:true}}>
               <Panel size="full" collapse={{top:true,right:true,bottom:true,left:true}}>
-                <Panel size="quarter" collapse={{top:true,left:true}} hasSurface><Charts.Pie options={{series:[{data:this.state.chartData}]}} /></Panel>
-                <Panel  collapse={{top:true,left:true}} size="quarter" hasSurface><Charts.Hbar options={{series:[{data:this.state.chartData}]}} /></Panel>
-                <Panel  collapse={{top:true,left:true}} size="quarter" hasSurface><Charts.Vbar options={{series:[{data:this.state.histoData}]}} /></Panel>
+                <Panel  collapse={{top:true,left:true}} size="half" hasSurface><Charts.Hbar options={{series:[{data:this.state.chartData}]}} /></Panel>
+                <Panel  collapse={{top:true,left:true}} size="half" hasSurface><Charts.Vbar options={{series:[{data:this.state.histoData}]}} /></Panel>
               </Panel>
               <Panel collapse={{top:true,left:true, bottom: true, left: true}} size="full" hasSurface>
                 <Tabs options={['Tab1','Tab2','Tab3','Tab4']} activeTab={this.state.activeTab} onChange={(tab,key) => this.setState({activeTab:tab})}/>
