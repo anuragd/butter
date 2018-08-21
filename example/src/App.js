@@ -125,7 +125,7 @@ export default class App extends Component {
             <Panel size="half" collapse={{top:true,right:true,bottom:true,left:true}}>
               <Panel size="full" collapse={{top:true,right:true,bottom:true,left:true}}>
                 <Panel  collapse={{top:true,left:true}} size="half" hasSurface><Charts.Hbar options={{series:[{data:this.state.chartData}]}} /></Panel>
-                <Panel  collapse={{top:true,left:true}} size="half" hasSurface><Charts.Vbar options={{series:[{data:this.state.histoData}]}} /></Panel>
+                <Panel  collapse={{top:true,left:true}} size="half" hasSurface><Charts.Pie options={{series:[{data:this.state.chartData}]}} icon={IconLib.cpu_black} label="CPU"/></Panel>
               </Panel>
               <Panel collapse={{top:true,left:true, bottom: true, left: true}} size="full" hasSurface>
                 <Tabs options={['Tab1','Tab2','Tab3','Tab4']} activeTab={this.state.activeTab} onChange={(tab,key) => this.setState({activeTab:tab})}/>

@@ -13,6 +13,12 @@ import styles from '../Charts.less'
  */
 export default class Pie extends Component {
 
+	static propTypes = {
+		options: PropTypes.object,
+		icon: PropTypes.string,
+		label: PropTypes.string
+	}
+
 	constructor(props) {
 		super(props)
 		//Throw error if data has more or less than one specified series
@@ -40,17 +46,19 @@ export default class Pie extends Component {
 				plotOptions: {
 					pie: {
 						size: '80%',
-						minSize: 60
+						minSize: 60,
+						colors: ['#78B9DF']
 					}
 				},
 				series: [
 					{
 						...props.options.series[0],
-						innerSize: '50%',
+						innerSize: '70%',
 						borderWidth: 8,
 						borderColor: '#FFFFFF',
 						dataLabels: {
-							enabled: false,
+							enabled: true,
+							inside: true,
 							softConnector:0,
 						}
 					}
@@ -59,47 +67,21 @@ export default class Pie extends Component {
 			}
 		}
 
-		this.mouseEnter = this.mouseEnter.bind(this)
-		this.mouseLeave = this.mouseLeave.bind(this)
-	}
-
-	mouseEnter() {
-		this.setState({
-			chartOptions: {
-				...this.state.chartOptions,
-				series: [{
-					...this.state.chartOptions.series[0],
-					dataLabels: {
-						...this.state.chartOptions.series[0].dataLabels,
-						enabled: true
-					}
-				}]
-			}
-		})
-	}
-
-	mouseLeave() {
-		this.setState({
-			chartOptions: {
-				...this.state.chartOptions,
-				series: [{
-					...this.state.chartOptions.series[0],
-					dataLabels: {
-						...this.state.chartOptions.series[0].dataLabels,
-						enabled: false
-					}
-				}]
-			}
-		})
 	}
 
 	render() {
 		return (
-			<div onMouseOver = {this.mouseEnter} onMouseOut = {this.mouseLeave} className={styles.chart_container}>
+			<div className={styles.chart_container}>
 				<HighchartsReact
 				    highcharts={Highcharts}
 				    options={this.state.chartOptions}
 				  />
+				{this.props.icon && 
+					<div className={styles.center_display}>
+						<img src={this.props.icon} className={styles.icon} />
+						<div className={styles.label}>{this.props.label}</div>
+					</div>
+				 }
 			</div>
 		)
 	}
