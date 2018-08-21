@@ -34,11 +34,13 @@ export default class Hbar extends Component {
 				},
 				plotOptions: {
 					bar: {
-						colorByPoint: true,
+						color: '#78B9DF',
+						maxPointWidth: 18,
 						pointPadding: 0,
 						groupPadding: 0,
 						borderColor: '#FFFFFF',
-						borderWidth: 9,
+						borderWidth: 1,
+						borderRadius: 12,
 						dataLabels: {
 							enabled: true,
 							style: {

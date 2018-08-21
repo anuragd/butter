@@ -1,6 +1,6 @@
 {
   "name": "dcn-network-insights-ux",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "author": "",
   "license": "MIT",
@@ -12,7 +12,7 @@
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",
   "scripts": {
-    "test": "cross-env CI=1 node scripts/test.js --env=jsdom",
+    "test": "cross-env CI=1 node scripts/test.js --env=jsdom --verbose",
     "test:watch": "npm test -- --verbose && ./node_modules/.bin/chokidar \"src/**\" -c \"clear && printf '\\e[3J' && npm test -- --verbose\"",
     "build": "npm test && npm run doc:build && rollup -c",
     "postbuild": "./node_modules/.bin/lessc ./src/styles/exports.less ./dist/dcn-ux.less",
@@ -94,6 +94,7 @@
     "gh-pages": "^1.1.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^20.0.4",
+    "jest-html-reporter": "^2.4.2",
     "less": "^3.7.1",
     "less-loader": "^4.1.0",
     "mocha": "^5.2.0",
@@ -149,6 +150,12 @@
       "^react-native$": "react-native-web",
       "\\.(css|less)$": "identity-obj-proxy"
     },
+    "reporters": [
+      "default",
+      ["./node_modules/jest-html-reporter", {
+        "pageTitle": "Test Report"
+      }]
+    ],
     "moduleFileExtensions": [
       "web.js",
       "js",

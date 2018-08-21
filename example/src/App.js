@@ -1,6 +1,34 @@
 import React, { Component } from 'react'
 
-import { Radio, Dropdown, Input, Button, Textarea, NoDataPanel, ProgressBar, ProgressBarMini, Toggle, Slider, Checkbox, Datepicker, Tooltip, Table, Tabs, Charts, Container, Header, Content, Panel } from 'dcn-network-insights-ux'
+import { 
+  Radio, 
+  Dropdown, 
+  Input, 
+  Button, 
+  Textarea, 
+  NoDataPanel, 
+  ProgressBar, 
+  ProgressBarMini, 
+  Toggle, 
+  Slider, 
+  Checkbox, 
+  Datepicker, 
+  Tooltip, 
+  Table, 
+  Tabs,
+  Scoreboard, 
+  StatusTitle,
+  SplitScoreboard,
+  IconButton,
+  IconScore,
+  IconLib,
+  AlertScore,
+  FillMeter,
+  Charts, 
+  Container, 
+  Header, 
+  Content, 
+  Panel } from 'dcn-network-insights-ux'
 
 export default class App extends Component {
   constructor(props) {
@@ -47,8 +75,8 @@ export default class App extends Component {
       activeTab: 'Tab2',
       histoData: (() => {
         let result = []
-        for(var i=0; i<8; i++) {
-          result.push(Math.random() * 10)
+        for(var i=0; i<3; i++) {
+          result.push(parseInt(Math.random() * 10))
         }
         return result
       })(),
@@ -61,32 +89,43 @@ export default class App extends Component {
       <Container>
         <Header>
           <Panel size="threequarter" collapse={{top:true,right:true,bottom:true}}>
-            CISCO Network Insights
+            <StatusTitle label="Summary" isOk={true} />
           </Panel>
           <Panel size="quarter" collapse={{top:true,right:true,bottom:true,left:true}}>
             <Panel size="quarter" collapse={{top:true,right:true,bottom:true,left:true}}>
-              <p style={{display:'flex',alignItems:'center'}}>Gear</p>
+              <IconButton icon={IconLib.settings} onClick={() => console.log("settings")}/>
             </Panel>
-            <Panel size="threequarter" collapse={{top:true,right:true,bottom:true,left:true}}>
-              <Dropdown 
-                label="Select"
-                options={[
-                  {id:0,value:"Option 1"},
-                  {id:1,value:"Option 2", disabled: true},
-                  {id:2,value:"Option 3"},
-                  {id:3,value:"Option 4"}]}
-                />
+            <Panel size="half" collapse={{top:true,right:true,bottom:true,left:true}}>
+              <IconButton icon={IconLib.help} onClick={() => console.log("help")}/>
             </Panel>
           </Panel>
         </Header>
         <Content>
           <Panel size="full">
+            <Panel size="full"  collapse={{top:true,right:true,left:true}} hasSurface label="Overview">
+              <Panel size="quarter" collapse={{top:true, left:true, bottom:true}}>
+                <Panel size="half" collapse={{top:true,right:true,bottom:true,left:true}}>
+                  <Scoreboard label="Switches" value={334} />
+                </Panel>
+                <Panel size="half" collapse={{top:true,right:true,bottom:true,left:true}}>
+                  <IconScore icon={IconLib.temperature} value={7}/>
+                </Panel>
+              </Panel>
+              <Panel size="half" collapse={{top:true, left:true, bottom:true}}>
+                <Panel size="quarter" collapse={{top:true, left:true, bottom:true}}><AlertScore type="critical"/></Panel>
+                <Panel size="quarter" collapse={{top:true, left:true, bottom:true}}><AlertScore type="major"/></Panel>
+                <Panel size="quarter" collapse={{top:true, left:true, bottom:true}}><AlertScore type="minor"/></Panel>
+                <Panel size="quarter" collapse={{top:true, left:true, bottom:true}}><AlertScore type="other"/></Panel>
+              </Panel>
+              <Panel size="quarter" collapse={{top:true, left:true, bottom:true}}>
+                <Panel size="full"><FillMeter label="Transceiver Alarm" value={4} max={100}/></Panel>
+                <Panel size="full"><SplitScoreboard label="Total" good={10} bad={20}/></Panel>
+              </Panel>
+            </Panel>
             <Panel size="half" collapse={{top:true,right:true,bottom:true,left:true}}>
               <Panel size="full" collapse={{top:true,right:true,bottom:true,left:true}}>
-                <Panel size="quarter" collapse={{top:true,left:true}} hasSurface><Charts.Pie options={{series:[{data:this.state.chartData}]}} /></Panel>
-                <Panel  collapse={{top:true,left:true}} size="quarter" hasSurface><Charts.Hbar options={{series:[{data:this.state.chartData}]}} /></Panel>
-                <Panel  collapse={{top:true,left:true}} size="quarter" hasSurface><Charts.Vbar options={{series:[{data:this.state.histoData}]}} /></Panel>
-                <Panel  collapse={{top:true,left:true}}size="quarter" hasSurface><Charts.Area options={{series:[{data:this.state.histoData}]}} /></Panel>
+                <Panel  collapse={{top:true,left:true}} size="half" hasSurface><Charts.Hbar options={{series:[{data:this.state.chartData}]}} /></Panel>
+                <Panel  collapse={{top:true,left:true}} size="half" hasSurface><Charts.Pie options={{series:[{data:this.state.chartData}]}} icon={IconLib.cpu_black} label="CPU"/></Panel>
               </Panel>
               <Panel collapse={{top:true,left:true, bottom: true, left: true}} size="full" hasSurface>
                 <Tabs options={['Tab1','Tab2','Tab3','Tab4']} activeTab={this.state.activeTab} onChange={(tab,key) => this.setState({activeTab:tab})}/>
@@ -95,7 +134,6 @@ export default class App extends Component {
             <Panel size="half" collapse={{top:true,right:true,bottom:true,left:true}}>
               <Panel size="half" collapse={{left:true,bottom:true,top:true}}>
                 <Panel size="full" collapse={{left:true,right:true,bottom:true,top:true}} hasSurface>
-                  <button onClick={() => this.setState({datepickerValue: new Date()})}>Add date</button>
                   <Tooltip content="<p>I'm a LEFT_TOP tooltip</p>" mode="LEFT_TOP">
                     <Datepicker 
                       label="Choose date" 

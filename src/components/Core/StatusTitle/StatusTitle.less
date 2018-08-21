@@ -1,0 +1,37 @@
+@import "../../../styles/grid.less";
+@import '../../../styles/color.less';
+@import "../../../styles/mixins.less";
+@import "../../../styles/animations.less";
+@import "../../../styles/type.less";
+
+.statustitle_container {
+	display: inline-block;
+}
+
+.inner_container {
+	display: flex;
+	align-items: center;
+}
+
+.label {
+	.lightFontLarge();
+	color: @primary-dark;
+}
+
+.status {
+	width: @base-size;
+	height: @base-size;
+	margin-right: @base-size;
+	img {
+		height: 100%;
+		width: auto;
+		transition: @standard-transition;
+	}
+}
+
+.hide {
+	opacity: 0;
+}
+.show {
+	opacity: 1;
+}

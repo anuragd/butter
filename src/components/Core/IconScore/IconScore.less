@@ -1,0 +1,27 @@
+@import "../../../styles/grid.less";
+@import '../../../styles/color.less';
+@import "../../../styles/mixins.less";
+@import "../../../styles/animations.less";
+@import "../../../styles/type.less";
+
+.iconscore_container {
+	display: inline-block;
+	padding: @base-size;
+}
+
+.inner_container {
+	display: flex;
+	align-items: flex-end;
+}
+
+.value {
+	.heavyFontGiant();
+	line-height: @large-text;
+	color: @primary-dark;
+	margin-right: @quarter-size;
+}
+
+.icon {
+	height: @button-height;
+	width: auto;
+}

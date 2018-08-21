@@ -1,0 +1,57 @@
+@import "../../../styles/grid.less";
+@import '../../../styles/color.less';
+@import "../../../styles/mixins.less";
+@import "../../../styles/animations.less";
+@import "../../../styles/type.less";
+
+.ssb_container {
+	display: inline-block;
+	min-width: @min-input-width;
+	padding: @base-size;
+}
+
+.inner_container {
+
+}
+
+.score_display {
+	display: flex;
+	align-items: center;
+}
+
+.score {
+	.lightFontGiant();
+	color: @primary-dark;
+	margin-right: @base-size;
+}
+
+.score_breakup {
+	.lightFontSmall();
+	color: @primary-dark;
+}
+
+.good_score, .bad_score {
+	display: flex;
+	align-items: center;
+}
+
+.indicator_good {
+	width: @small-text;
+	height: @small-text;
+	border-radius: 100%;
+	background: @success;
+	margin-right: @quarter-size;
+}
+
+.indicator_bad {
+	width: @small-text;
+	height: @small-text;
+	border-radius: 100%;
+	background: @bad;
+	margin-right: @quarter-size;
+}
+
+.label {
+	.lightFontLarge();
+	color: @primary-dark;
+}

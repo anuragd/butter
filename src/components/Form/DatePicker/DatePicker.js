@@ -142,7 +142,11 @@ export default class Datepicker extends Component {
   
   blurHandler(e) {
     // if(this.props.onBlur instanceof Function) this.props.onBlur(e)
-    if(this.state.open && !this.props.disabled) this.setState({open:false})
+    if(this.state.open && !this.props.disabled) 
+      this.setState({
+        open:false,
+        internalValue:this.props.value?moment(this.props.value).format('D MMM YYYY'):'',
+      })
   }
 
   hoverHandler(e) {

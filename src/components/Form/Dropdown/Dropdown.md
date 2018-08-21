@@ -9,7 +9,7 @@ initialState = {value:null};
 		{id:2,value:"Option 3"},
 		{id:3,value:"Option 4"}]}
     onChange={
-        (val) => setState({value:val.value})
+        (val) => setState({value:val})
     }
 	/>
 ```
@@ -39,7 +39,7 @@ render() {
             value={this.state.value}
             options={this.state.options}
             onChange={
-                (val) => this.setState({value:val.value})
+                (val) => this.setState({value:val})
             }/>
     )
 }

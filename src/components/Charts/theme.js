@@ -11,6 +11,9 @@ let theme = {
 	},
 	title: {
 		margin:0
+	},
+	style: {
+		"fontFamily":"'Cisco',Helvetica, sans-serif"
 	}
 }
 
