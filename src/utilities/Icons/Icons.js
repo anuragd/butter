@@ -22,6 +22,10 @@ import memory_black from './svg/memory_black.svg'
 import settings from './svg/settings.svg'
 import temperature from './svg/temperature.svg'
 import temperature_black from './svg/temperature_black.svg'
+import summary from './svg/summary.svg'
+import environment from './svg/environment.svg'
+import graph_view from './svg/graph_view.svg'
+import list_view from './svg/list_view.svg'
 
 let IconLib = {
 	add_tile: add_tile,
@@ -30,7 +34,11 @@ let IconLib = {
 	memory_black: memory_black,
 	settings: settings,
 	temperature: temperature,
-	temperature_black: temperature_black
+	temperature_black: temperature_black,
+	summary: summary,
+	environment: environment,
+	graph_view: graph_view,
+	list_view: list_view
 }
 
 export { 
