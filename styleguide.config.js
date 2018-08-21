@@ -26,6 +26,10 @@ module.exports = {
       name: 'Charts',
       content: 'src/components/Charts/Charts.md',
       components: 'src/components/Charts/*/*.js'
+    },
+    {
+      name: 'Icons',
+      content: 'src/utilities/Icons/Icons.md',
     }
   ],
   ignore: [

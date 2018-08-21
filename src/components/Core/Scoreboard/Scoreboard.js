@@ -3,6 +3,10 @@ import PropTypes from 'prop-types'
 
 import styles from './Scoreboard.less'
 
+/**
+ * Use this component to display a large number with a label
+ */
+
 export default class Scoreboard extends Component {
 	static propTypes = {
 		/**

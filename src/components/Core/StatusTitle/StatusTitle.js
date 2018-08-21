@@ -4,6 +4,10 @@ import PropTypes from 'prop-types'
 import styles from './StatusTitle.less'
 import { SuccessSVG, ErrorSVG } from '../../../utilities/Icons/Icons'
 
+/**
+ * Use this inside a header to show app level status
+ */
+
 export default class StatusTitle extends Component {
 	static propTypes = {
 		/**
@@ -13,19 +17,18 @@ export default class StatusTitle extends Component {
 		/**
 		 * set to true if you want to display and ok state or false if you want an error state
 		 */
-		isOK: PropTypes.bool
+		isOk: PropTypes.bool
 	}
 	static defaultProps = {
 		label: 'Title',
-		isOK: true
+		isOk: true
 	}
 	render() {
 		return(
 			<div className={styles.statustitle_container}>
 				<div className={styles.inner_container}>
 					<div className={styles.status}>
-						<img className={this.props.isOK?styles.show:styles.hide} src={SuccessSVG} />
-						<img className={this.props.isOK?styles.hide:styles.show} src={ErrorSVG} />
+						<img src={this.props.isOk?SuccessSVG:ErrorSVG} />
 					</div>
 					<div className={styles.label}>
 						{this.props.label}

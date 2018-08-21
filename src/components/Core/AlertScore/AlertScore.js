@@ -4,6 +4,10 @@ import PropTypes from 'prop-types'
 import styles from './AlertScore.less'
 import { CriticalSVG, MajorSVG, MinorSVG, OtherSVG } from '../../../utilities/Icons/Icons'
 
+/**
+ * Use this component to display a scorecard for number of alerts
+ */
+
 export default class AlertScore extends Component {
 	static propTypes = {
 		/**

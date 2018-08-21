@@ -3,10 +3,23 @@ import PropTypes from 'prop-types'
 
 import styles from './SplitScoreboard.less'
 
+
+/**
+ * Use this component to display a large number with a label, and the splitup of that number into good(green) and bad(red) stats
+ */
 export default class SplitScoreboard extends Component {
 	static propTypes = {
+		/**
+		 * label for component
+		 */
 		label: PropTypes.string,
+		/**
+		 * Number for good score. The sum of this and bad score is used to for the large number display
+		 */
 		good: PropTypes.number,
+		/**
+		 * Number for bad score. The sum of this and good score is used to for the large number display
+		 */
 		bad: PropTypes.number
 	}
 	static defaultProps = {

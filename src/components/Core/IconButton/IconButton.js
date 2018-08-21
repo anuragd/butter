@@ -6,11 +6,11 @@ import styles from './IconButton.less'
 export default class IconButton extends Component {
 	static propTypes = {
 		/**
-		 * icon from the IconLib package
+		 * icon from the IconLib package. See example for how to use this.
 		 */
 		icon: PropTypes.string,
 		/**
-		 * onclick function
+		 * onClick function for the button
 		 */
 		onClick: PropTypes.function
 	}
