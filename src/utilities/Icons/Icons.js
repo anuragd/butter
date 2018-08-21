@@ -1,3 +1,5 @@
+//Internal icons
+
 import DropdownSVG from './svg/dropdown.svg'
 import NoDataSVG from './svg/nodata.svg'
 import SuccessSVG from './svg/success.svg'
@@ -13,6 +15,24 @@ import MajorSVG from './svg/major.svg'
 import MinorSVG from './svg/minor.svg'
 import OtherSVG from './svg/other.svg'
 
+import add_tile from './svg/add_tile.svg'
+import cpu_black from './svg/cpu_black.svg'
+import help from './svg/help.svg'
+import memory_black from './svg/memory_black.svg'
+import settings from './svg/settings.svg'
+import temperature from './svg/temperature.svg'
+import temperature_black from './svg/temperature_black.svg'
+
+let IconLib = {
+	add_tile: add_tile,
+	cpu_black: cpu_black,
+	help: help,
+	memory_black: memory_black,
+	settings: settings,
+	temperature: temperature,
+	temperature_black: temperature_black
+}
+
 export { 
 	DropdownSVG, NoDataSVG, SuccessSVG, ErrorSVG, TickSVG, CalendarSVG, CloseSVG, InfoSVG,
-	CriticalSVG, MajorSVG, MinorSVG, OtherSVG }
+	CriticalSVG, MajorSVG, MinorSVG, OtherSVG, IconLib }

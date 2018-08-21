@@ -19,6 +19,9 @@ import {
   Scoreboard, 
   StatusTitle,
   SplitScoreboard,
+  IconButton,
+  IconScore,
+  IconLib,
   AlertScore,
   FillMeter,
   Charts, 
@@ -90,24 +93,24 @@ export default class App extends Component {
           </Panel>
           <Panel size="quarter" collapse={{top:true,right:true,bottom:true,left:true}}>
             <Panel size="quarter" collapse={{top:true,right:true,bottom:true,left:true}}>
-              <p style={{display:'flex',alignItems:'center'}}>Gear</p>
+              <IconButton icon={IconLib.settings} onClick={() => console.log("settings")}/>
             </Panel>
-            <Panel size="threequarter" collapse={{top:true,right:true,bottom:true,left:true}}>
-              <Dropdown 
-                label="Select"
-                options={[
-                  {id:0,value:"Option 1"},
-                  {id:1,value:"Option 2", disabled: true},
-                  {id:2,value:"Option 3"},
-                  {id:3,value:"Option 4"}]}
-                />
+            <Panel size="half" collapse={{top:true,right:true,bottom:true,left:true}}>
+              <IconButton icon={IconLib.help} onClick={() => console.log("help")}/>
             </Panel>
           </Panel>
         </Header>
         <Content>
           <Panel size="full">
             <Panel size="full"  collapse={{top:true,right:true,left:true}} hasSurface label="Overview">
-              <Panel size="quarter" collapse={{top:true, left:true, bottom:true}}><Scoreboard label="Switches" value={334} /></Panel>
+              <Panel size="quarter" collapse={{top:true, left:true, bottom:true}}>
+                <Panel size="half" collapse={{top:true,right:true,bottom:true,left:true}}>
+                  <Scoreboard label="Switches" value={334} />
+                </Panel>
+                <Panel size="half" collapse={{top:true,right:true,bottom:true,left:true}}>
+                  <IconScore icon={IconLib.temperature} value={7}/>
+                </Panel>
+              </Panel>
               <Panel size="half" collapse={{top:true, left:true, bottom:true}}>
                 <Panel size="quarter" collapse={{top:true, left:true, bottom:true}}><AlertScore type="critical"/></Panel>
                 <Panel size="quarter" collapse={{top:true, left:true, bottom:true}}><AlertScore type="major"/></Panel>

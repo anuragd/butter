@@ -19,6 +19,8 @@ import StatusTitle from './components/Core/StatusTitle/StatusTitle'
 import AlertScore from './components/Core/AlertScore/AlertScore'
 import FillMeter from './components/Core/FillMeter/FillMeter'
 import SplitScoreboard from './components/Core/SplitScoreboard/SplitScoreboard'
+import IconButton from './components/Core/IconButton/IconButton'
+import IconScore from './components/Core/IconScore/IconScore'
 
 import Area from './components/Charts/Area/Area'
 import Hbar from './components/Charts/Hbar/Hbar'
@@ -30,8 +32,10 @@ import Header from './components/Grid/Header/Header'
 import Content from './components/Grid/Content/Content'
 import Panel from './components/Grid/Panel/Panel'
 
+import { IconLib } from './utilities/Icons/Icons'
+
 const Core = {
-	Button, ProgressBar, ProgressBarMini, NoDataPanel, Tooltip, Table, Tabs, Scoreboard, StatusTitle, AlertScore, FillMeter, SplitScoreboard
+	Button, ProgressBar, ProgressBarMini, NoDataPanel, Tooltip, Table, Tabs, Scoreboard, StatusTitle, AlertScore, FillMeter, SplitScoreboard, IconButton, IconScore
 }
 
 const Form = {
@@ -66,6 +70,8 @@ export {
 	Tabs,
 	Scoreboard,
 	SplitScoreboard,
+	IconButton,
+	IconScore,
 	StatusTitle,
 	AlertScore,
 	FillMeter,
@@ -81,7 +87,8 @@ export {
 	Core,
 	Grid,
 	Form,
-	Charts }
+	Charts,
+	IconLib }
 
 export default DCNUXResources
 
