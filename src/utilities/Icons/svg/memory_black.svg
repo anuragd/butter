@@ -1,1 +1,23 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30.084 37.417"><defs><style>.a{fill:#2f4f4f;}</style></defs><g transform="translate(0 0)"><path class="a" d="M30.084,39.717H0V10.2L5.829,2.3H30.084Z" transform="translate(0 -2.3)"/><g transform="translate(5.265 30.084)"><rect class="a" width="3.761" height="7.333"/><rect class="a" width="3.761" height="7.333" transform="translate(8.085)"/><rect class="a" width="3.761" height="7.333" transform="translate(15.794)"/></g></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20.792 25.86">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #364e4f;
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <g id="Group_1257" data-name="Group 1257" transform="translate(-41.942 338.041)">
+    <g id="Group_1263" data-name="Group 1263" transform="translate(41.942 -340.341)">
+      <path id="Path_3574" data-name="Path 3574" class="cls-1" d="M20.792,28.16H0V7.758L4.028,2.3H20.792Z"/>
+      <g id="Group_1251" data-name="Group 1251" transform="translate(3.639 23.092)">
+        <rect id="Rectangle_636" data-name="Rectangle 636" class="cls-2" width="2.599" height="5.068"/>
+        <rect id="Rectangle_637" data-name="Rectangle 637" class="cls-2" width="2.599" height="5.068" transform="translate(5.588)"/>
+        <rect id="Rectangle_638" data-name="Rectangle 638" class="cls-2" width="2.599" height="5.068" transform="translate(10.916)"/>
+      </g>
+    </g>
+  </g>
+</svg>

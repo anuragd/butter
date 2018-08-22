@@ -107,7 +107,7 @@ export default class Table extends Component {
 
   getRow(row,keys) {
     let result = keys.map((key) =>
-      <td key={(row.id+'-'+key.key)} className={styles.table_body_cell}>{row[key.key]}</td>
+      <td key={(row.id+'-'+key.key)} className={styles.table_body_cell}>{row[key.key].toString()}</td>
     )
     return result
   }

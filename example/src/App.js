@@ -19,6 +19,7 @@ import {
   Scoreboard, 
   StatusTitle,
   SplitScoreboard,
+  TogglePanel,
   IconButton,
   IconScore,
   IconLib,
@@ -51,22 +52,208 @@ export default class App extends Component {
       tableData: {
         keys: [
           {key:'switch',label:'Switch',type:'text',sortable:true},
-          {key:'ipAddress',label:'IP Address',type:'text',sortable:true},
           {key:'serial',label:'Serial No',type:'text',sortable:true},
           {key:'managed',label:'Managed',type:'text'},
+          {key:'status',label:'Status',type:'text'}
         ],
         data: [
-          {id:0,switch:'leaf1',ipAddress:'24.0.80.200',serial:'SAL18432P5Q ',managed:'true'},
-          {id:1,switch:'leaf1',ipAddress:'24.0.80.202',serial:'SAL18432P4S',managed:'true'},
-          {id:2,switch:'leaf2',ipAddress:'24.0.80.201',serial:'SAL18432P4X',managed:'true'},
-          {id:3,switch:'leaf3',ipAddress:'24.0.80.208',serial:'FDO210721L3',managed:'true'},
-          {id:4,switch:'n9k-bg1',ipAddress:'24.0.80.212',serial:'FDO210705NY',managed:'true'},
-          {id:5,switch:'n9k-bg2',ipAddress:'24.0.80.209',serial:'SAL1833YM11',managed:'true'},
-          {id:6,switch:'spine1',ipAddress:'24.0.80.217',serial:'SAL18422FUR',managed:'true'},
-          {id:7,switch:'spine2',ipAddress:'24.0.80.209',serial:'SAL18422FXL',managed:'true'},
-          {id:8,switch:'ste-n9k-18-deep',ipAddress:'24.0.80.311',serial:'SAL18432P11',managed:'true'},
-          {id:9,switch:'ste-n9k-bg1',ipAddress:'24.0.80.303',serial:'FDO21061Q4W',managed:'true'}
-        ],
+          {
+            "id": "5b7dc6b22d275c7661a39e02",
+            "switch": "dolore",
+            "serial": "64155644-2616-429e-b591-5ee11029ca7d",
+            "managed": false,
+            "status": false,
+            "children": [
+              {
+                "id": "5b7dc6b2f9650b67c523fc70",
+                "switch": "elit",
+                "serial": "ee7722ba-28f6-4045-98f9-c4fd0aa6d92c",
+                "managed": true,
+                "status": true
+              },
+              {
+                "id": "5b7dc6b24c3d16b03edca132",
+                "switch": "aliquip",
+                "serial": "a9d5b110-461b-40aa-b49f-0740a1e50858",
+                "managed": true,
+                "status": false
+              }
+            ]
+          },
+          {
+            "id": "5b7dc6b2a94cef64887e2bdc",
+            "switch": "eiusmod",
+            "serial": "ed09f04f-cba0-4b31-8638-7da65f43302a",
+            "managed": true,
+            "status": true,
+            "children": [
+              {
+                "id": "5b7dc6b2d0c672ca41b4f16b",
+                "switch": "sit",
+                "serial": "004e7266-7f10-4dfe-b307-d670478c8361",
+                "managed": false,
+                "status": false
+              },
+              {
+                "id": "5b7dc6b2b2ac738a6d303860",
+                "switch": "cupidatat",
+                "serial": "94f490fe-3f27-4ee9-bdb8-6e3be8d463ce",
+                "managed": false,
+                "status": false
+              },
+              {
+                "id": "5b7dc6b2ff1e771007e46464",
+                "switch": "officia",
+                "serial": "9109bb6e-f2b6-46c8-b1a2-98239f8bd0f4",
+                "managed": true,
+                "status": false
+              }
+            ]
+          },
+          {
+            "id": "5b7dc6b2adef891e05ceaace",
+            "switch": "ipsum",
+            "serial": "c348c8f2-d889-4688-a704-080bac2056ee",
+            "managed": false,
+            "status": false,
+            "children": [
+              {
+                "id": "5b7dc6b2242a644cd4e32443",
+                "switch": "sit",
+                "serial": "50896e89-087d-4558-a02a-63b670dfcf66",
+                "managed": true,
+                "status": true
+              },
+              {
+                "id": "5b7dc6b2c886797320961878",
+                "switch": "reprehenderit",
+                "serial": "912df043-5517-47da-b4c1-c6253ec80570",
+                "managed": true,
+                "status": true
+              },
+              {
+                "id": "5b7dc6b2d1fa3a01489fefbd",
+                "switch": "dolore",
+                "serial": "112303a6-e340-43ca-b27b-0e8704b352f1",
+                "managed": false,
+                "status": false
+              }
+            ]
+          },
+          {
+            "id": "5b7dc6b2bb52ebfd6129d889",
+            "switch": "laborum",
+            "serial": "f4dc5d97-285e-40be-a0b1-1d501bdd3d10",
+            "managed": false,
+            "status": false,
+            "children": [
+              {
+                "id": "5b7dc6b24bd8f78bfad63d3f",
+                "switch": "laborum",
+                "serial": "5af035df-f019-4b39-a636-ac222b4c7cd2",
+                "managed": true,
+                "status": false
+              },
+              {
+                "id": "5b7dc6b25504f3eb2cbfa661",
+                "switch": "sit",
+                "serial": "6410e556-4e3a-4f0e-ba82-ee23a692de20",
+                "managed": false,
+                "status": true
+              }
+            ]
+          },
+          {
+            "id": "5b7dc6b29b41528ddbc05235",
+            "switch": "aute",
+            "serial": "dd6fad0b-2101-4ee6-ba2b-792c9b19c7d6",
+            "managed": true,
+            "status": true,
+            "children": [
+              {
+                "id": "5b7dc6b252d410848899c32f",
+                "switch": "labore",
+                "serial": "5a7df7cd-5c7d-4d16-96e3-35343f1d86e7",
+                "managed": true,
+                "status": true
+              },
+              {
+                "id": "5b7dc6b243b3ca2d12fca86a",
+                "switch": "aliqua",
+                "serial": "39614539-1c42-4615-b5bb-48377870d1df",
+                "managed": true,
+                "status": false
+              },
+              {
+                "id": "5b7dc6b2137c8922c8b90544",
+                "switch": "culpa",
+                "serial": "cce07d7e-38f0-4bfa-82d2-225964ce3b96",
+                "managed": true,
+                "status": false
+              },
+              {
+                "id": "5b7dc6b2a43bb49dccdce030",
+                "switch": "fugiat",
+                "serial": "9358ca64-12c2-44c8-bde6-d2e7a97c4520",
+                "managed": true,
+                "status": true
+              }
+            ]
+          },
+          {
+            "id": "5b7dc6b21e020f77d76f27c1",
+            "switch": "excepteur",
+            "serial": "2fc87124-62ec-476d-89ec-f897560412fc",
+            "managed": true,
+            "status": false,
+            "children": [
+              {
+                "id": "5b7dc6b227d251d80efefd0f",
+                "switch": "nostrud",
+                "serial": "eb84668a-9cc2-47df-9771-80e8b19c28f6",
+                "managed": false,
+                "status": true
+              },
+              {
+                "id": "5b7dc6b2933ab5f28ae6da58",
+                "switch": "ut",
+                "serial": "f72a57d9-e42d-4b74-9e5d-c6726ba75e7d",
+                "managed": true,
+                "status": true
+              }
+            ]
+          },
+          {
+            "id": "5b7dc6b2636088203c9c5d34",
+            "switch": "aliqua",
+            "serial": "1b53cefd-c270-4077-a712-84e50cee8101",
+            "managed": false,
+            "status": true,
+            "children": [
+              {
+                "id": "5b7dc6b2205bea8a127e5dd8",
+                "switch": "velit",
+                "serial": "97b89d7b-b2d4-42ad-b2fe-2a8795d57bec",
+                "managed": false,
+                "status": true
+              },
+              {
+                "id": "5b7dc6b27b8b4cf35fc501b5",
+                "switch": "deserunt",
+                "serial": "208b0a5e-1bc2-4249-9091-7a16753853b9",
+                "managed": true,
+                "status": false
+              },
+              {
+                "id": "5b7dc6b2e0f6708042827356",
+                "switch": "minim",
+                "serial": "657fc3ad-840a-447d-a5a3-0896403826cb",
+                "managed": true,
+                "status": true
+              }
+            ]
+          }
+        ]
       },
       checkboxValue:[],
       datepickerValue: null,
@@ -80,7 +267,8 @@ export default class App extends Component {
         }
         return result
       })(),
-      chartData: [ 20, 30, 40, 10]
+      chartData: [ 20, 30, 40, 10],
+      togglePanel: false
     }
   }
 
@@ -102,6 +290,27 @@ export default class App extends Component {
         </Header>
         <Content>
           <Panel size="full">
+            <Panel size="full"  collapse={{top:true,right:true,left:true}}>
+              <TogglePanel title="Environment" value={this.state.togglePanel} onChange={(val) => this.setState({togglePanel:val}) }>
+                <ul className="environment_panel">
+                  <li>
+                    <img src={IconLib.cpu_black} /> CPU
+                  </li>
+                  <li>
+                    <img src={IconLib.memory_black} /> Memory
+                  </li>
+                  <li>
+                    <img src={IconLib.temperature_black} /> Temperature
+                  </li>
+                  <li>
+                    <img src={IconLib.fan_black} /> Fan
+                  </li>
+                  <li>
+                    <img src={IconLib.power_black} /> Power
+                  </li>
+                </ul>
+              </TogglePanel>
+            </Panel>
             <Panel size="full"  collapse={{top:true,right:true,left:true}} hasSurface label="Overview">
               <Panel size="quarter" collapse={{top:true, left:true, bottom:true}}>
                 <Panel size="half" collapse={{top:true,right:true,bottom:true,left:true}}>

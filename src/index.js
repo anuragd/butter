@@ -21,6 +21,7 @@ import FillMeter from './components/Core/FillMeter/FillMeter'
 import SplitScoreboard from './components/Core/SplitScoreboard/SplitScoreboard'
 import IconButton from './components/Core/IconButton/IconButton'
 import IconScore from './components/Core/IconScore/IconScore'
+import TogglePanel from './components/Core/TogglePanel/TogglePanel'
 
 import Area from './components/Charts/Area/Area'
 import Hbar from './components/Charts/Hbar/Hbar'
@@ -35,7 +36,9 @@ import Panel from './components/Grid/Panel/Panel'
 import { IconLib } from './utilities/Icons/Icons'
 
 const Core = {
-	Button, ProgressBar, ProgressBarMini, NoDataPanel, Tooltip, Table, Tabs, Scoreboard, StatusTitle, AlertScore, FillMeter, SplitScoreboard, IconButton, IconScore
+	Button, ProgressBar, ProgressBarMini, NoDataPanel, Tooltip, Table, Tabs, 
+	Scoreboard, StatusTitle, AlertScore, FillMeter, SplitScoreboard, IconButton, IconScore,
+	TogglePanel
 }
 
 const Form = {
@@ -73,6 +76,7 @@ export {
 	IconButton,
 	IconScore,
 	StatusTitle,
+	TogglePanel,
 	AlertScore,
 	FillMeter,
 	Container,
