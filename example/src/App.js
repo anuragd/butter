@@ -54,202 +54,161 @@ export default class App extends Component {
           {key:'switch',label:'Switch',type:'text',sortable:true},
           {key:'serial',label:'Serial No',type:'text',sortable:true},
           {key:'managed',label:'Managed',type:'text'},
-          {key:'status',label:'Status',type:'text'}
+          {key:'status',label:'Status',type:'status', sortable: true},
+          {key:'date',label:'Date',type:'date', sortable: true}
         ],
         data: [
           {
-            "id": "5b7dc6b22d275c7661a39e02",
-            "switch": "dolore",
-            "serial": "64155644-2616-429e-b591-5ee11029ca7d",
-            "managed": false,
-            "status": false,
-            "children": [
-              {
-                "id": "5b7dc6b2f9650b67c523fc70",
-                "switch": "elit",
-                "serial": "ee7722ba-28f6-4045-98f9-c4fd0aa6d92c",
-                "managed": true,
-                "status": true
-              },
-              {
-                "id": "5b7dc6b24c3d16b03edca132",
-                "switch": "aliquip",
-                "serial": "a9d5b110-461b-40aa-b49f-0740a1e50858",
-                "managed": true,
-                "status": false
-              }
-            ]
-          },
-          {
-            "id": "5b7dc6b2a94cef64887e2bdc",
-            "switch": "eiusmod",
-            "serial": "ed09f04f-cba0-4b31-8638-7da65f43302a",
+            "id": "5b7df27125cb02c7a7258613",
+            "switch": "esse",
+            "serial": "e08ed955-33c3-4908-90f8-d210e47e169b",
             "managed": true,
             "status": true,
+            "date": "Fri Jul 02 2004 08:55:32 GMT-0700 (PDT)",
             "children": [
               {
-                "id": "5b7dc6b2d0c672ca41b4f16b",
-                "switch": "sit",
-                "serial": "004e7266-7f10-4dfe-b307-d670478c8361",
+                "id": "5b7df27120b297898e7b5335",
+                "switch": "ea",
+                "serial": "2ebd7d0a-1656-42c3-b2b2-9a1a47e458e8",
                 "managed": false,
-                "status": false
+                "status": true,
+                "date": "Thu Jun 08 1978 08:43:05 GMT-0700 (PDT)"
               },
               {
-                "id": "5b7dc6b2b2ac738a6d303860",
-                "switch": "cupidatat",
-                "serial": "94f490fe-3f27-4ee9-bdb8-6e3be8d463ce",
-                "managed": false,
-                "status": false
-              },
-              {
-                "id": "5b7dc6b2ff1e771007e46464",
-                "switch": "officia",
-                "serial": "9109bb6e-f2b6-46c8-b1a2-98239f8bd0f4",
+                "id": "5b7df271bfde97859ca0960f",
+                "switch": "esse",
+                "serial": "01ed5b6a-0923-4065-982d-38d34cd8c02e",
                 "managed": true,
-                "status": false
-              }
-            ]
-          },
-          {
-            "id": "5b7dc6b2adef891e05ceaace",
-            "switch": "ipsum",
-            "serial": "c348c8f2-d889-4688-a704-080bac2056ee",
-            "managed": false,
-            "status": false,
-            "children": [
-              {
-                "id": "5b7dc6b2242a644cd4e32443",
-                "switch": "sit",
-                "serial": "50896e89-087d-4558-a02a-63b670dfcf66",
-                "managed": true,
-                "status": true
+                "status": true,
+                "date": "Thu Apr 26 2001 08:02:33 GMT-0700 (PDT)"
               },
               {
-                "id": "5b7dc6b2c886797320961878",
-                "switch": "reprehenderit",
-                "serial": "912df043-5517-47da-b4c1-c6253ec80570",
-                "managed": true,
-                "status": true
-              },
-              {
-                "id": "5b7dc6b2d1fa3a01489fefbd",
+                "id": "5b7df271c58085bc9057bcc6",
                 "switch": "dolore",
-                "serial": "112303a6-e340-43ca-b27b-0e8704b352f1",
-                "managed": false,
-                "status": false
+                "serial": "019a729f-f653-4b67-9b1c-41c73dc11f77",
+                "managed": true,
+                "status": false,
+                "date": "Wed Sep 18 2013 06:41:38 GMT-0700 (PDT)"
               }
             ]
           },
           {
-            "id": "5b7dc6b2bb52ebfd6129d889",
-            "switch": "laborum",
-            "serial": "f4dc5d97-285e-40be-a0b1-1d501bdd3d10",
+            "id": "5b7df27158484d7b87440200",
+            "switch": "voluptate",
+            "serial": "2bc36ead-dad6-4c8c-9118-1f73031735ed",
             "managed": false,
             "status": false,
+            "date": "Sun Jun 21 1987 09:31:47 GMT-0700 (PDT)",
             "children": [
               {
-                "id": "5b7dc6b24bd8f78bfad63d3f",
-                "switch": "laborum",
-                "serial": "5af035df-f019-4b39-a636-ac222b4c7cd2",
-                "managed": true,
-                "status": false
-              },
-              {
-                "id": "5b7dc6b25504f3eb2cbfa661",
-                "switch": "sit",
-                "serial": "6410e556-4e3a-4f0e-ba82-ee23a692de20",
+                "id": "5b7df271912b65dcd395a19d",
+                "switch": "ipsum",
+                "serial": "3ea79a07-4843-4c82-97c4-252379935569",
                 "managed": false,
-                "status": true
+                "status": true,
+                "date": "Mon Sep 10 1979 20:14:34 GMT-0700 (PDT)"
               }
             ]
           },
           {
-            "id": "5b7dc6b29b41528ddbc05235",
-            "switch": "aute",
-            "serial": "dd6fad0b-2101-4ee6-ba2b-792c9b19c7d6",
-            "managed": true,
-            "status": true,
-            "children": [
-              {
-                "id": "5b7dc6b252d410848899c32f",
-                "switch": "labore",
-                "serial": "5a7df7cd-5c7d-4d16-96e3-35343f1d86e7",
-                "managed": true,
-                "status": true
-              },
-              {
-                "id": "5b7dc6b243b3ca2d12fca86a",
-                "switch": "aliqua",
-                "serial": "39614539-1c42-4615-b5bb-48377870d1df",
-                "managed": true,
-                "status": false
-              },
-              {
-                "id": "5b7dc6b2137c8922c8b90544",
-                "switch": "culpa",
-                "serial": "cce07d7e-38f0-4bfa-82d2-225964ce3b96",
-                "managed": true,
-                "status": false
-              },
-              {
-                "id": "5b7dc6b2a43bb49dccdce030",
-                "switch": "fugiat",
-                "serial": "9358ca64-12c2-44c8-bde6-d2e7a97c4520",
-                "managed": true,
-                "status": true
-              }
-            ]
-          },
-          {
-            "id": "5b7dc6b21e020f77d76f27c1",
-            "switch": "excepteur",
-            "serial": "2fc87124-62ec-476d-89ec-f897560412fc",
+            "id": "5b7df27117aacae4093df664",
+            "switch": "eiusmod",
+            "serial": "d6dd2c3e-053a-47f3-9f01-c83119298012",
             "managed": true,
             "status": false,
+            "date": "Sun Dec 14 2008 13:07:16 GMT-0800 (PST)",
             "children": [
               {
-                "id": "5b7dc6b227d251d80efefd0f",
-                "switch": "nostrud",
-                "serial": "eb84668a-9cc2-47df-9771-80e8b19c28f6",
+                "id": "5b7df271dd040b7119aa7b89",
+                "switch": "proident",
+                "serial": "e2755089-1a77-4ae5-8c81-0f148012a963",
                 "managed": false,
-                "status": true
+                "status": true,
+                "date": "Sun Jan 12 2003 14:58:09 GMT-0800 (PST)"
               },
               {
-                "id": "5b7dc6b2933ab5f28ae6da58",
+                "id": "5b7df2716c26385c5083deb8",
+                "switch": "qui",
+                "serial": "12adfd78-9b8e-476b-9bfd-43272de5ea77",
+                "managed": false,
+                "status": false,
+                "date": "Thu Jul 09 1992 01:37:02 GMT-0700 (PDT)"
+              },
+              {
+                "id": "5b7df271e7b5b01c1cd2c483",
+                "switch": "elit",
+                "serial": "294fdc07-a9eb-41b7-8c1d-eae85e2ce20b",
+                "managed": false,
+                "status": false,
+                "date": "Sun Dec 16 2012 05:34:46 GMT-0800 (PST)"
+              },
+              {
+                "id": "5b7df271174b0de4dc8a8c85",
                 "switch": "ut",
-                "serial": "f72a57d9-e42d-4b74-9e5d-c6726ba75e7d",
+                "serial": "69f588ed-c3ff-4654-8dce-494931c67468",
                 "managed": true,
-                "status": true
+                "status": false,
+                "date": "Tue Jul 10 2018 20:36:25 GMT-0700 (PDT)"
               }
             ]
           },
           {
-            "id": "5b7dc6b2636088203c9c5d34",
-            "switch": "aliqua",
-            "serial": "1b53cefd-c270-4077-a712-84e50cee8101",
+            "id": "5b7df27193bcd6a982ec91fa",
+            "switch": "incididunt",
+            "serial": "5a46ffa2-21fe-42b6-aa18-6418390534f1",
             "managed": false,
             "status": true,
+            "date": "Wed Sep 09 2009 22:52:01 GMT-0700 (PDT)",
             "children": [
               {
-                "id": "5b7dc6b2205bea8a127e5dd8",
-                "switch": "velit",
-                "serial": "97b89d7b-b2d4-42ad-b2fe-2a8795d57bec",
+                "id": "5b7df271dd29c2b5ebd8a560",
+                "switch": "fugiat",
+                "serial": "9c4a0b7d-9007-4a1f-a169-5b35dedab997",
                 "managed": false,
-                "status": true
+                "status": false,
+                "date": "Wed Jul 27 1983 06:35:01 GMT-0700 (PDT)"
               },
               {
-                "id": "5b7dc6b27b8b4cf35fc501b5",
-                "switch": "deserunt",
-                "serial": "208b0a5e-1bc2-4249-9091-7a16753853b9",
-                "managed": true,
-                "status": false
-              },
-              {
-                "id": "5b7dc6b2e0f6708042827356",
+                "id": "5b7df27168c4ac014c9f83ce",
                 "switch": "minim",
-                "serial": "657fc3ad-840a-447d-a5a3-0896403826cb",
+                "serial": "7a3601a3-6136-4950-a89f-324d8e3b6214",
+                "managed": false,
+                "status": true,
+                "date": "Tue Oct 08 1974 14:53:41 GMT-0700 (PDT)"
+              },
+              {
+                "id": "5b7df2716f1b5b47cfcc564a",
+                "switch": "anim",
+                "serial": "5bc29a39-c171-4b1a-aa5b-1b367f5a885b",
+                "managed": false,
+                "status": true,
+                "date": "Thu Mar 14 1996 17:13:59 GMT-0800 (PST)"
+              },
+              {
+                "id": "5b7df271a66247c61c15e053",
+                "switch": "est",
+                "serial": "4dfab68d-f3c1-4b82-b846-5a52afefcce7",
                 "managed": true,
-                "status": true
+                "status": true,
+                "date": "Sat Jun 06 1992 17:42:46 GMT-0700 (PDT)"
+              }
+            ]
+          },
+          {
+            "id": "5b7df27136ef2557edecc953",
+            "switch": "dolor",
+            "serial": "a7a26be8-baf9-4601-95df-d9255be33f75",
+            "managed": true,
+            "status": true,
+            "date": "Tue Nov 19 2013 12:57:47 GMT-0800 (PST)",
+            "children": [
+              {
+                "id": "5b7df2718e4e764ba30f746d",
+                "switch": "sunt",
+                "serial": "85d366fb-d908-480d-b853-6244f3beb2f4",
+                "managed": true,
+                "status": false,
+                "date": "Tue Jul 06 1982 18:45:07 GMT-0700 (PDT)"
               }
             ]
           }

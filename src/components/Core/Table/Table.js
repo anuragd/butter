@@ -2,8 +2,10 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import orderBy from 'lodash/orderBy'
 import map from 'lodash/map'
+import moment from 'moment'
 
 import styles from './Table.less'
+import { SuccessSVG, ErrorSVG } from '../../../utilities/Icons/Icons'
 
 /**
  * The table component will consume a data object to output  a sortable table. Current version only allows for sorting functionality. Future versions will also include the following functionality:
@@ -34,7 +36,7 @@ export default class Table extends Component {
       keys: PropTypes.arrayOf(PropTypes.shape({
         key: PropTypes.string,
         label: PropTypes.string,
-        type: PropTypes.oneOf(['text','number','date'])
+        type: PropTypes.oneOf(['text','number','date', 'status'])
       })),
       /**
        * An array of data objects, the keys of which are the same string as listed in the `key` property of the keys array.
@@ -48,22 +50,12 @@ export default class Table extends Component {
     super(props)
     this.state = {
       data: props.data,
-      translateMap:props.data.data.map(() => 0)
     }
     this.tableBody = React.createRef()
-    this.deriveTranslateMap = this.deriveTranslateMap.bind(this)
     this.headerClickHandler = this.headerClickHandler.bind(this)
+    this.handleDrillDown = this.handleDrillDown.bind(this)
   }
 
-
-  deriveTranslateMap(newData, oldData) {
-    let oldMap = map(this.tableBody.current.children, (tableRow) => tableRow.offsetTop)
-    let newMap = []
-    for(var i = 0; i < oldData.length; i++) {
-      newMap.push(oldMap[newData.indexOf(oldData[i])] - oldMap[i])
-    }
-    return newMap
-  }
 
   //Sorting functions
 
@@ -94,22 +86,69 @@ export default class Table extends Component {
       }
       newKeys = map(newKeys, (key) => {return({...key,sortedUp:null})})
       newKeys[index] = currentKey
-      let newTranslateMap = this.deriveTranslateMap(newData,this.state.data.data)
       this.setState({
-        translateMap: newTranslateMap,
         data: {
-          ...this.state.data,
+          data: newData,
           keys: newKeys
         }
       })
     }
   }
 
-  getRow(row,keys) {
-    let result = keys.map((key) =>
-      <td key={(row.id+'-'+key.key)} className={styles.table_body_cell}>{row[key.key].toString()}</td>
+  handleDrillDown(index) {
+    let newData = [...this.state.data.data]
+    newData[index].open = newData[index].open?false:true
+    this.setState({
+      data: {
+        data: newData,
+        keys: this.state.data.keys
+      }
+    })
+  }
+
+  getRow(row,keys,dataIndex) {
+    let result = keys.map((key,index) =>
+      <td key={(row.id+'-'+key.key)} className={styles.table_body_cell} onClick={() => this.handleDrillDown(dataIndex)}>
+      {(row.children && index === 0) && <span className={row.open?styles.row_open:styles.row_collapse}>&#9654;</span>}
+      {this.generateDisplay(row[key.key],key.type)}
+      </td>
     )
     return result
+  }
+
+  getChildRows(row,keys) {
+    let result
+    if(row.children) {
+      let style = row.open?styles.open_row:styles.collapsed_row
+      result = row.children.map((row, index) => {
+        return(<tr key={index} className={style}>{this.getRow(row,keys)}</tr>)
+      })
+    }
+    return result
+  }
+
+  generateDisplay(data,type) {
+    switch(type) {
+      case 'date':
+        return moment(data).format('D MMM YYYY')
+        break
+      case 'number':
+        return data.toString()
+        break
+      case 'status':
+        if(data) {
+          return(<div className={styles.status_cell}><img src={SuccessSVG} />SUCCESS</div>)
+        }
+        else {
+          return(<div className={styles.status_cell}><img src={ErrorSVG} />FAILED</div>)
+        }
+        break
+      case 'text':
+      default:
+        return data.toString()
+        break
+
+    }
   }
 
   render() {
@@ -128,34 +167,25 @@ export default class Table extends Component {
       </th>
     )
     const tableData = data.data.map((value,key) => {
-      let row = this.getRow(value,data.keys)
-      if(this.state.translateMap) {
-        return(
-          <tr key={(value.id+'-row')} 
-              style={{transform: `translateY(${this.state.translateMap[key]}px)`}}
-              className={value.attention?styles.table_row_attention:styles.table_row}>
+      let row = this.getRow(value,data.keys,key)
+      let children = this.getChildRows(value,data.keys)
+      return(
+        <tbody key={(value.id+'-row')}>
+          <tr className={value.attention?styles.table_row_attention:styles.table_row}>
             {row}
-          </tr>)
-      }
-      else {
-        return(
-          <tr key={(value.id+'-row')} 
-              className={value.attention?styles.table_row_attention:styles.table_row}>
-            {row}
-          </tr>)
-      }
+          </tr>
+          {children}
+        </tbody>)
     })
     return (
       <div className={styles.table_container}>
-       <table className={styles.table}>
+       <table className={styles.table} ref={this.tableBody}>
         <thead>
           <tr>
             {tableHeader}
           </tr>
         </thead>
-        <tbody ref={this.tableBody}>
-          {tableData}
-        </tbody>
+        {tableData}
        </table>
       </div>
     )
