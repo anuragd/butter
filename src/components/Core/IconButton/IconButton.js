@@ -12,7 +12,7 @@ export default class IconButton extends Component {
 		/**
 		 * onClick function for the button
 		 */
-		onClick: PropTypes.function
+		onClick: PropTypes.func
 	}
 	render() {
 		return(

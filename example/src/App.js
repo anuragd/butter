@@ -49,6 +49,158 @@ export default class App extends Component {
         {id:2,value:"Option 3"},
         {id:3,value:"Option 4"}
       ],
+      pieData: {
+        "chart": {
+          "type": "pie",
+          "polar": false
+        },
+        "title": {
+          "text": "Pie Charts using React HighCharts"
+        },
+        "plotOptions": {
+          "pie": {
+            "allowPointSelect": true,
+            "cursor": true
+          }
+        },
+        "series": [
+          {
+            "name": "Switches",
+            "colorByPoint": true,
+            "data": [
+              {
+                "name": "ste-n9k-9",
+                "y": 22.86,
+                "drilldown": "ste-n9k-9"
+              },
+              {
+                "name": "ste-n9k-10",
+                "y": 17.01,
+                "drilldown": "ste-n9k-10"
+              },
+              {
+                "name": "ste-n9k-11",
+                "y": 15.72,
+                "drilldown": "ste-n9k-11"
+              },
+              {
+                "name": "ste-n9k-bg1",
+                "y": 6.64,
+                "drilldown": "ste-n9k-bg1"
+              }
+            ]
+          }
+        ],
+        "drilldown": {
+          "series": [
+            {
+              "name": "ste-n9k-bg1",
+              "id": "ste-n9k-bg1",
+              "innerSize": '70%',
+              "data": [
+                [
+                  "tahusd",
+                  1.24
+                ],
+                [
+                  "aaa",
+                  1.14
+                ],
+                [
+                  "stats_client",
+                  0.71
+                ],
+                [
+                  "ksmd",
+                  0.57
+                ],
+                [
+                  "ExceptionLog",
+                  0
+                ]
+              ]
+            },
+            {
+              "name": "ste-n9k-9",
+              "id": "ste-n9k-9",
+              "data": [
+                [
+                  "nsusd",
+                  2.73
+                ],
+                [
+                  "t2usd",
+                  2.5
+                ],
+                [
+                  "stats_client",
+                  1.05
+                ],
+                [
+                  "ksmd",
+                  0.91
+                ],
+                [
+                  "python",
+                  0.23
+                ]
+              ]
+            },
+            {
+              "name": "ste-n9k-11",
+              "id": "ste-n9k-11",
+              "data": [
+                [
+                  "t2usd",
+                  2.64
+                ],
+                [
+                  "nsusd",
+                  2.14
+                ],
+                [
+                  "stats_client",
+                  2
+                ],
+                [
+                  "ksmd",
+                  1.32
+                ],
+                [
+                  "python",
+                  0.64
+                ]
+              ]
+            },
+            {
+              "name": "ste-n9k-10",
+              "id": "ste-n9k-10",
+              "data": [
+                [
+                  "python",
+                  2.55
+                ],
+                [
+                  "bios_daemon",
+                  1.05
+                ],
+                [
+                  "confelem",
+                  0.18
+                ],
+                [
+                  "telemetry",
+                  0.14
+                ],
+                [
+                  "platform",
+                  0.05
+                ]
+              ]
+            }
+          ]
+        }
+      },
       tableData: {
         keys: [
           {key:'switch',label:'Switch',type:'text',sortable:true},
@@ -253,7 +405,7 @@ export default class App extends Component {
               <TogglePanel title="Environment" value={this.state.togglePanel} onChange={(val) => this.setState({togglePanel:val}) }>
                 <ul className="environment_panel">
                   <li>
-                    <img src={IconLib.cpu_black} /> CPU
+                   CPU
                   </li>
                   <li>
                     <img src={IconLib.memory_black} /> Memory
@@ -293,11 +445,18 @@ export default class App extends Component {
             <Panel size="half" collapse={{top:true,right:true,bottom:true,left:true}}>
               <Panel size="full" collapse={{top:true,right:true,bottom:true,left:true}}>
                 <Panel  collapse={{top:true,left:true}} size="half" hasSurface><Charts.Hbar options={{series:[{data:this.state.chartData}]}} /></Panel>
-                <Panel  collapse={{top:true,left:true}} size="half" hasSurface><Charts.Pie options={{series:[{data:this.state.chartData}]}} icon={IconLib.cpu_black} label="CPU"/></Panel>
+                <Panel  collapse={{top:true,left:true}} size="half" hasSurface><Charts.Pie options={this.state.pieData} icon={IconLib.cpu_black} label="CPU"/></Panel>
               </Panel>
               <Panel collapse={{top:true,left:true, bottom: true, left: true}} size="full" hasSurface>
                 <Tabs options={['Tab1','Tab2','Tab3','Tab4']} activeTab={this.state.activeTab} onChange={(tab,key) => this.setState({activeTab:tab})}/>
               </Panel>
+            </Panel>
+            <Panel size="full" collapse={{right:true,left:true}} hasSurface>
+              <div className="pie-display">
+                <div className="pie"><Charts.Pie options={this.state.pieData} icon={IconLib.cpu_black} label="CPU"/></div>
+                <div className="pie"><Charts.Pie options={this.state.pieData} icon={IconLib.power_black} label="Power"/></div>
+                <div className="pie"><Charts.Pie options={this.state.pieData} icon={IconLib.temperature_black} label="Temp"/></div>
+              </div>
             </Panel>
             <Panel size="half" collapse={{top:true,right:true,bottom:true,left:true}}>
               <Panel size="half" collapse={{left:true,bottom:true,top:true}}>

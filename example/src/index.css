@@ -59,3 +59,12 @@ body {
   width: auto;
   margin-right: 24px;
 }
+
+.pie-display {
+  display: flex;
+  justify-content: space-between;
+  width: 100%
+}
+.pie {
+  width: 33%;
+}
