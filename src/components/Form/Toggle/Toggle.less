@@ -9,6 +9,15 @@
 	display: flex;
 	align-items: center;
 	cursor: pointer;
+	.noOutlines();
+}
+.toggle_container_flipped {
+	composes: toggle_container;
+	flex-direction: row-reverse;
+	.label {
+		margin-left: 0;
+		margin-right: @half-size;
+	}
 }
 
 .track {

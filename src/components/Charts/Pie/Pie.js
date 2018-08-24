@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Highcharts from 'highcharts'
+import Drilldown from 'highcharts/modules/drilldown'
 import HighchartsReact from 'highcharts-react-official'
+Drilldown(Highcharts)
 
 import theme from '../theme'
 import styles from '../Charts.less'
@@ -33,26 +35,15 @@ export default class Pie extends Component {
 				...theme,
 				chart: {
 					type: 'pie',
-					height: '100%',
-					margin: [0, 0, 0, 0],
-			        spacingTop: 0,
-			        spacingBottom: 0,
-			        spacingLeft: 0,
-			        spacingRight: 0
+					height: '100%'
 				},
 				credits: {
 					enabled: false
 				},
 				plotOptions: {
 					pie: {
-						size: '80%',
-						minSize: 60,
-						colors: ['#78B9DF']
-					}
-				},
-				series: [
-					{
-						...props.options.series[0],
+						colors: ['#78B9DF'],
+						center: ["50%","50%"],
 						innerSize: '70%',
 						borderWidth: 8,
 						borderColor: '#FFFFFF',
@@ -60,9 +51,10 @@ export default class Pie extends Component {
 							enabled: true,
 							inside: true,
 							softConnector:0,
+							distance: 10
 						}
 					}
-				],
+				},
 				title:''
 			}
 		}

@@ -35,6 +35,10 @@ export default class Toggle extends Component {
      */
     disabled: PropTypes.bool,
     /**
+     * Boolean for flipping location of label
+     */
+    flip: PropTypes.bool,
+    /**
      * Mode to set color of the control. Setting to GOOD will provide a green theme for the on state. Setting to BAD will give the off state a red theme
      */
     mode: PropTypes.oneOf(['NORMAL','GOOD','BAD']),
@@ -62,7 +66,8 @@ export default class Toggle extends Component {
     valueLabels: {
       on: "yes",
       off: "no"
-    }
+    },
+    flip: false
   }
 
   constructor(props) {
@@ -112,7 +117,7 @@ export default class Toggle extends Component {
 
     return (
       <div 
-        className={styles.toggle_container} 
+        className={this.props.flip?styles.toggle_container_flipped:styles.toggle_container} 
         onClick={this.clickHandler}
         onMouseEnter={this.props.onMouseEnter}
         onMouseLeave={this.props.onMouseLeave}

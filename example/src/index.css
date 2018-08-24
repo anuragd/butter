@@ -44,3 +44,27 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+.environment_panel {
+  list-style: none;
+  padding: 0;
+}
+
+.environment_panel li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.environment_panel li img {
+  height: 20px;
+  width: auto;
+  margin-right: 24px;
+}
+
+.pie-display {
+  display: flex;
+  justify-content: space-between;
+  width: 100%
+}
+.pie {
+  width: 33%;
+}

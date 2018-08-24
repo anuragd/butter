@@ -19,6 +19,7 @@ import {
   Scoreboard, 
   StatusTitle,
   SplitScoreboard,
+  TogglePanel,
   IconButton,
   IconScore,
   IconLib,
@@ -48,25 +49,322 @@ export default class App extends Component {
         {id:2,value:"Option 3"},
         {id:3,value:"Option 4"}
       ],
+      pieData: {
+        "chart": {
+          "type": "pie",
+          "polar": false
+        },
+        "title": {
+          "text": "Pie Charts using React HighCharts"
+        },
+        "plotOptions": {
+          "pie": {
+            "allowPointSelect": true,
+            "cursor": true
+          }
+        },
+        "series": [
+          {
+            "name": "Switches",
+            "colorByPoint": true,
+            "data": [
+              {
+                "name": "ste-n9k-9",
+                "y": 22.86,
+                "drilldown": "ste-n9k-9"
+              },
+              {
+                "name": "ste-n9k-10",
+                "y": 17.01,
+                "drilldown": "ste-n9k-10"
+              },
+              {
+                "name": "ste-n9k-11",
+                "y": 15.72,
+                "drilldown": "ste-n9k-11"
+              },
+              {
+                "name": "ste-n9k-bg1",
+                "y": 6.64,
+                "drilldown": "ste-n9k-bg1"
+              }
+            ]
+          }
+        ],
+        "drilldown": {
+          "series": [
+            {
+              "name": "ste-n9k-bg1",
+              "id": "ste-n9k-bg1",
+              "innerSize": '70%',
+              "data": [
+                [
+                  "tahusd",
+                  1.24
+                ],
+                [
+                  "aaa",
+                  1.14
+                ],
+                [
+                  "stats_client",
+                  0.71
+                ],
+                [
+                  "ksmd",
+                  0.57
+                ],
+                [
+                  "ExceptionLog",
+                  0
+                ]
+              ]
+            },
+            {
+              "name": "ste-n9k-9",
+              "id": "ste-n9k-9",
+              "data": [
+                [
+                  "nsusd",
+                  2.73
+                ],
+                [
+                  "t2usd",
+                  2.5
+                ],
+                [
+                  "stats_client",
+                  1.05
+                ],
+                [
+                  "ksmd",
+                  0.91
+                ],
+                [
+                  "python",
+                  0.23
+                ]
+              ]
+            },
+            {
+              "name": "ste-n9k-11",
+              "id": "ste-n9k-11",
+              "data": [
+                [
+                  "t2usd",
+                  2.64
+                ],
+                [
+                  "nsusd",
+                  2.14
+                ],
+                [
+                  "stats_client",
+                  2
+                ],
+                [
+                  "ksmd",
+                  1.32
+                ],
+                [
+                  "python",
+                  0.64
+                ]
+              ]
+            },
+            {
+              "name": "ste-n9k-10",
+              "id": "ste-n9k-10",
+              "data": [
+                [
+                  "python",
+                  2.55
+                ],
+                [
+                  "bios_daemon",
+                  1.05
+                ],
+                [
+                  "confelem",
+                  0.18
+                ],
+                [
+                  "telemetry",
+                  0.14
+                ],
+                [
+                  "platform",
+                  0.05
+                ]
+              ]
+            }
+          ]
+        }
+      },
       tableData: {
         keys: [
           {key:'switch',label:'Switch',type:'text',sortable:true},
-          {key:'ipAddress',label:'IP Address',type:'text',sortable:true},
           {key:'serial',label:'Serial No',type:'text',sortable:true},
           {key:'managed',label:'Managed',type:'text'},
+          {key:'status',label:'Status',type:'status', sortable: true},
+          {key:'date',label:'Date',type:'date', sortable: true}
         ],
         data: [
-          {id:0,switch:'leaf1',ipAddress:'24.0.80.200',serial:'SAL18432P5Q ',managed:'true'},
-          {id:1,switch:'leaf1',ipAddress:'24.0.80.202',serial:'SAL18432P4S',managed:'true'},
-          {id:2,switch:'leaf2',ipAddress:'24.0.80.201',serial:'SAL18432P4X',managed:'true'},
-          {id:3,switch:'leaf3',ipAddress:'24.0.80.208',serial:'FDO210721L3',managed:'true'},
-          {id:4,switch:'n9k-bg1',ipAddress:'24.0.80.212',serial:'FDO210705NY',managed:'true'},
-          {id:5,switch:'n9k-bg2',ipAddress:'24.0.80.209',serial:'SAL1833YM11',managed:'true'},
-          {id:6,switch:'spine1',ipAddress:'24.0.80.217',serial:'SAL18422FUR',managed:'true'},
-          {id:7,switch:'spine2',ipAddress:'24.0.80.209',serial:'SAL18422FXL',managed:'true'},
-          {id:8,switch:'ste-n9k-18-deep',ipAddress:'24.0.80.311',serial:'SAL18432P11',managed:'true'},
-          {id:9,switch:'ste-n9k-bg1',ipAddress:'24.0.80.303',serial:'FDO21061Q4W',managed:'true'}
-        ],
+          {
+            "id": "5b7df27125cb02c7a7258613",
+            "switch": "esse",
+            "serial": "e08ed955-33c3-4908-90f8-d210e47e169b",
+            "managed": true,
+            "status": true,
+            "date": "Fri Jul 02 2004 08:55:32 GMT-0700 (PDT)",
+            "children": [
+              {
+                "id": "5b7df27120b297898e7b5335",
+                "switch": "ea",
+                "serial": "2ebd7d0a-1656-42c3-b2b2-9a1a47e458e8",
+                "managed": false,
+                "status": true,
+                "date": "Thu Jun 08 1978 08:43:05 GMT-0700 (PDT)"
+              },
+              {
+                "id": "5b7df271bfde97859ca0960f",
+                "switch": "esse",
+                "serial": "01ed5b6a-0923-4065-982d-38d34cd8c02e",
+                "managed": true,
+                "status": true,
+                "date": "Thu Apr 26 2001 08:02:33 GMT-0700 (PDT)"
+              },
+              {
+                "id": "5b7df271c58085bc9057bcc6",
+                "switch": "dolore",
+                "serial": "019a729f-f653-4b67-9b1c-41c73dc11f77",
+                "managed": true,
+                "status": false,
+                "date": "Wed Sep 18 2013 06:41:38 GMT-0700 (PDT)"
+              }
+            ]
+          },
+          {
+            "id": "5b7df27158484d7b87440200",
+            "switch": "voluptate",
+            "serial": "2bc36ead-dad6-4c8c-9118-1f73031735ed",
+            "managed": false,
+            "status": false,
+            "date": "Sun Jun 21 1987 09:31:47 GMT-0700 (PDT)",
+            "children": [
+              {
+                "id": "5b7df271912b65dcd395a19d",
+                "switch": "ipsum",
+                "serial": "3ea79a07-4843-4c82-97c4-252379935569",
+                "managed": false,
+                "status": true,
+                "date": "Mon Sep 10 1979 20:14:34 GMT-0700 (PDT)"
+              }
+            ]
+          },
+          {
+            "id": "5b7df27117aacae4093df664",
+            "switch": "eiusmod",
+            "serial": "d6dd2c3e-053a-47f3-9f01-c83119298012",
+            "managed": true,
+            "status": false,
+            "date": "Sun Dec 14 2008 13:07:16 GMT-0800 (PST)",
+            "children": [
+              {
+                "id": "5b7df271dd040b7119aa7b89",
+                "switch": "proident",
+                "serial": "e2755089-1a77-4ae5-8c81-0f148012a963",
+                "managed": false,
+                "status": true,
+                "date": "Sun Jan 12 2003 14:58:09 GMT-0800 (PST)"
+              },
+              {
+                "id": "5b7df2716c26385c5083deb8",
+                "switch": "qui",
+                "serial": "12adfd78-9b8e-476b-9bfd-43272de5ea77",
+                "managed": false,
+                "status": false,
+                "date": "Thu Jul 09 1992 01:37:02 GMT-0700 (PDT)"
+              },
+              {
+                "id": "5b7df271e7b5b01c1cd2c483",
+                "switch": "elit",
+                "serial": "294fdc07-a9eb-41b7-8c1d-eae85e2ce20b",
+                "managed": false,
+                "status": false,
+                "date": "Sun Dec 16 2012 05:34:46 GMT-0800 (PST)"
+              },
+              {
+                "id": "5b7df271174b0de4dc8a8c85",
+                "switch": "ut",
+                "serial": "69f588ed-c3ff-4654-8dce-494931c67468",
+                "managed": true,
+                "status": false,
+                "date": "Tue Jul 10 2018 20:36:25 GMT-0700 (PDT)"
+              }
+            ]
+          },
+          {
+            "id": "5b7df27193bcd6a982ec91fa",
+            "switch": "incididunt",
+            "serial": "5a46ffa2-21fe-42b6-aa18-6418390534f1",
+            "managed": false,
+            "status": true,
+            "date": "Wed Sep 09 2009 22:52:01 GMT-0700 (PDT)",
+            "children": [
+              {
+                "id": "5b7df271dd29c2b5ebd8a560",
+                "switch": "fugiat",
+                "serial": "9c4a0b7d-9007-4a1f-a169-5b35dedab997",
+                "managed": false,
+                "status": false,
+                "date": "Wed Jul 27 1983 06:35:01 GMT-0700 (PDT)"
+              },
+              {
+                "id": "5b7df27168c4ac014c9f83ce",
+                "switch": "minim",
+                "serial": "7a3601a3-6136-4950-a89f-324d8e3b6214",
+                "managed": false,
+                "status": true,
+                "date": "Tue Oct 08 1974 14:53:41 GMT-0700 (PDT)"
+              },
+              {
+                "id": "5b7df2716f1b5b47cfcc564a",
+                "switch": "anim",
+                "serial": "5bc29a39-c171-4b1a-aa5b-1b367f5a885b",
+                "managed": false,
+                "status": true,
+                "date": "Thu Mar 14 1996 17:13:59 GMT-0800 (PST)"
+              },
+              {
+                "id": "5b7df271a66247c61c15e053",
+                "switch": "est",
+                "serial": "4dfab68d-f3c1-4b82-b846-5a52afefcce7",
+                "managed": true,
+                "status": true,
+                "date": "Sat Jun 06 1992 17:42:46 GMT-0700 (PDT)"
+              }
+            ]
+          },
+          {
+            "id": "5b7df27136ef2557edecc953",
+            "switch": "dolor",
+            "serial": "a7a26be8-baf9-4601-95df-d9255be33f75",
+            "managed": true,
+            "status": true,
+            "date": "Tue Nov 19 2013 12:57:47 GMT-0800 (PST)",
+            "children": [
+              {
+                "id": "5b7df2718e4e764ba30f746d",
+                "switch": "sunt",
+                "serial": "85d366fb-d908-480d-b853-6244f3beb2f4",
+                "managed": true,
+                "status": false,
+                "date": "Tue Jul 06 1982 18:45:07 GMT-0700 (PDT)"
+              }
+            ]
+          }
+        ]
       },
       checkboxValue:[],
       datepickerValue: null,
@@ -80,7 +378,8 @@ export default class App extends Component {
         }
         return result
       })(),
-      chartData: [ 20, 30, 40, 10]
+      chartData: [ 20, 30, 40, 10],
+      togglePanel: false
     }
   }
 
@@ -102,6 +401,27 @@ export default class App extends Component {
         </Header>
         <Content>
           <Panel size="full">
+            <Panel size="full"  collapse={{top:true,right:true,left:true}}>
+              <TogglePanel title="Environment" value={this.state.togglePanel} onChange={(val) => this.setState({togglePanel:val}) }>
+                <ul className="environment_panel">
+                  <li>
+                    <img src={IconLib.cpu_black} /> CPU
+                  </li>
+                  <li>
+                    <img src={IconLib.memory_black} /> Memory
+                  </li>
+                  <li>
+                    <img src={IconLib.temperature_black} /> Temperature
+                  </li>
+                  <li>
+                    <img src={IconLib.fan_black} /> Fan
+                  </li>
+                  <li>
+                    <img src={IconLib.power_black} /> Power
+                  </li>
+                </ul>
+              </TogglePanel>
+            </Panel>
             <Panel size="full"  collapse={{top:true,right:true,left:true}} hasSurface label="Overview">
               <Panel size="quarter" collapse={{top:true, left:true, bottom:true}}>
                 <Panel size="half" collapse={{top:true,right:true,bottom:true,left:true}}>
@@ -125,11 +445,18 @@ export default class App extends Component {
             <Panel size="half" collapse={{top:true,right:true,bottom:true,left:true}}>
               <Panel size="full" collapse={{top:true,right:true,bottom:true,left:true}}>
                 <Panel  collapse={{top:true,left:true}} size="half" hasSurface><Charts.Hbar options={{series:[{data:this.state.chartData}]}} /></Panel>
-                <Panel  collapse={{top:true,left:true}} size="half" hasSurface><Charts.Pie options={{series:[{data:this.state.chartData}]}} icon={IconLib.cpu_black} label="CPU"/></Panel>
+                <Panel  collapse={{top:true,left:true}} size="half" hasSurface><Charts.Pie options={this.state.pieData} icon={IconLib.cpu_black} label="CPU"/></Panel>
               </Panel>
               <Panel collapse={{top:true,left:true, bottom: true, left: true}} size="full" hasSurface>
                 <Tabs options={['Tab1','Tab2','Tab3','Tab4']} activeTab={this.state.activeTab} onChange={(tab,key) => this.setState({activeTab:tab})}/>
               </Panel>
+            </Panel>
+            <Panel size="full" collapse={{right:true,left:true}} hasSurface>
+              <div className="pie-display">
+                <div className="pie"><Charts.Pie options={this.state.pieData} icon={IconLib.cpu_black} label="CPU"/></div>
+                <div className="pie"><Charts.Pie options={this.state.pieData} icon={IconLib.power_black} label="Power"/></div>
+                <div className="pie"><Charts.Pie options={this.state.pieData} icon={IconLib.temperature_black} label="Temp"/></div>
+              </div>
             </Panel>
             <Panel size="half" collapse={{top:true,right:true,bottom:true,left:true}}>
               <Panel size="half" collapse={{left:true,bottom:true,top:true}}>

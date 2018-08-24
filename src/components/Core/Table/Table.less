@@ -7,6 +7,16 @@
 .table_container {
 	padding: @quarter-size;
 	width: 100%;
+	overflow: scroll;
+}
+
+.table_header {
+	display: flex;
+	align-items: center;
+	box-shadow: 0 2px 3px #DFDFDF;
+	position: absolute;
+	top: 0;
+	z-index: 2;
 }
 
 .table_header_cell {
@@ -44,25 +54,82 @@
 	cursor: auto;
 }
 
-.table_row {
-	transition: all 200ms ease-in;
-	&:nth-child(2n) {
-		background: @row-highlight;
-	}
+tbody:nth-child(2n) tr {
+	background: @row-highlight;
 }
 
 .table_row_attention {
-	composes: table_row;
 	background: @row-attention !important;
 }
 
 .table {
 	width: 100%;
+	position: relative;
+	z-index: 1;
 	thead {
 		box-shadow: 0 2px 3px #DFDFDF;
 	}
 	tbody {
 		position: relative;
+		transition: all 200ms ease-in;
+	}
+	td {
+		transition: @standard-transition;
+	}
+}
+
+.collapsed_row td{
+	max-height: 0;
+	overflow: hidden;
+	line-height: 0;
+	padding: 0;
+	&:first-of-type {
+		padding-left: @base-size + @quarter-size;
+	}
+	.status_cell {
+		img {
+			transition: @standard-transition;
+			height: 0
+		}
+	}
+}
+
+.open_row td{
+	&:first-of-type {
+		padding-left: @base-size + @quarter-size;
+	}
+}
+
+.row_collapse {
+	margin-right: @quarter-size;
+	transition: @standard-transition;
+	cursor: pointer;
+	color:@primary-dark;
+	display: inline-block;
+	&:hover {
+		color: @primary-bright;
+	}
+}
+.row_open {
+	margin-right: @quarter-size;
+	transform: rotate(90deg);
+	transition: @standard-transition;
+	cursor: pointer;
+	color:@primary-dark;
+	display: inline-block;
+	&:hover {
+		color: @primary-bright;
+	}
+}
+
+.status_cell {
+	display: flex;
+	align-items: center;
+	img {
+		transition: @standard-transition;
+		height: @regular-text;
+		width: auto;
+		margin-right: @quarter-size;
 	}
 }
 

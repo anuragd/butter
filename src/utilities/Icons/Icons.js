@@ -15,6 +15,8 @@ import MajorSVG from './svg/major.svg'
 import MinorSVG from './svg/minor.svg'
 import OtherSVG from './svg/other.svg'
 
+
+//Public exports
 import add_tile from './svg/add_tile.svg'
 import cpu_black from './svg/cpu_black.svg'
 import help from './svg/help.svg'
@@ -26,6 +28,8 @@ import summary from './svg/summary.svg'
 import environment from './svg/environment.svg'
 import graph_view from './svg/graph_view.svg'
 import list_view from './svg/list_view.svg'
+import fan_black from './svg/fan_black.svg'
+import power_black from './svg/power_black.svg'
 
 let IconLib = {
 	add_tile: add_tile,
@@ -38,7 +42,9 @@ let IconLib = {
 	summary: summary,
 	environment: environment,
 	graph_view: graph_view,
-	list_view: list_view
+	list_view: list_view,
+	fan_black: fan_black,
+	power_black: power_black
 }
 
 export { 
