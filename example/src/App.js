@@ -405,7 +405,7 @@ export default class App extends Component {
               <TogglePanel title="Environment" value={this.state.togglePanel} onChange={(val) => this.setState({togglePanel:val}) }>
                 <ul className="environment_panel">
                   <li>
-                   CPU
+                    <img src={IconLib.cpu_black} /> CPU
                   </li>
                   <li>
                     <img src={IconLib.memory_black} /> Memory
