@@ -7,6 +7,16 @@
 .table_container {
 	padding: @quarter-size;
 	width: 100%;
+	overflow: scroll;
+}
+
+.table_header {
+	display: flex;
+	align-items: center;
+	box-shadow: 0 2px 3px #DFDFDF;
+	position: absolute;
+	top: 0;
+	z-index: 2;
 }
 
 .table_header_cell {
@@ -54,6 +64,8 @@ tbody:nth-child(2n) tr {
 
 .table {
 	width: 100%;
+	position: relative;
+	z-index: 1;
 	thead {
 		box-shadow: 0 2px 3px #DFDFDF;
 	}

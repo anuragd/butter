@@ -42,8 +42,16 @@ export default class Table extends Component {
        * An array of data objects, the keys of which are the same string as listed in the `key` property of the keys array.
        * Additionally, attaching a boolean property called `attention` and setting it to true on a data object inside the array will cause the corresponding row __to be highlighted red__. Use this feature to draw the user attention to a specific row.
        */
-      data: PropTypes.array
+      data: PropTypes.array,
+      /**
+       * Pixel value for maximum height of the Table component. Table rows exceeding this height will be scrollable. Defaults to 500px
+       */
+      maxHeight: PropTypes.number
     })
+  }
+
+  static defaultProps = {
+    maxHeight: 500
   }
 
   constructor(props) {
@@ -51,7 +59,6 @@ export default class Table extends Component {
     this.state = {
       data: props.data,
     }
-    this.tableBody = React.createRef()
     this.headerClickHandler = this.headerClickHandler.bind(this)
     this.handleDrillDown = this.handleDrillDown.bind(this)
   }
@@ -178,8 +185,8 @@ export default class Table extends Component {
         </tbody>)
     })
     return (
-      <div className={styles.table_container}>
-       <table className={styles.table} ref={this.tableBody}>
+      <div className={styles.table_container} style={{maxHeight:this.props.maxHeight+'px'}}>
+       <table className={styles.table}>
         <thead>
           <tr>
             {tableHeader}
