@@ -1,6 +1,7 @@
 # Butter
 
 Library containing React components and LESS mixins
+Documentation at https://anuragd.github.io/butter
 
 ## Usage
 ```js static
