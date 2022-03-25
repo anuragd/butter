@@ -1,6 +1,6 @@
 const path = require('path')
 module.exports = {
-  title: 'DCN Network Insights UX',
+  title: 'Butter UI',
   pagePerSection: true,
   sections: [
     {
