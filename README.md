@@ -1,4 +1,4 @@
-# dcn-network-insights-ux
+# Butter
 
 Library containing React components and LESS mixins
 
