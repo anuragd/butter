@@ -1,5 +1,4 @@
 The Grid package provides components that help create HTML layouts conforming to the following grid system:
-<img src="https://wiki.cisco.com/download/attachments/158466656/Griding.png?version=1&modificationDate=1533841208000&api=v2" width="100%" />
 
 The package comes with 4 components:
 * __Container__ : At the moment, this only provides a top level div that ensures that it fills up the viewport and passes appropriate sizes on to its DOM children. This nis ideally used only once per page, and at the top level of your DOM.

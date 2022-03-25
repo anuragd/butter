@@ -10,7 +10,7 @@ import styles from "./Panel.less";
  * * You can set the size each `Panel` using the size prop
  * * You can turn off the padding on any one of the sides, using the collapse prop and setting the appropriate side to true.
  * * You can set the `hasSurface` prop on a Panel instance to ensure that the panel renders a white surface for content display centered inside it.
- * * Using a combination of these three props, all layouts designed, based on [this grid system](#/Grid), can be constructed. See [`App.js`] in the example repo for an example layout constructued using only this library
+ * * Using a combination of these three props, all layouts designed, based on [this grid system](#/Grid), can be constructed. See [`App.js` in the example repo for an example layout constructued using only this library
  * @version 0.0.1
  */
 export default class Panel extends React.Component {
@@ -60,10 +60,10 @@ export default class Panel extends React.Component {
   render() {
     let style = {
       width: null,
-      paddingTop: this.props.collapse.top ? 0 : null,
-      paddingBottom: this.props.collapse.bottom ? 0 : null,
-      paddingLeft: this.props.collapse.left ? 0 : null,
-      paddingRight: this.props.collapse.right ? 0 : null
+      paddingTop: this.props.collapse.top ? "0!important" : null,
+      paddingBottom: this.props.collapse.bottom ? "0!important" : null,
+      paddingLeft: this.props.collapse.left ? "0!important" : null,
+      paddingRight: this.props.collapse.right ? "0!important" : null
     };
     switch (this.props.size) {
       case "full":

@@ -47,9 +47,6 @@ export default {
     resolve(),
     commonjs(),
     copy({
-      'src/assets/fonts/CiscoSansTTHeavy.ttf':'dist/assets/fonts/CiscoSansTTHeavy.ttf',
-      'src/assets/fonts/CiscoSansTTLight.ttf':'dist/assets/fonts/CiscoSansTTLight.ttf',
-      'src/assets/fonts/CiscoSansTTRegular.ttf':'dist/assets/fonts/CiscoSansTTRegular.ttf'
     })
   ]
 }

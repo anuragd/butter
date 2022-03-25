@@ -60,10 +60,10 @@ export default class Panel extends React.Component {
   render() {
     let style = {
       width: null,
-      paddingTop: this.props.collapse.top ? 0 : null,
-      paddingBottom: this.props.collapse.bottom ? 0 : null,
-      paddingLeft: this.props.collapse.left ? 0 : null,
-      paddingRight: this.props.collapse.right ? 0 : null
+      paddingTop: this.props.collapse.top ? "0px !important" : null,
+      paddingBottom: this.props.collapse.bottom ? "0px !important" : null,
+      paddingLeft: this.props.collapse.left ? "0px !important" : null,
+      paddingRight: this.props.collapse.right ? "0px !important" : null
     };
     switch (this.props.size) {
       case "full":

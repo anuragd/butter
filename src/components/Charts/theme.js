@@ -13,7 +13,7 @@ let theme = {
 		margin:0
 	},
 	style: {
-		"fontFamily":"'Cisco',Helvetica, sans-serif"
+		"fontFamily":"Helvetica, sans-serif"
 	}
 }
 

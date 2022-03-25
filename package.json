@@ -1,12 +1,12 @@
 {
-  "name": "dcn-network-insights-ux",
+  "name": "butter",
   "version": "1.0.1",
   "description": "",
   "author": "",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://bitbucket-eng-sjc1.cisco.com/bitbucket/scm/dca/dcn-network-insights-ux.git"
+    "url": "https://github.com/anuragd/butter.git"
   },
   "main": "dist/index.js",
   "module": "dist/index.es.js",
@@ -152,9 +152,12 @@
     },
     "reporters": [
       "default",
-      ["./node_modules/jest-html-reporter", {
-        "pageTitle": "Test Report"
-      }]
+      [
+        "./node_modules/jest-html-reporter",
+        {
+          "pageTitle": "Test Report"
+        }
+      ]
     ],
     "moduleFileExtensions": [
       "web.js",
